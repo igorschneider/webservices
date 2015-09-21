@@ -1,4 +1,8 @@
+package test.java;
+
+
 import static org.junit.Assert.*;
+
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

@@ -1,3 +1,4 @@
+package edu.luc.lakezon.order;
 
 
 public enum Status {

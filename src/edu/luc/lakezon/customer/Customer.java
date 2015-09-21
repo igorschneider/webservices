@@ -1,3 +1,4 @@
+package edu.luc.lakezon.customer;
 import java.util.Calendar;
 
 public class Customer {

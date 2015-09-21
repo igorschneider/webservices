@@ -1,3 +1,4 @@
+package edu.luc.lakezon.order;
 import edu.luc.lakezon.product.Product;
 
 public class OrderDetail {

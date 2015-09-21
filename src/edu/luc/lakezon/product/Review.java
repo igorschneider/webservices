@@ -1,5 +1,7 @@
+package edu.luc.lakezon.product;
 import java.util.Calendar;
 
+import edu.luc.lakezon.customer.Customer;
 import edu.luc.lakezon.product.Product;
 
 public class Review {

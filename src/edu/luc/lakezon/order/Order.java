@@ -1,4 +1,7 @@
+package edu.luc.lakezon.order;
 import java.util.Calendar;
+
+import edu.luc.lakezon.customer.Customer;
 
 public class Order {
 	
