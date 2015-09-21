@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+ 
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.url">jdbc:postgresql://ec2-54-243-149-147.compute-1.amazonaws.com:5432/dfn65jmfhrq226</property>
+        <property name="connection.username">kjygagkrvhfefv</property>
+        <property name="connection.password">IojIEohl_HSPcTx_9vXXJeYV6L</property>
+        <property name="connection.ssl">true</property>
+        <property name="connection.sslfactory">org.postgresql.ssl.NonValidatingFactory</property>
+        
+        <!-- JDBC connection pool (use the built-in) -->
+        <property name="connection.pool_size">1</property>
+        
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+
+        <!-- Disable the second-level cache  -->
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+        
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+
+        <!-- Mention here all the model classes along with their package name -->
+ 		<mapping class="edu.luc.lakezon.product.ProductOwner"/>
+ 		
+ 		 
+    </session-factory>
+</hibernate-configuration>
