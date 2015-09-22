@@ -1,4 +1,4 @@
-package test.java;
+package edu.luc.lakezon.product;
 
 
 import static org.junit.Assert.*;
