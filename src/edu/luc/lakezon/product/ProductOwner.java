@@ -13,7 +13,7 @@ import javax.persistence.Table;
 public class ProductOwner {
 	
 	@Id
-	@SequenceGenerator(name = "seq-gen", sequenceName = "productownerid_seq")
+	@SequenceGenerator(name = "seq-gen", sequenceName = "productownerid_seq", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq-gen")
 	@Column(name = "productownerid")
 	private int productOwnerId;
