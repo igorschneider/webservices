@@ -17,7 +17,7 @@ public class ProductOwnerTest {
 	public void testSave() {
 		
 		ProductOwner productOwner = new ProductOwner();
-		productOwner.setName("Amazon");
+		productOwner.setName("Larry");
 		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
