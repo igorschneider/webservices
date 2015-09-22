@@ -28,6 +28,7 @@
         <!-- Mention here all the model classes along with their package name -->
  		<mapping class="edu.luc.lakezon.product.ProductOwner"/>
  		<mapping class="edu.luc.lakezon.product.Product"/>
+ 		<mapping class="edu.luc.lakezon.order.Order"/>
  		 
     </session-factory>
 </hibernate-configuration>
