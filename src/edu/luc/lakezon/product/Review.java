@@ -1,16 +1,53 @@
 package edu.luc.lakezon.product;
 import java.util.Calendar;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
 import edu.luc.lakezon.customer.Customer;
 import edu.luc.lakezon.product.Product;
 
+@Entity
+@Table(name = "review")
 public class Review {
 
-	private int rating;
+	@Id
+	@SequenceGenerator(name = "seq-gen", sequenceName = "reviewid_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq-gen")
+	@Column(name = "reviewId")
+	private Integer reviewId;
+	
+	@Column(name = "rating")
+	private Integer rating;
+
+	@Column(name = "description")
 	private String description;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "customerid")
 	private Customer customer;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "productid")
 	private Product product;
+
+	@Column(name = "reviewdate")
 	private Calendar reviewDate;
+
+	public Integer getReviewId() {
+		return reviewId;
+	}
+	public void setReviewId(Integer reviewId) {
+		this.reviewId = reviewId;
+	}
 	public int getRating() {
 		return rating;
 	}
@@ -41,7 +78,5 @@ public class Review {
 	public void setReviewDate(Calendar reviewDate) {
 		this.reviewDate = reviewDate;
 	}
-	
-	
-	
+		
 }
