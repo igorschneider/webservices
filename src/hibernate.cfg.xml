@@ -26,8 +26,11 @@
         <property name="show_sql">true</property>
 
         <!-- Mention here all the model classes along with their package name -->
+ 		<mapping class="edu.luc.lakezon.customer.Address"/>
+ 		<mapping class="edu.luc.lakezon.customer.Customer"/>
  		<mapping class="edu.luc.lakezon.product.ProductOwner"/>
  		<mapping class="edu.luc.lakezon.product.Product"/>
+ 		<mapping class="edu.luc.lakezon.product.Review"/>
  		<mapping class="edu.luc.lakezon.order.Order"/>
  		 
     </session-factory>
