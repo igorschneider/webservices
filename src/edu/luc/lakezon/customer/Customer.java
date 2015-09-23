@@ -1,8 +1,23 @@
 package edu.luc.lakezon.customer;
 import java.util.Calendar;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+//@Entity
+//@Table(name = "customer")
 public class Customer {
 	
+	@Id
+	@SequenceGenerator(name = "seq-gen", sequenceName = "customerid_seq", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq-gen")
+	@Column(name = "customerid")
+	private Integer customerId;
 	
 	private String name;
 	private String gender;
