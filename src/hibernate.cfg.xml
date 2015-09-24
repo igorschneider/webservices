@@ -33,7 +33,6 @@
  		<mapping class="edu.luc.lakezon.product.Review"/>
  		<mapping class="edu.luc.lakezon.order.Order"/>
  		<mapping class="edu.luc.lakezon.order.OrderDetail"/>
- 		<mapping class="edu.luc.lakezon.customer.Customer"/>
  		 
     </session-factory>
 </hibernate-configuration>

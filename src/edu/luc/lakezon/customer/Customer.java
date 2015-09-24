@@ -1,4 +1,5 @@
 package edu.luc.lakezon.customer;
+import java.sql.Date;
 import java.util.Calendar;
 
 import javax.persistence.CascadeType;
@@ -7,11 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-//@Entity
-//@Table(name = "customer")
+@Entity
+@Table(name = "customer")
 public class Customer {
 	
 	@Id
@@ -27,7 +30,7 @@ public class Customer {
 	private String gender;
 	
 	@Column(name = "birthdate")
-	private Calendar birthdate;
+	private String birthdate;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "addressid")
@@ -54,10 +57,10 @@ public class Customer {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public Calendar getBirthdate() {
+	public String getBirthdate() {
 		return birthdate;
 	}
-	public void setBirthdate(Calendar birthdate) {
+	public void setBirthdate(String birthdate) {
 		this.birthdate = birthdate;
 	}
 	public Address getAddress() {

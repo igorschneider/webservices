@@ -25,7 +25,7 @@ public class Address {
 	private String addressline2;
 	
 	@Column(name = "zipcode")
-	private String zipcode;
+	private Integer zipcode;
 	
 	@Column(name = "city")
 	private String city;
@@ -54,10 +54,10 @@ public class Address {
 	public void setAddressline2(String addressline2) {
 		this.addressline2 = addressline2;
 	}
-	public String getZipcode() {
+	public Integer getZipcode() {
 		return zipcode;
 	}
-	public void setZipcode(String zipcode) {
+	public void setZipcode(Integer zipcode) {
 		this.zipcode = zipcode;
 	}
 	public String getCity() {
