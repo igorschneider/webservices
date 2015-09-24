@@ -30,7 +30,7 @@ public class Customer {
 	private String gender;
 	
 	@Column(name = "birthdate")
-	private String birthdate;
+	private Calendar birthdate;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "addressid")
@@ -57,10 +57,10 @@ public class Customer {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getBirthdate() {
+	public Calendar getBirthdate() {
 		return birthdate;
 	}
-	public void setBirthdate(String birthdate) {
+	public void setBirthdate(Calendar birthdate) {
 		this.birthdate = birthdate;
 	}
 	public Address getAddress() {

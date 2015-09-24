@@ -27,8 +27,8 @@ public class CustomerTest {
 		Customer customerTest = new Customer();
 		customerTest.setAddress(addressTest);
 		Calendar rightNow = Calendar.getInstance();
-		customerTest.setBirthdate("33333");
-		customerTest.setGender("Male");
+		customerTest.setBirthdate(rightNow);
+		customerTest.setGender("M");
 		customerTest.setName("Robertson");
 		customerTest.setPassword("mamamiaaaaa");
 		
