@@ -18,7 +18,7 @@ import javax.persistence.Table;
 import edu.luc.lakezon.customer.Customer;
 
 @Entity
-@Table(name = "order")
+@Table(name = "order_table")
 public class Order {
 		
 	@Id
@@ -33,8 +33,10 @@ public class Order {
 	@Column(name = "orderdate")
 	private Calendar orderDate;
 	
-
-	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "customerid")
+	private Customer customer;
+		
 //	private OrderDetail listOrderDetail[];
 //	@OneToMany(cascade = CascadeType.ALL)
 //	@JoinColumn(name = "orderid")
@@ -67,12 +69,12 @@ public class Order {
 	public void setOrderDate(Calendar orderDate) {
 		this.orderDate = orderDate;
 	}
-/*	public Customer getCustomer() {
+	public Customer getCustomer() {
 		return customer;
 	}
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-	}*/
+	}
 /*	public OrderDetail[] getListOrderDetail() {
 		return listOrderDetail;
 	}

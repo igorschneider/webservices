@@ -14,7 +14,55 @@ import edu.luc.lakezon.product.Product;
 
 @Entity
 @Table(name = "orderdetail")
-public class OrderDetail {
+public class OrderDetail implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "orderid")
+	private Order order;
+	@Id
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "productid")
+	private Product product;
+	
+	@Column(name = "quantity")
+	private int quantity;
+	
+	OrderDetail(Order ord,Product prod,int quant){
+		this.order = ord;
+		this.product = prod;
+		this.quantity = quant;
+	}
+	
+	public Order getOrder() {
+		return order;
+	}
+	public void setOrder(Order ord) {
+		this.order = ord;
+	}
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product prod) {
+		this.product = prod;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	
+}
+
+/*
+ public class OrderDetail {
 	
 	@EmbeddedId
 	private OrderProductId orderProductId;
@@ -23,8 +71,8 @@ public class OrderDetail {
 	private int quantity;
 	
 	OrderDetail(Order ord,Product prod,int quant){
-		orderProductId = new OrderProductId(ord,prod);
-		quantity = quant;
+		this.orderProductId = new OrderProductId(ord,prod);
+		this.quantity = quant;
 	}
 	
 	public Order getOrder() {
@@ -49,5 +97,6 @@ public class OrderDetail {
 
 	
 }
-
-
+  
+  
+  */

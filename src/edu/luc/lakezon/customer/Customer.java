@@ -1,5 +1,4 @@
 package edu.luc.lakezon.customer;
-import java.sql.Date;
 import java.util.Calendar;
 
 import javax.persistence.CascadeType;
