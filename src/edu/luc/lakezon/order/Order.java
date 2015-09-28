@@ -16,6 +16,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import edu.luc.lakezon.customer.Customer;
+import edu.luc.lakezon.product.Product;
 
 @Entity
 @Table(name = "order_table")
@@ -33,23 +34,12 @@ public class Order {
 	@Column(name = "orderdate")
 	private Calendar orderDate;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "customerid")
 	private Customer customer;
 		
-//	private OrderDetail listOrderDetail[];
-//	@OneToMany(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "orderid")
-//	private Set<OrderDetail> listOrderDetail = new HashSet<OrderDetail>(0);
-//	public Set<OrderDetail> getListOrderDetail() {
-//		return listOrderDetail;
-//	}
-//	public void setListOrderDetail(Set<OrderDetail> listOrderDetail) {
-//		this.listOrderDetail = listOrderDetail;
-//	}
-//	public void addListOrderDetail(OrderDetail orderDetail) {
-//		this.listOrderDetail.add(orderDetail);
-//	}
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+	private Set<OrderDetail> orderDetailList = new HashSet<OrderDetail>(0);
 	
 	public Integer getOrderId() {
 		return orderId;
@@ -75,15 +65,14 @@ public class Order {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-/*	public OrderDetail[] getListOrderDetail() {
-		return listOrderDetail;
+	
+	public Set<OrderDetail> getOrderDetailList() {
+		return orderDetailList;
 	}
-	public void setListOrderDetail(OrderDetail listOrderDetail[]) {
-		this.listOrderDetail = listOrderDetail;
-	}*/
 
+	public void setOrderDetailList(Set<OrderDetail> orderDetailList) {
+		this.orderDetailList = orderDetailList;
+	}
 
-	
-	
 
 }

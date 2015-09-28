@@ -1,14 +1,17 @@
 package edu.luc.lakezon.product;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -25,7 +28,7 @@ public class Product {
 	@Column(name = "name")
 	private String name;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "productownerid")
 	private ProductOwner productOwner;
 	
@@ -37,6 +40,9 @@ public class Product {
 	
 	@Column(name = "image")
 	private String img;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+	private Set<Review> reviewsList = new HashSet<Review>(0);
 	
 	public Integer getProductId() {
 		return productId;
@@ -73,6 +79,14 @@ public class Product {
 	}
 	public void setImg(String img) {
 		this.img = img;
+	}
+	
+	public Set<Review> getReviewtsList() {
+		return reviewsList;
+	}
+
+	public void setReviewsList(Set<Review> reviewsList) {
+		this.reviewsList = reviewsList;
 	}
 	
 }

@@ -1,5 +1,7 @@
 package edu.luc.lakezon.customer;
 import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,9 +10,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import edu.luc.lakezon.order.Order;
+import edu.luc.lakezon.product.Product;
 
 @Entity
 @Table(name = "customer")
@@ -37,6 +43,9 @@ public class Customer {
 	
 	@Column(name = "password")
 	private String password;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+	private Set<Order> ordersList = new HashSet<Order>(0);
 	
 	public Integer getCustomerId() {
 		return customerId;
@@ -75,6 +84,13 @@ public class Customer {
 		this.password = password;
 	}
 	
+	public Set<Order> getOrdersList() {
+		return ordersList;
+	}
+
+	public void setOrdersList(Set<Order> ordersList) {
+		this.ordersList = ordersList;
+	}
 	
 	
 }
