@@ -3,6 +3,8 @@ package edu.luc.lakezon.customer;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.util.Calendar;
+
 import edu.luc.lakezon.dao.customer.CustomerDAO;
 import edu.luc.lakezon.factory.*;
 
@@ -13,6 +15,72 @@ public class CustomerTest {
 	private Customer custT = TestFactory.initCustomer();
 	private Customer custC;
 	private String newName = "Anthony";
+	
+	@Test
+	public void testGetterSetterId() {
+		Integer idExpected = 5;
+		customer.setCustomerId(idExpected);
+		
+		Integer idActual = 0;
+		idActual = customer.getCustomerId();
+		
+		assertTrue(idActual == idExpected);
+	}
+	
+	@Test
+	public void testGetterSetterName() {
+		String nameExpected = "Customer A";
+		customer.setName(nameExpected);
+		
+		String nameActual = "";
+		nameActual = customer.getName();
+		
+		assertTrue(nameActual == nameExpected);
+	}
+	
+	@Test
+	public void testGetterSetterGender() {
+		String genderExpected = "M";
+		customer.setGender(genderExpected);
+		
+		String genderActual = "";
+		genderActual = customer.getGender();
+		
+		assertTrue(genderActual == genderExpected);
+	}
+	
+	@Test
+	public void testGetterSetterBirthdate() {
+		Calendar birthdateExpected = Calendar.getInstance();
+		customer.setBirthdate(birthdateExpected);
+		
+		Calendar birthdateActual;
+		birthdateActual = customer.getBirthdate();
+		
+		assertTrue(birthdateActual == birthdateExpected);
+	}
+	
+	@Test
+	public void testGetterSetterAddress() {
+		Address addressExpected = new Address();
+		customer.setAddress(addressExpected);
+		
+		Address addressActual;
+		addressActual = customer.getAddress();
+		
+		assertTrue(addressActual == addressExpected);
+	}
+	
+	@Test
+	public void testGetterSetterPassword() {
+		String passwordExpected = "***";
+		customer.setGender(passwordExpected);
+		
+		String passwordActual = "";
+		passwordActual = customer.getPassword();
+		
+		assertTrue(passwordActual == passwordExpected);
+	}
 	
 	@Test
 	public void testCRUD() {
