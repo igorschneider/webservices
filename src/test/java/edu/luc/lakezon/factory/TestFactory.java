@@ -10,7 +10,6 @@ import edu.luc.lakezon.business.order.Status;
 import edu.luc.lakezon.business.product.Product;
 import edu.luc.lakezon.business.product.ProductOwner;
 import edu.luc.lakezon.business.product.Review;
-import edu.luc.lakezon.dao.product.ProductOwnerDAO;
 
 public final class TestFactory {
 	private static Customer customerTest;

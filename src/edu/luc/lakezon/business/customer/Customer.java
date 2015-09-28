@@ -16,7 +16,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import edu.luc.lakezon.business.order.Order;
-import edu.luc.lakezon.business.product.Product;
 
 @Entity
 @Table(name = "customer")

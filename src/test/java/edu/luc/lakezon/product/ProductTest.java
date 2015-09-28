@@ -2,10 +2,6 @@ package edu.luc.lakezon.product;
 
 import static org.junit.Assert.*;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.junit.Test;
 
 import edu.luc.lakezon.business.product.Product;

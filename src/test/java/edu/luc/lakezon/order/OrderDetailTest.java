@@ -4,25 +4,18 @@ import static org.junit.Assert.*;
 
 import java.util.Calendar;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.junit.Test;
 
-import edu.luc.lakezon.business.customer.Address;
 import edu.luc.lakezon.business.customer.Customer;
 import edu.luc.lakezon.business.order.Order;
 import edu.luc.lakezon.business.order.OrderDetail;
 import edu.luc.lakezon.business.order.Status;
 import edu.luc.lakezon.business.product.Product;
-import edu.luc.lakezon.business.product.ProductOwner;
-import edu.luc.lakezon.business.product.Review;
 import edu.luc.lakezon.dao.customer.CustomerDAO;
 import edu.luc.lakezon.dao.order.OrderDAO;
 import edu.luc.lakezon.dao.order.OrderDetailDAO;
 import edu.luc.lakezon.dao.product.ProductDAO;
 import edu.luc.lakezon.dao.product.ProductOwnerDAO;
-import edu.luc.lakezon.dao.product.ReviewDAO;
 import edu.luc.lakezon.factory.TestFactory;
 
 

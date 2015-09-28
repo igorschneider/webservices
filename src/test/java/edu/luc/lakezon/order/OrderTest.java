@@ -6,18 +6,13 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.junit.Test;
 
-import edu.luc.lakezon.business.customer.Address;
 import edu.luc.lakezon.business.customer.Customer;
 import edu.luc.lakezon.business.order.Order;
 import edu.luc.lakezon.business.order.OrderDetail;
 import edu.luc.lakezon.business.order.Status;
 import edu.luc.lakezon.business.product.Product;
-import edu.luc.lakezon.business.product.ProductOwner;
 import edu.luc.lakezon.dao.customer.CustomerDAO;
 import edu.luc.lakezon.dao.order.OrderDAO;
 import edu.luc.lakezon.dao.order.OrderDetailDAO;
