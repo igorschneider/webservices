@@ -74,7 +74,7 @@ public class CustomerTest {
 	@Test
 	public void testGetterSetterPassword() {
 		String passwordExpected = "***";
-		customer.setGender(passwordExpected);
+		customer.setPassword(passwordExpected);
 		
 		String passwordActual = "";
 		passwordActual = customer.getPassword();
