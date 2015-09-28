@@ -7,9 +7,21 @@ import java.util.Calendar;
 import org.junit.Test;
 
 import edu.luc.lakezon.customer.Customer;
+import edu.luc.lakezon.dao.customer.CustomerDAO;
+import edu.luc.lakezon.dao.product.ProductDAO;
+import edu.luc.lakezon.dao.product.ProductOwnerDAO;
+import edu.luc.lakezon.dao.product.ReviewDAO;
+import edu.luc.lakezon.factory.TestFactory;
 
 public class ReviewTest {
 
+
+	Review reviewTest = TestFactory.initReview();
+	private ReviewDAO reviewDAO = new ReviewDAO();
+	private ProductDAO productDAO = new ProductDAO();
+	private ProductOwnerDAO prodOwnerDAO = new ProductOwnerDAO();
+	private CustomerDAO customerDAO = new CustomerDAO();
+	
 	private Review review = new Review();
 	
 	@Test
@@ -77,5 +89,37 @@ public class ReviewTest {
 
 		assertTrue(productActual == productExpected);
 	}
+	
+	@Test
+	public void testCRUD() {
+		//CREATING ADDRESS
+		customerDAO.save(reviewTest.getCustomer());
+		prodOwnerDAO.save(reviewTest.getProduct().getProductOwner());
+		productDAO.save(reviewTest.getProduct());
+		reviewDAO.save(reviewTest);
+		
+		/*// Assert the id is set
+				assertTrue("ID is set", reviewTest.getReviewId() != 0);
+				
+				// Search for the address
+				 reviewDAO.getById(reviewTest.getReviewId());
 
-}
+				// TESTING UPDATE
+				
+				// Change the rating
+				reviewTest.setRating(5);
+				
+				// Update the db
+				reviewDAO.update(reviewTest);
+							
+				// Assert that the rating was correctly updated
+			     assertTrue("Rating was no updated correctly", (reviewDAO.getById(reviewTest.getReviewId()).getRating() == 5));
+				
+				// TESTING DELETE
+				reviewDAO.delete(reviewTest);
+				
+				// Assert that the customer was correctly deleted
+				assertTrue("Delete query did not delete", reviewDAO.getById(reviewTest.getReviewId()) == null);	
+		*/}
+	}
+
