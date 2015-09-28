@@ -1,15 +1,16 @@
 package edu.luc.lakezon.customer;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.junit.Test;
+import edu.luc.lakezon.dao.customer.AddressDAO;
+import edu.luc.lakezon.factory.TestFactory;
 
 import static org.junit.Assert.*;
 
 public class AddressTest {
 
 	private Address address = new Address();
+	Address addressTest = TestFactory.initAddress();
+	private AddressDAO addressDAO = new AddressDAO();
 	
 	@Test
 	public void testGetterSetterId() {
@@ -89,26 +90,33 @@ public class AddressTest {
 	}
 	
 	@Test
-	public void testSave() {
+	public void testCRUD() {
 		
-		Address addressTest = new Address();
-		addressTest.setAddressline1("Rua tal");
-		addressTest.setAddressline2("Numero tal");
-		addressTest.setCity("Chicagouo");
-		addressTest.setCountry("USA");
-		addressTest.setState("Illinois");
-		addressTest.setZipcode(666666);
-		
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		
-		session.save(addressTest);
-		
-		session.getTransaction().commit();
-		session.close();
-		sessionFactory.close();
-		
-		assertTrue(true);
+	//CREATING ADDRESS
+	addressDAO.save(addressTest);
+	
+	// Assert the id is set
+			assertTrue("ID is set", addressTest.getAddressId() != 0);
+			
+			// Search for the address
+			 addressDAO.getById(addressTest.getAddressId());
+
+			// TESTING UPDATE
+			
+			// Change the address
+			addressTest.setAddressline1("NEW ADDRESS LINE");
+			addressTest.setCountry("BRAZIL");
+			
+			// Update the db
+			addressDAO.update(addressTest);
+						
+			// Assert that the customer was correctly updated
+		     assertTrue("Address was no updated correctly", (addressDAO.getById(addressTest.getAddressId()).getCountry().equals("BRAZIL")));
+			
+			// TESTING DELETE
+			addressDAO.delete(addressTest);
+			
+			// Assert that the customer was correctly deleted
+			assertTrue("Delete query did not delete", addressDAO.getById(addressTest.getAddressId()) == null);	
 	}
 }
