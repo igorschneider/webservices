@@ -1,9 +1,13 @@
 package edu.luc.lakezon.dao;
 
+import java.util.Iterator;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+
+import edu.luc.lakezon.customer.Customer;
 
 public abstract class BaseDAO<T> {
 
@@ -48,4 +52,25 @@ public abstract class BaseDAO<T> {
 		session.getTransaction().commit();
 	}
 
+	public T getById(Integer id, String table, String field) {
+		T t = null;
+		
+		session.beginTransaction();
+
+		query = session.createQuery("from " + table + " where " + field + " = :" + field);
+		query.setParameter(field, id);
+		
+		try {
+			Iterator<Customer> i = (Iterator<Customer>) query.list().iterator();
+			if (i != null && i.hasNext()) {
+				t = (T) i.next();
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		session.getTransaction().commit();
+
+		return t;
+	}
 }
