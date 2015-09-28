@@ -1,4 +1,3 @@
-
 package edu.luc.lakezon.customer;
 
 import org.hibernate.Query;
@@ -7,35 +6,28 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Iterator;
 import edu.luc.lakezon.factory.*;
 
 public class CustomerTest {
-
-	
+	private Customer custT= TestFactory.initCustomer();
+	private String newName="Anthony";
 	
 	@Test
-	public void testSave() {
-		Customer custT= new Customer();
-		custT= TestFactory.initCustomer();
+	public void testCRUD() {
 		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-
+		
+		// TESTING CREATE
 		session.save(custT);
 
 		// Assert the id is set
-		assertTrue(custT.getCustomerId() != 0);
+		assertTrue("ID is set", custT.getCustomerId() != 0);
 		
 		// Create the query to search for the customer
-		Query query = session.createQuery("from Customer where customerid = :customerID");
+		Query query = session.createQuery("from Customer where customerId = :customerID");
 		query.setParameter("customerID", custT.getCustomerId());
 		
 		// Assert that the customer was correctly saved
@@ -44,80 +36,49 @@ public class CustomerTest {
 			i = (Iterator<Customer>) query.list().iterator();
 			if (i != null && i.hasNext()) {
 				Customer c = (Customer) i.next();
-				System.out.println((c.getName()).equals(custT.getName()));
-				assertTrue((c.getName()).equals(custT.getName()));
+				assertTrue("Name added is different from the name returned",(c.getName()).equals(custT.getName()));
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		session.getTransaction().commit();
-		session.close();
-		sessionFactory.close();
-	}
-	
-	
-	@Test
-	public void testUpdate() {
 		
-				
-		Customer custT= new Customer();
-		custT= TestFactory.initCustomer();
-		
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		
-		System.out.println(custT.getName());
-		
-		System.out.println("id" + custT.getCustomerId());
+		// TESTING UPDATE
 		
 		// Create the query to search for the customer
-		Query query = session.createQuery("from Customer where customerid = :customerID");
+		query = session.createQuery("from Customer where customerId = :customerID");
+		query.setParameter("customerID", custT.getCustomerId());
+				
+		// Change the customer name
+		custT.setName(newName);
+		
+		// Update the object
+		session.update(custT);
+		
+		//Create the query to search for the updated customer
+		query = session.createQuery("from Customer where customerId = :customerID");
 		query.setParameter("customerID", custT.getCustomerId());
 		
-		System.out.println(query.list().size());
+		assertFalse(query.list().isEmpty());
 		
-		// Change the product owner name
-		//custT.setName("Jerry");
-		//custT.setBirthdate(calendar);
-
-	
-		// Update the object
-		//session.update(custT);
+		// Assert that the customer was correctly updated
+				try {
+					Iterator<Customer> i;
+					i = (Iterator<Customer>) query.list().iterator();
+					if (i != null && i.hasNext()) {
+						Customer c = (Customer) i.next();
+						assertTrue("Customer was no updated correctly",(c.getName()).equals(newName));
+					}
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
 		
+		// TESTING DELETE
+		session.delete(custT);
+		assertTrue("Delete query did not delete", query.list().isEmpty());
 		
-		/*
-		// Create the query to search for the customer
-		query = session.createQuery("from customer where name = :customerName AND birthdate = :birthDate");
-		query.setParameter("customerName", "Jerry");
-		query.setParameter("birthDate", calendar);
-		
-		
-		try {
-			Iterator<Customer> i;
-			i = (Iterator<Customer>) query.list().iterator();
-			if (i != null && i.hasNext()) {
-				Customer c = (Customer) i.next();
-				assertTrue((c.getName()).equals("Jerry"));
-			}
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}*/
 		session.getTransaction().commit();
 		session.close();
 		sessionFactory.close();	
-	
-	}
-	
-	
-	
-	@Test
-	public void testDelete() {
 		
-	}
-	
-	
-	
-	
-	
+	}	
 }
