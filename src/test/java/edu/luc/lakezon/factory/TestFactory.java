@@ -4,11 +4,17 @@ import java.util.Calendar;
 
 import edu.luc.lakezon.customer.Address;
 import edu.luc.lakezon.customer.Customer;
+import edu.luc.lakezon.product.Product;
+import edu.luc.lakezon.product.ProductOwner;
+import edu.luc.lakezon.product.Review;
 
 public final class TestFactory {
 	private static Customer customerTest;
 	private static Address addressTest;
-
+	private static Review reviewTest;
+	private static Product productTest;
+	private static ProductOwner prodOwnerTest;
+	
 	public static Customer initCustomer() {
 
 		if (customerTest == null) {
@@ -36,5 +42,40 @@ public final class TestFactory {
 		}
 
 		return addressTest;
+	}
+	
+	public static Product initProduct(){
+		if(productTest == null){
+		 productTest.setDescription("Large Table");	
+		 productTest.setImg("img.jpg");
+		 productTest.setName("American Table");
+		 productTest.setProductOwner(initProductOwner());
+		 productTest.setQuantity(4);	
+		}
+		
+		return productTest;
+	}
+	
+	
+	
+	public static Review initReview(){
+		if(reviewTest == null){
+			reviewTest = new Review();
+			reviewTest.setCustomer(initCustomer());
+			reviewTest.setDescription("Best item ever!");
+			reviewTest.setRating(4);
+			reviewTest.setProduct(initProduct());
+			reviewTest.setReviewDate(Calendar.getInstance());	
+		
+		}
+		
+		return reviewTest;		
+	}
+	
+	public static ProductOwner initProductOwner(){
+		if(prodOwnerTest == null){
+			prodOwnerTest.setName("Amazon Warehouse");
+		}
+		return prodOwnerTest;
 	}
 }
