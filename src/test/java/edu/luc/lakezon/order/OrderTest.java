@@ -14,6 +14,8 @@ import edu.luc.lakezon.customer.Customer;
 import edu.luc.lakezon.dao.customer.CustomerDAO;
 import edu.luc.lakezon.dao.order.OrderDAO;
 import edu.luc.lakezon.dao.order.OrderDetailDAO;
+import edu.luc.lakezon.dao.product.ProductDAO;
+import edu.luc.lakezon.dao.product.ProductOwnerDAO;
 import edu.luc.lakezon.factory.TestFactory;
 import edu.luc.lakezon.order.Order;
 import edu.luc.lakezon.product.Product;
@@ -22,6 +24,7 @@ import edu.luc.lakezon.product.ProductOwner;
 public class OrderTest {
 	private OrderDAO orderDAO = new OrderDAO();
 	private OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
+	private ProductDAO productDAO = new ProductDAO();
 	private Order ordT = new Order();
 	private CustomerDAO customerDAO = new CustomerDAO();
 	private Product prodT = TestFactory.initProduct();
@@ -98,6 +101,9 @@ public class OrderTest {
 		ordT.setOrderDate(rightNow);
 		ordT.setStatus(Status.PROCESSING);
 		orderDAO.save(ordT);
+		ProductOwnerDAO productOwnerDAO = new ProductOwnerDAO();
+		productOwnerDAO.save(prodT.getProductOwner());
+		productDAO.save(prodT);
 		OrderDetail ordDT = new OrderDetail(ordT,prodT,55);
 		orderDetailDAO.save(ordDT);
 		(ordT.getOrderDetailList()).add(ordDT);
