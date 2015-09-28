@@ -11,68 +11,109 @@ import org.junit.Test;
 
 import edu.luc.lakezon.customer.Address;
 import edu.luc.lakezon.customer.Customer;
+import edu.luc.lakezon.dao.customer.CustomerDAO;
+import edu.luc.lakezon.dao.order.OrderDAO;
+import edu.luc.lakezon.dao.order.OrderDetailDAO;
+import edu.luc.lakezon.dao.product.ProductDAO;
+import edu.luc.lakezon.dao.product.ProductOwnerDAO;
+import edu.luc.lakezon.dao.product.ReviewDAO;
+import edu.luc.lakezon.factory.TestFactory;
 import edu.luc.lakezon.order.Order;
 import edu.luc.lakezon.product.Product;
 import edu.luc.lakezon.product.ProductOwner;
+import edu.luc.lakezon.product.Review;
 
 
 public class OrderDetailTest {
 	
-	
+	OrderDetail orderDetailTest = TestFactory.initOrderDetail();
+	private OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
+	private OrderDAO orderDAO = new OrderDAO();;
+	private ProductDAO productDAO = new ProductDAO();
+	private Customer custT= TestFactory.initCustomer();
+	private Calendar rightNow = Calendar.getInstance();
+	private Order order = TestFactory.initOrder();
+	private CustomerDAO customerDAO = new CustomerDAO();
+	private Product product = TestFactory.initProduct();
+	private Product prodT = TestFactory.initProduct();
+	private Order ordT = new Order();
+
+//	private OrderDetail orderDetail = new OrderDetail(order,product,0);
+	private OrderDetail orderDetail = new OrderDetail();
+
 	@Test
-	public void testSave() {
-			
-		Address addressTest = new Address();
-		addressTest.setAddressline1("Rua tal");
-		addressTest.setAddressline2("Numero tal");
-		addressTest.setCity("Chicagouo");
-		addressTest.setCountry("USA");
-		addressTest.setState("Illinois");
-		addressTest.setZipcode(666666);
+	public void testGetterSetterId() {
+		Order orderN = TestFactory.initOrder();
+		Product productN = TestFactory.initProduct();
+		Integer orderIdExpected = 5;
+		Integer productIdExpected = 6;
+		orderN.setOrderId(orderIdExpected);
+		productN.setProductId(productIdExpected);
 		
-		Customer customerTest = new Customer();
-		customerTest.setAddress(addressTest);
-		Calendar rightNow = Calendar.getInstance();
-		customerTest.setBirthdate(rightNow);
-		customerTest.setGender("M");
-		customerTest.setName("Robertson");
-		customerTest.setPassword("mamamiaaa");
-		
-		Product productTest = new Product();
-		
-		ProductOwner productOwnerTest = new ProductOwner();
-		productOwnerTest.setName("DynkSA");
+		orderDetail.setOrder(orderN);
+		orderDetail.setProduct(productN);
 
-		productTest.setName("Amendoin");
-		productTest.setDescription("Amendoin da alegria");
-		productTest.setQuantity(10);
-		productTest.setImg("Image4");
-		productTest.setProductOwner(productOwnerTest);
-		
-		Order orderTest = new Order();
-		orderTest.setCustomer(customerTest);
-//		Calendar rightNow = Calendar.getInstance();
-		orderTest.setOrderDate(rightNow);
-//		orderTest.setCustomer(customerTest);
-//		(orderTest.getListOrderDetail()).add(orderDetailTest);
-		orderTest.setStatus(Status.CANCELED);
-		OrderDetail orderDetailTest = new OrderDetail(orderTest,productTest,3);
-//		orderTest.addListOrderDetail(orderDetailTest);
-		
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		session.persist(orderTest);
-		session.persist(productTest);
+		Integer orderIdActual = 0;
+		Integer productIdActual = 0;
+		orderIdActual = orderDetail.getOrder().getOrderId();
+		productIdActual = orderDetail.getProduct().getProductId();
 
-		session.save(orderDetailTest);
-
-		
-			
-		session.getTransaction().commit();
-		session.close();
-		sessionFactory.close();
-			
-		assertTrue(true);
+		assertTrue((orderIdActual == orderIdExpected)&&(productIdActual == productIdExpected));
 	}
+
+	@Test
+	public void testGetterSetterQuantity() {
+		Integer quantExpected = 5;
+		orderDetail.setQuantity(quantExpected);
+
+		Integer quantActual = 0;
+		quantActual = orderDetail.getQuantity();
+
+		assertTrue(quantActual == quantExpected);
+	}
+
+	@Test
+	public void testCRUD() {
+		
+		customerDAO.save(custT);
+		ordT.setCustomer(custT);
+		ordT.setOrderDate(rightNow);
+		ordT.setStatus(Status.PROCESSING);
+		orderDAO.save(ordT);
+		ProductOwnerDAO productOwnerDAO = new ProductOwnerDAO();
+		productOwnerDAO.save(prodT.getProductOwner());
+		productDAO.save(prodT);
+
+//		// CREATING OrderDetail
+//		OrderDetail ordDT = new OrderDetail(ordT,prodT,55);
+		OrderDetail ordDT = new OrderDetail();
+		ordDT.setOrder(ordT);
+		ordDT.setProduct(prodT);
+		ordDT.setQuantity(55);
+		orderDetailDAO.save(ordDT);
+
+		// Assert the id is set
+		assertTrue("ID is set", (ordDT.getOrder().getOrderId() != 0)&&(ordDT.getProduct().getProductId() != 0));
+
+		// Search for the orderDetail
+		orderDetailDAO.getById(ordDT.getOrder().getOrderId(),ordDT.getProduct().getProductId());
+//
+//		// TESTING UPDATE
+		// Change the Quantity
+		ordDT.setQuantity(5);
+//
+		// Update the db
+		orderDetailDAO.update(ordDT);
+//
+		// Assert that the quantity was correctly updated
+		assertTrue("Quantity was no updated correctly", (orderDetailDAO.getById(ordDT.getOrder().getOrderId(),ordDT.getProduct().getProductId()).getQuantity() == 5));
+////
+		// TESTING DELETE
+		orderDetailDAO.delete(ordDT);
+////
+		// Assert that the orderDetail was correctly deleted
+		assertTrue("Delete query did not delete", orderDetailDAO.getById(ordDT.getOrder().getOrderId(),ordDT.getProduct().getProductId()) == null);
+	}
+	
+	
 }

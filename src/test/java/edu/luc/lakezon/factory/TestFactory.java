@@ -4,6 +4,10 @@ import java.util.Calendar;
 
 import edu.luc.lakezon.customer.Address;
 import edu.luc.lakezon.customer.Customer;
+import edu.luc.lakezon.dao.product.ProductOwnerDAO;
+import edu.luc.lakezon.order.Order;
+import edu.luc.lakezon.order.OrderDetail;
+import edu.luc.lakezon.order.Status;
 import edu.luc.lakezon.product.Product;
 import edu.luc.lakezon.product.ProductOwner;
 import edu.luc.lakezon.product.Review;
@@ -14,6 +18,8 @@ public final class TestFactory {
 	private static Review reviewTest;
 	private static Product productTest;
 	private static ProductOwner prodOwnerTest;
+	private static Order orderTest;
+	private static OrderDetail orderDetailTest;
 	
 	public static Customer initCustomer() {
 
@@ -80,4 +86,25 @@ public final class TestFactory {
 		}
 		return prodOwnerTest;
 	}
+	public static Order initOrder(){
+		if(orderTest == null){
+			orderTest = new Order();
+			orderTest.setCustomer(initCustomer());
+			orderTest.setOrderDate(Calendar.getInstance());
+			orderTest.setStatus(Status.PROCESSING);
+		}
+		return orderTest;
+	}
+	
+	public static OrderDetail initOrderDetail(){
+		if(orderDetailTest == null){
+			orderDetailTest = new OrderDetail();
+			orderDetailTest.setOrder(initOrder());
+			orderDetailTest.setProduct(initProduct());
+			orderDetailTest.setQuantity(55);
+		}
+		return orderDetailTest;
+	}
+
+	
 }

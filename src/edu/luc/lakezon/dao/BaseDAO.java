@@ -65,7 +65,30 @@ public abstract class BaseDAO<T> {
 		query.setParameter(field, id);
 		
 		try {
-			Iterator<Customer> i = (Iterator<Customer>) query.list().iterator();
+			Iterator<T> i = (Iterator<T>) query.list().iterator();
+			if (i != null && i.hasNext()) {
+				t = (T) i.next();
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		session.getTransaction().commit();
+
+		return t;
+	}
+	
+	public T getById(Integer id1, Integer id2,String table, String field1, String field2) {
+		T t = null;
+		
+		session.beginTransaction();
+
+		query = session.createQuery("from " + table + " where " + field1 + " = :" + field1 +" AND "+ field2 + " = :" + field2);
+		query.setParameter(field1, id1);
+		query.setParameter(field2, id2);
+		
+		try {
+			Iterator<T> i = (Iterator<T>) query.list().iterator();
 			if (i != null && i.hasNext()) {
 				t = (T) i.next();
 			}

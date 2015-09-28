@@ -31,11 +31,11 @@ public class OrderDetail implements Serializable {
 	@Column(name = "quantity")
 	private int quantity;
 	
-	OrderDetail(Order ord,Product prod,int quant){
-		this.order = ord;
-		this.product = prod;
-		this.quantity = quant;
-	}
+//	public OrderDetail(Order ord,Product prod,int quant){
+//		this.order = ord;
+//		this.product = prod;
+//		this.quantity = quant;
+//	}
 	
 	public Order getOrder() {
 		return order;

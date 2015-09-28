@@ -3,6 +3,8 @@ package edu.luc.lakezon.order;
 import static org.junit.Assert.*;
 
 import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -26,66 +28,69 @@ public class OrderTest {
 	private OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
 	private ProductDAO productDAO = new ProductDAO();
 	private Order ordT = new Order();
+	private Order orderTest = TestFactory.initOrder();
+	private Order ordC;
 	private CustomerDAO customerDAO = new CustomerDAO();
 	private Product prodT = TestFactory.initProduct();
 	private Customer custT= TestFactory.initCustomer();
 	private Calendar rightNow = Calendar.getInstance();
-//	private OrderDetail ordDT = new OrderDetail(ordT,prodT,3);
+	private Status newStatus = Status.CANCELED;
 
-//	
-//	@Test
-//	public void testSave() {
-//		
-//		Address addressTest = new Address();
-//		addressTest.setAddressline1("Rua tal");
-//		addressTest.setAddressline2("Numero tal");
-//		addressTest.setCity("Chicagouo");
-//		addressTest.setCountry("USA");
-//		addressTest.setState("Illinois");
-//		addressTest.setZipcode(666666);
-//		
-//		Customer customerTest = new Customer();
-//		customerTest.setAddress(addressTest);
-//		customerTest.setBirthdate(rightNow);
-//		customerTest.setGender("M");
-//		customerTest.setName("Robertson");
-//		customerTest.setPassword("mamamiaaaaa");
-//		
-////		ProductOwner productOwnerTest = new ProductOwner();
-////		productOwnerTest.setName("Amazon");
-////
-////		Product productTest= new Product();
-////		productTest.setName("Product1");
-////		productTest.setDescription("Description1");
-////		productTest.setQuantity(10);
-////		productTest.setImg("Image1");
-////		productTest.setProductOwner(productOwnerTest);
-//		
-//		Order orderTest = new Order();
-//		orderTest.setCustomer(customerTest);
-//		orderTest.setOrderDate(rightNow);
-//
-////		(orderTest.getListOrderDetail()).add(orderDetailTest);
-//		orderTest.setStatus(Status.PROCESSING);
-////		OrderDetail orderDetailTest = new OrderDetail(orderTest,productTest,3);
-////		orderTest.addListOrderDetail(orderDetailTest);
-//		
-//		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-//		Session session = sessionFactory.openSession();
-//		session.beginTransaction();
-//		
-//
-//		session.save(orderTest);
-//
-//		
-//			
-//		session.getTransaction().commit();
-//		session.close();
-//		sessionFactory.close();
-//			
-//		assertTrue(true);
-//	}
-//	
+	@Test
+	public void testGetterSetterId() {
+		Integer idExpected = 500;
+		orderTest.setOrderId(idExpected);
+		
+		Integer idActual = 0;
+		idActual = orderTest.getOrderId();
+		
+		assertTrue(idActual == idExpected);
+	}
+	
+	@Test
+	public void testGetterSetterOrderDate() {
+		Calendar dateExpected = Calendar.getInstance();
+		orderTest.setOrderDate(dateExpected);
+
+		Calendar dateActual;
+		dateActual = orderTest.getOrderDate();
+
+		assertTrue(dateActual == dateExpected);
+	}
+	
+	@Test
+	public void testGetterSetterStatus() {
+		Status statusExpected = Status.PROCESSING;
+		orderTest.setStatus(statusExpected);
+
+		Status statusActual;
+		statusActual = orderTest.getStatus();
+
+		assertTrue(statusActual == statusExpected);
+	}
+	
+	@Test
+	public void testGetterSetterCustomer() {
+		Customer customerExpected = new Customer();
+		orderTest.setCustomer(customerExpected);
+
+		Customer customerActual;
+		customerActual = orderTest.getCustomer();
+
+		assertTrue(customerActual == customerExpected);
+	}
+	
+	@Test
+	public void testGetterSetterOrderDetailList() {
+		Set<OrderDetail> orderDetailListExpected = new HashSet<OrderDetail>(0);
+		orderTest.setOrderDetailList(orderDetailListExpected);
+		
+		Set<OrderDetail> orderDetailListActual;
+		orderDetailListActual = orderTest.getOrderDetailList();
+		
+		assertTrue(orderDetailListActual == orderDetailListExpected);
+	}
+	
 
 	
 	@Test
@@ -93,10 +98,7 @@ public class OrderTest {
 		
 		
 		// TESTING CREATE
-//		(ordT.getOrderDetailList()).add(ordDT);
 		customerDAO.save(custT);
-//		Customer custtt = new Customer();
-//		custtt = custT;
 		ordT.setCustomer(custT);
 		ordT.setOrderDate(rightNow);
 		ordT.setStatus(Status.PROCESSING);
@@ -104,42 +106,43 @@ public class OrderTest {
 		ProductOwnerDAO productOwnerDAO = new ProductOwnerDAO();
 		productOwnerDAO.save(prodT.getProductOwner());
 		productDAO.save(prodT);
-		OrderDetail ordDT = new OrderDetail(ordT,prodT,55);
-		orderDetailDAO.save(ordDT);
+//		OrderDetail ordDT = new OrderDetail(ordT,prodT,55);
+		OrderDetail ordDT = new OrderDetail();
+		ordDT.setOrder(ordT);
+		ordDT.setProduct(prodT);
+		ordDT.setQuantity(55);
+
 		(ordT.getOrderDetailList()).add(ordDT);
 		orderDAO.save(ordT);
-//
-//		// Assert the id is set
-//		assertTrue("ID is set", ordT.getOrderId() != 0);
-//		
-//		// Search for the order
-//		ordC = orderDAO.getById(ordT.getOrderId());
-//
-//		// Assert that the order was correctly saved
-//		assertTrue("Name added is different from the name returned", (ordC.getName()).equals(ordT.getName()));
-//		
-//		// TESTING UPDATE
-//		
-//		// Change the order name
-//		ordT.setName(newName);
-//		
-//		// Update the object
-//		orderDAO.update(ordT);
-//		
-//		//Search for the updated order
-//		ordC = orderDAO.getById(ordT.getOrderId());
-//		
-//		// Assert that the order was correctly updated
-//		assertTrue("Order was no updated correctly", (ordC.getName()).equals(newName));
-//		
-//		// TESTING DELETE
-//		orderDAO.delete(ordT);
-//
-//		//Search for the updated order
-//		ordC = orderDAO.getById(ordT.getOrderId());
-//		
-//		// Assert that the order was correctly deleted
-//		assertTrue("Delete query did not delete", ordC == null);
+
+		// Assert the id is set
+		assertTrue("ID is set", ordT.getOrderId() != 0);
+		
+		// Search for the order
+		ordC = orderDAO.getById(ordT.getOrderId());
+	
+		// TESTING UPDATE
+		// Change the date
+		Calendar newDate = Calendar.getInstance();
+		ordT.setOrderDate(newDate);
+		
+		// Update the object
+		orderDAO.update(ordT);
+		
+		//Search for the updated order
+		ordC = orderDAO.getById(ordT.getOrderId());
+		
+		// Assert that the order was correctly updated
+		assertTrue("Order was no updated correctly", (ordC.getOrderDate()).equals(newDate));
+		
+		// TESTING DELETE
+		orderDAO.delete(ordT);
+
+		//Search for the updated order
+		ordC = orderDAO.getById(ordT.getOrderId());
+		
+		// Assert that the order was correctly deleted
+		assertTrue("Delete query did not delete", ordC == null);
 	}	
 
 }
