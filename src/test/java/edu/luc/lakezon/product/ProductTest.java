@@ -71,6 +71,17 @@ public class ProductTest {
 
 		assertTrue(imageActual == imageExpected);
 	}
+	
+	@Test
+	public void testGetterSetterPrice() {
+		Double priceExpected = 5.55;
+		product.setPrice(priceExpected);
+
+		Double priceActual = 0.00;
+		priceActual = product.getPrice();
+
+		assertTrue(priceActual == priceExpected);
+	}
 
 	@Test
 	public void testGetterSetterProductOwner() {

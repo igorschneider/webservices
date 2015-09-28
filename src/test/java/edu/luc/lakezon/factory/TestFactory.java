@@ -57,7 +57,8 @@ public final class TestFactory {
 		 productTest.setImg("img.jpg");
 		 productTest.setName("American Table");
 		 productTest.setProductOwner(initProductOwner());
-		 productTest.setQuantity(4);	
+		 productTest.setQuantity(4);
+		 productTest.setPrice(8.88);
 		}
 		
 		return productTest;

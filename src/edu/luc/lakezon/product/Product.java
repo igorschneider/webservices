@@ -42,6 +42,9 @@ public class Product {
 	@Column(name = "image")
 	private String img;
 	
+	@Column(name = "price")
+	private Double price;
+	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
 	private Set<Review> reviewsList = new HashSet<Review>(0);
 	
@@ -81,7 +84,12 @@ public class Product {
 	public void setImg(String img) {
 		this.img = img;
 	}
-	
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 	public Set<Review> getReviewtsList() {
 		return reviewsList;
 	}
