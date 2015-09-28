@@ -11,17 +11,19 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Test;
 
-import edu.luc.lakezon.customer.Address;
-import edu.luc.lakezon.customer.Customer;
+import edu.luc.lakezon.business.customer.Address;
+import edu.luc.lakezon.business.customer.Customer;
+import edu.luc.lakezon.business.order.Order;
+import edu.luc.lakezon.business.order.OrderDetail;
+import edu.luc.lakezon.business.order.Status;
+import edu.luc.lakezon.business.product.Product;
+import edu.luc.lakezon.business.product.ProductOwner;
 import edu.luc.lakezon.dao.customer.CustomerDAO;
 import edu.luc.lakezon.dao.order.OrderDAO;
 import edu.luc.lakezon.dao.order.OrderDetailDAO;
 import edu.luc.lakezon.dao.product.ProductDAO;
 import edu.luc.lakezon.dao.product.ProductOwnerDAO;
 import edu.luc.lakezon.factory.TestFactory;
-import edu.luc.lakezon.order.Order;
-import edu.luc.lakezon.product.Product;
-import edu.luc.lakezon.product.ProductOwner;
 
 public class OrderTest {
 	private OrderDAO orderDAO = new OrderDAO();

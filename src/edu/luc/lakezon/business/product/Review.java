@@ -1,4 +1,4 @@
-package edu.luc.lakezon.product;
+package edu.luc.lakezon.business.product;
 import java.util.Calendar;
 
 import javax.persistence.CascadeType;
@@ -12,8 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import edu.luc.lakezon.customer.Customer;
-import edu.luc.lakezon.product.Product;
+import edu.luc.lakezon.business.customer.Customer;
+import edu.luc.lakezon.business.product.Product;
 
 @Entity
 @Table(name = "review")

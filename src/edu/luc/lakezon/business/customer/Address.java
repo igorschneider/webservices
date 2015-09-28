@@ -1,4 +1,4 @@
-package edu.luc.lakezon.customer;
+package edu.luc.lakezon.business.customer;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

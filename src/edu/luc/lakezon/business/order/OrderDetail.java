@@ -1,4 +1,4 @@
-package edu.luc.lakezon.order;
+package edu.luc.lakezon.business.order;
 import java.io.Serializable;
 
 import javax.persistence.CascadeType;
@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import edu.luc.lakezon.product.Product;
+import edu.luc.lakezon.business.product.Product;
 
 @Entity
 @Table(name = "orderdetail")

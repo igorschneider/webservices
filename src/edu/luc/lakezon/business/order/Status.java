@@ -1,4 +1,4 @@
-package edu.luc.lakezon.order;
+package edu.luc.lakezon.business.order;
 
 
 public enum Status {

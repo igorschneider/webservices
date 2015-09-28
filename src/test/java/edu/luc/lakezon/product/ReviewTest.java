@@ -6,7 +6,9 @@ import java.util.Calendar;
 
 import org.junit.Test;
 
-import edu.luc.lakezon.customer.Customer;
+import edu.luc.lakezon.business.customer.Customer;
+import edu.luc.lakezon.business.product.Product;
+import edu.luc.lakezon.business.product.Review;
 import edu.luc.lakezon.dao.customer.CustomerDAO;
 import edu.luc.lakezon.dao.product.ProductDAO;
 import edu.luc.lakezon.dao.product.ProductOwnerDAO;

@@ -2,15 +2,15 @@ package edu.luc.lakezon.factory;
 
 import java.util.Calendar;
 
-import edu.luc.lakezon.customer.Address;
-import edu.luc.lakezon.customer.Customer;
+import edu.luc.lakezon.business.customer.Address;
+import edu.luc.lakezon.business.customer.Customer;
+import edu.luc.lakezon.business.order.Order;
+import edu.luc.lakezon.business.order.OrderDetail;
+import edu.luc.lakezon.business.order.Status;
+import edu.luc.lakezon.business.product.Product;
+import edu.luc.lakezon.business.product.ProductOwner;
+import edu.luc.lakezon.business.product.Review;
 import edu.luc.lakezon.dao.product.ProductOwnerDAO;
-import edu.luc.lakezon.order.Order;
-import edu.luc.lakezon.order.OrderDetail;
-import edu.luc.lakezon.order.Status;
-import edu.luc.lakezon.product.Product;
-import edu.luc.lakezon.product.ProductOwner;
-import edu.luc.lakezon.product.Review;
 
 public final class TestFactory {
 	private static Customer customerTest;

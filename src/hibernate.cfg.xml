@@ -26,13 +26,13 @@
         <property name="show_sql">true</property>
 
         <!-- Mention here all the model classes along with their package name -->
- 		<mapping class="edu.luc.lakezon.customer.Address"/>
- 		<mapping class="edu.luc.lakezon.customer.Customer"/>
- 		<mapping class="edu.luc.lakezon.product.ProductOwner"/>
- 		<mapping class="edu.luc.lakezon.product.Product"/>
- 		<mapping class="edu.luc.lakezon.product.Review"/>
- 		<mapping class="edu.luc.lakezon.order.Order"/>
- 		<mapping class="edu.luc.lakezon.order.OrderDetail"/>
+ 		<mapping class="edu.luc.lakezon.business.customer.Address"/>
+ 		<mapping class="edu.luc.lakezon.business.customer.Customer"/>
+ 		<mapping class="edu.luc.lakezon.business.product.ProductOwner"/>
+ 		<mapping class="edu.luc.lakezon.business.product.Product"/>
+ 		<mapping class="edu.luc.lakezon.business.product.Review"/>
+ 		<mapping class="edu.luc.lakezon.business.order.Order"/>
+ 		<mapping class="edu.luc.lakezon.business.order.OrderDetail"/>
  		 
     </session-factory>
 </hibernate-configuration>

@@ -1,6 +1,6 @@
 package edu.luc.lakezon.dao.order;
+import edu.luc.lakezon.business.order.Order;
 import edu.luc.lakezon.dao.BaseDAO;
-import edu.luc.lakezon.order.Order;
 
 public class OrderDAO extends BaseDAO<Order>{
 

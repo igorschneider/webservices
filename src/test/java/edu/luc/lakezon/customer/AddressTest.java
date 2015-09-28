@@ -1,6 +1,8 @@
 package edu.luc.lakezon.customer;
 
 import org.junit.Test;
+
+import edu.luc.lakezon.business.customer.Address;
 import edu.luc.lakezon.dao.customer.AddressDAO;
 import edu.luc.lakezon.factory.TestFactory;
 

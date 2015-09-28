@@ -7,9 +7,10 @@ import java.util.Set;
 
 import org.junit.Test;
 
+import edu.luc.lakezon.business.product.Product;
+import edu.luc.lakezon.business.product.ProductOwner;
 import edu.luc.lakezon.dao.product.ProductOwnerDAO;
 import edu.luc.lakezon.factory.TestFactory;
-import edu.luc.lakezon.product.ProductOwner;
 
 public class ProductOwnerTest {
 

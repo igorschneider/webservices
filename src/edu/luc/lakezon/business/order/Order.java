@@ -1,4 +1,4 @@
-package edu.luc.lakezon.order;
+package edu.luc.lakezon.business.order;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,8 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import edu.luc.lakezon.customer.Customer;
-import edu.luc.lakezon.product.Product;
+import edu.luc.lakezon.business.customer.Customer;
+import edu.luc.lakezon.business.product.Product;
 
 @Entity
 @Table(name = "order_table")

@@ -7,7 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-import edu.luc.lakezon.customer.Customer;
+import edu.luc.lakezon.business.customer.Customer;
 
 public abstract class BaseDAO<T> {
 

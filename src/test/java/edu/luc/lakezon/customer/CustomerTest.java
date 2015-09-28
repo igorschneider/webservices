@@ -7,9 +7,11 @@ import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
+import edu.luc.lakezon.business.customer.Address;
+import edu.luc.lakezon.business.customer.Customer;
+import edu.luc.lakezon.business.order.Order;
 import edu.luc.lakezon.dao.customer.CustomerDAO;
 import edu.luc.lakezon.factory.*;
-import edu.luc.lakezon.order.Order;
 
 public class CustomerTest {
 
