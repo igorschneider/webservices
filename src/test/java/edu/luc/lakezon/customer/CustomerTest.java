@@ -4,14 +4,17 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 
 import edu.luc.lakezon.dao.customer.CustomerDAO;
 import edu.luc.lakezon.factory.*;
+import edu.luc.lakezon.order.Order;
 
 public class CustomerTest {
 
 	private Customer customer = new Customer();
-	private CustomerDAO customerDAO = new CustomerDAO();
+	private CustomerDAO customerDAO;
 	private Customer custT = TestFactory.initCustomer();
 	private Customer custC;
 	private String newName = "Anthony";
@@ -83,7 +86,20 @@ public class CustomerTest {
 	}
 	
 	@Test
+	public void testGetterSetterOrdersList() {
+		Set<Order> ordersListExpected = new HashSet<Order>(0);
+		customer.setOrdersList(ordersListExpected);
+		
+		Set<Order> ordersListActual;
+		ordersListActual = customer.getOrdersList();
+		
+		assertTrue(ordersListActual == ordersListExpected);
+	}
+	
+	@Test
 	public void testCRUD() {
+		
+		customerDAO = new CustomerDAO();
 		
 		// TESTING CREATE
 		customerDAO.save(custT);
