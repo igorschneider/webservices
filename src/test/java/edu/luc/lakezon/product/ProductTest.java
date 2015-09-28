@@ -8,177 +8,113 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.Test;
 
+import edu.luc.lakezon.dao.product.ProductDAO;
+import edu.luc.lakezon.dao.product.ProductOwnerDAO;
+import edu.luc.lakezon.factory.TestFactory;
+
 public class ProductTest {
 
 	Product product = new Product();
-	
+	Product productTest = TestFactory.initProduct();
+
 	@Test
 	public void testGetterSetterId() {
 		Integer idExpected = 5;
 		product.setProductId(idExpected);
-		
+
 		Integer idActual = 0;
 		idActual = product.getProductId();
-		
+
 		assertTrue(idActual == idExpected);
 	}
-	
+
 	@Test
 	public void testGetterSetterName() {
 		String nameExpected = "Product 1";
 		product.setName(nameExpected);
-		
+
 		String nameActual = "";
 		nameActual = product.getName();
-		
+
 		assertTrue(nameActual == nameExpected);
 	}
-	
+
 	@Test
 	public void testGetterSetterDescription() {
 		String descriptionExpected = "Description 1";
 		product.setDescription(descriptionExpected);
-		
+
 		String descriptionActual = "";
 		descriptionActual = product.getDescription();
-		
+
 		assertTrue(descriptionActual == descriptionExpected);
 	}
-	
+
 	@Test
 	public void testGetterSetterQuantity() {
 		Integer quantityExpected = 5;
 		product.setQuantity(quantityExpected);
-		
+
 		Integer quantityActual = 0;
 		quantityActual = product.getQuantity();
-		
+
 		assertTrue(quantityActual == quantityExpected);
 	}
-	
+
 	@Test
 	public void testGetterSetterImage() {
 		String imageExpected = "Image URL";
 		product.setImg(imageExpected);
-		
+
 		String imageActual = "";
 		imageActual = product.getImg();
-		
+
 		assertTrue(imageActual == imageExpected);
 	}
-	
+
 	@Test
 	public void testGetterSetterProductOwner() {
 		ProductOwner productOwnerExpected = new ProductOwner();
 		product.setProductOwner(productOwnerExpected);
-		
+
 		ProductOwner productOwnerActual;
 		productOwnerActual = product.getProductOwner();
-		
+
 		assertTrue(productOwnerActual == productOwnerExpected);
 	}
-	
+
 	@Test
-	public void test() {
-		ProductOwner productOwner = new ProductOwner();
-		productOwner.setName("Amazon11333");
+	public void testCRUD() {
 
-		Product product= new Product();
-		product.setName("Product1133");
-		product.setDescription("Description11");
-		product.setQuantity(10);
-		product.setImg("Image11");
-		product.setProductOwner(productOwner);
-		
-		Product product2= new Product();
-		product2.setName("Product2133");
-		product2.setDescription("Description21");
-		product2.setQuantity(12);
-		product2.setImg("Image21");
-		product2.setProductOwner(productOwner);
+		ProductDAO productDAO = new ProductDAO();
+		ProductOwnerDAO productOwnerDAO = new ProductOwnerDAO();
+		productOwnerDAO.save(productTest.getProductOwner());
+		// CREATING ADDRESS
+		productDAO.save(productTest);
 
-		(productOwner.getProductsList()).add(product);
-		(productOwner.getProductsList()).add(product2);
-		
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
+		// Assert the id is set
+		assertTrue("ID is set", productTest.getProductId() != 0);
 
-		session.save(productOwner);
-		
+		// Search for the address
+		productDAO.getById(productTest.getProductId());
 
-		
-		session.getTransaction().commit();
-		session.close();
-		sessionFactory.close();
-		
-		
-		assertTrue(true);
+		// TESTING UPDATE
+
+		// Change the address
+		productTest.setQuantity(455);
+
+		// Update the db
+		productDAO.update(productTest);
+
+		// Assert that the customer was correctly updated
+		assertTrue("Product was no updated correctly",
+				(productDAO.getById(productTest.getProductId()).getQuantity() == 455));
+
+		// TESTING DELETE
+		productDAO.delete(productTest);
+
+		// Assert that the customer was correctly deleted
+		assertTrue("Delete query did not delete", productDAO.getById(productTest.getProductId()) == null);
 	}
-//	
-//	
-//	@Test
-//	public void testCRUD() {
-//		
-//		// Create a ProductOwner object
-//		ProductOwner productOwner = new ProductOwner();
-//		productOwner.setName("CRUD PRODUCT");
-//		
-//		// Create product
-//		Product product= new Product();
-//		product.setName("ProductCRUD");
-//		product.setDescription("DescriptionCRUD");
-//		product.setQuantity(11);
-//		product.setImg("ImageCRUD");
-//		product.setProductOwner(productOwner);
-//		
-//		// Begin the transaction
-//		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-//		Session session = sessionFactory.openSession();
-//		session.beginTransaction();
-//		
-//		// Create the query to search for the product
-//		Query query = session.createQuery("from Product where name = :product");
-//		query.setParameter("product", product.getName());
-//
-//		// Assert product is not in the database
-//		assertTrue(query.list().isEmpty());
-//		
-//		// Insert the object into the table
-//		session.save(product);
-//		
-//		// Assert the id is set
-//		assertTrue(product.getProductId() != 0);
-//		
-//		// Assert product is in the database
-//		assertFalse(query.list().isEmpty());
-//		
-//		// Change the product name
-//		product.setName("Product CRUD CHANGE");
-//
-//		// Update the object
-//		session.update(product);
-//		
-//		// Assert Product is not in the database
-//		assertTrue(query.list().isEmpty());
-//		
-//		// Change the query to search for the new name
-//		query.setParameter("product", product.getName());
-//
-//		// Assert new product  is in the database
-//		assertFalse(query.list().isEmpty());
-//		
-////		// Delete the object
-////		session.delete(product);
-//		
-//		// Assert new product is not in the database
-////		assertTrue(query.list().isEmpty());
-//		
-//		// Commit the transaction
-//		session.getTransaction().commit();
-//		session.close();
-//		sessionFactory.close();
-//	}
-//
 
 }
