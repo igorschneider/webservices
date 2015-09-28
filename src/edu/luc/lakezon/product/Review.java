@@ -22,7 +22,7 @@ public class Review {
 	@Id
 	@SequenceGenerator(name = "seq-gen", sequenceName = "reviewid_seq", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq-gen")
-	@Column(name = "reviewId")
+	@Column(name = "reviewid")
 	private Integer reviewId;
 	
 	@Column(name = "rating")
