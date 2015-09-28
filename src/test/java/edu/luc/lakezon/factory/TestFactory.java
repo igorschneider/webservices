@@ -1,22 +1,19 @@
 package edu.luc.lakezon.factory;
 
 import java.util.Calendar;
+
 import edu.luc.lakezon.customer.Address;
 import edu.luc.lakezon.customer.Customer;
 
 public final class TestFactory {
-	private static Customer customerTest = new Customer();
-	private static Address addressTest = new Address();
-	
-	public static  boolean isSameDay(Calendar cal1, Calendar cal2) {
-		if (cal1 == null || cal2 == null)
-			return false;
-		return (cal1.get(Calendar.ERA) == cal2.get(Calendar.ERA) && cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
-				&& cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR));
-	}
+	private static Customer customerTest;
+	private static Address addressTest;
 	
 	public static Customer initCustomer (){
 	
+		if(customerTest==null){		
+		customerTest = new Customer();
+		addressTest = new Address();
 		addressTest.setAddressline1("N SHERIDAN AVE");
 		addressTest.setAddressline2("APT 1324");
 		addressTest.setCity("Chicago");
@@ -26,8 +23,9 @@ public final class TestFactory {
 		customerTest.setAddress(addressTest);
 		customerTest.setBirthdate(Calendar.getInstance());
 		customerTest.setGender("M");
-		customerTest.setName("Eduard Smith");
+		customerTest.setName("Bob Louis");
 		customerTest.setPassword("4588");
+		}
 		return customerTest;
 		
 	}
