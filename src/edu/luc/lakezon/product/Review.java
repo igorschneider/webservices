@@ -31,11 +31,11 @@ public class Review {
 	@Column(name = "description")
 	private String description;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "customerid")
 	private Customer customer;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "productid")
 	private Product product;
 

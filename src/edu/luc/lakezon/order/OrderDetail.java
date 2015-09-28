@@ -3,7 +3,6 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -21,11 +20,11 @@ public class OrderDetail implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "orderid")
 	private Order order;
 	@Id
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "productid")
 	private Product product;
 	
@@ -60,43 +59,3 @@ public class OrderDetail implements Serializable {
 
 	
 }
-
-/*
- public class OrderDetail {
-	
-	@EmbeddedId
-	private OrderProductId orderProductId;
-	
-	@Column(name = "quantity")
-	private int quantity;
-	
-	OrderDetail(Order ord,Product prod,int quant){
-		this.orderProductId = new OrderProductId(ord,prod);
-		this.quantity = quant;
-	}
-	
-	public Order getOrder() {
-		return orderProductId.getOrder();
-	}
-	public void setOrder(Order order) {
-		this.orderProductId.setOrder(order);
-	}
-	public Product getProduct() {
-		return orderProductId.getProduct();
-	}
-	public void setProduct(Product product) {
-		this.orderProductId.setProduct(product);
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-	
-}
-  
-  
-  */
