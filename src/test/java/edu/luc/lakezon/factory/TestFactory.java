@@ -46,6 +46,7 @@ public final class TestFactory {
 	
 	public static Product initProduct(){
 		if(productTest == null){
+		 productTest = new Product();
 		 productTest.setDescription("Large Table");	
 		 productTest.setImg("img.jpg");
 		 productTest.setName("American Table");
@@ -74,6 +75,7 @@ public final class TestFactory {
 	
 	public static ProductOwner initProductOwner(){
 		if(prodOwnerTest == null){
+			prodOwnerTest = new ProductOwner();
 			prodOwnerTest.setName("Amazon Warehouse");
 		}
 		return prodOwnerTest;

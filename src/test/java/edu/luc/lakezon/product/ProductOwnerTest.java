@@ -54,56 +54,31 @@ public class ProductOwnerTest {
 	@Test
 	public void testCRUD() {
 		
-		// Create a ProductOwner object
-		ProductOwner productOwner = new ProductOwner();
-		productOwner.setName("Company A");
-		
-		// Begin the transaction
-		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		
-		// Create the query to search for the product owner
-		Query query = session.createQuery("from ProductOwner where name = :company");
-		query.setParameter("company", productOwner.getName());
-
-		// Assert Company A is not in the database
-		assertTrue(query.list().isEmpty());
-		
-		// Insert the object into the table
-		session.save(productOwner);
+	/*	//CREATING ADDRESS
+		addressDAO.save(addressTest);
 		
 		// Assert the id is set
-		assertTrue(productOwner.getProductOwnerId() != 0);
-		
-		// Assert Company A is in the database
-		assertFalse(query.list().isEmpty());
-		
-		// Change the product owner name
-		productOwner.setName("Company B");
+				assertTrue("ID is set", addressTest.getAddressId() != 0);
+				
+				// Search for the address
+				 addressDAO.getById(addressTest.getAddressId());
 
-		// Update the object
-		session.update(productOwner);
-		
-		// Assert Company A is not in the database
-		assertTrue(query.list().isEmpty());
-		
-		// Change the query to search for the new name
-		query.setParameter("company", productOwner.getName());
-
-		// Assert Company B is in the database
-		assertFalse(query.list().isEmpty());
-		
-		// Delete the object
-		session.delete(productOwner);
-		
-		// Assert Company B is not in the database
-		assertTrue(query.list().isEmpty());
-		
-		// Commit the transaction
-		session.getTransaction().commit();
-		session.close();
-		sessionFactory.close();
-	}
-
+				// TESTING UPDATE
+				
+				// Change the address
+				addressTest.setAddressline1("NEW ADDRESS LINE");
+				addressTest.setCountry("BRAZIL");
+				
+				// Update the db
+				addressDAO.update(addressTest);
+							
+				// Assert that the customer was correctly updated
+			     assertTrue("Address was no updated correctly", (addressDAO.getById(addressTest.getAddressId()).getCountry().equals("BRAZIL")));
+				
+				// TESTING DELETE
+				addressDAO.delete(addressTest);
+				
+				// Assert that the customer was correctly deleted
+				assertTrue("Delete query did not delete", addressDAO.getById(addressTest.getAddressId()) == null);	
+	*/}
 }

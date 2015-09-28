@@ -7,6 +7,9 @@ import java.util.Calendar;
 import org.junit.Test;
 
 import edu.luc.lakezon.customer.Customer;
+import edu.luc.lakezon.dao.customer.CustomerDAO;
+import edu.luc.lakezon.dao.product.ProductDAO;
+import edu.luc.lakezon.dao.product.ProductOwnerDAO;
 import edu.luc.lakezon.dao.product.ReviewDAO;
 import edu.luc.lakezon.factory.TestFactory;
 
@@ -15,7 +18,9 @@ public class ReviewTest {
 
 	Review reviewTest = TestFactory.initReview();
 	private ReviewDAO reviewDAO = new ReviewDAO();
-	
+	private ProductDAO productDAO = new ProductDAO();
+	private ProductOwnerDAO prodOwnerDAO = new ProductOwnerDAO();
+	private CustomerDAO customerDAO = new CustomerDAO();
 	
 	private Review review = new Review();
 	
@@ -88,6 +93,9 @@ public class ReviewTest {
 	@Test
 	public void testCRUD() {
 		//CREATING ADDRESS
+		customerDAO.save(reviewTest.getCustomer());
+		prodOwnerDAO.save(reviewTest.getProduct().getProductOwner());
+		productDAO.save(reviewTest.getProduct());
 		reviewDAO.save(reviewTest);
 		
 		/*// Assert the id is set
