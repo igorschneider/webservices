@@ -1,22 +1,22 @@
 package edu.luc.lakezon.product;
 
-
 import static org.junit.Assert.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.junit.Test;
 
+import edu.luc.lakezon.dao.product.ProductOwnerDAO;
+import edu.luc.lakezon.factory.TestFactory;
 import edu.luc.lakezon.product.ProductOwner;
 
 public class ProductOwnerTest {
 
-	ProductOwner productOwner = new ProductOwner();
+	private ProductOwner productOwner = TestFactory.initProductOwner();
+	private ProductOwner productOwnerB;
+	private ProductOwnerDAO productOwnerDAO;
+	private String newName = "Lakezon Warehouse";
 	
 	@Test
 	public void testGetterSetterId() {
@@ -54,31 +54,35 @@ public class ProductOwnerTest {
 	@Test
 	public void testCRUD() {
 		
-	/*	//CREATING ADDRESS
-		addressDAO.save(addressTest);
+		productOwnerDAO = new ProductOwnerDAO();
+		
+		// TESTING CREATE
+		productOwnerDAO.save(productOwner);
 		
 		// Assert the id is set
-				assertTrue("ID is set", addressTest.getAddressId() != 0);
+		assertTrue("ID is set", productOwner.getProductOwnerId() != 0);
 				
-				// Search for the address
-				 addressDAO.getById(addressTest.getAddressId());
+		// Search for the product owner
+		productOwnerB = productOwnerDAO.getById(productOwner.getProductOwnerId());
 
-				// TESTING UPDATE
+		// Assert that the product owner was correctly saved
+		assertTrue("Name added is different from the name returned", (productOwnerB.getName()).equals(productOwner.getName()));
+		
+		// TESTING UPDATE
 				
-				// Change the address
-				addressTest.setAddressline1("NEW ADDRESS LINE");
-				addressTest.setCountry("BRAZIL");
+		// Change the product owner name
+		productOwner.setName(newName);
 				
-				// Update the db
-				addressDAO.update(addressTest);
+		// Update the db
+		productOwnerDAO.update(productOwner);
 							
-				// Assert that the customer was correctly updated
-			     assertTrue("Address was no updated correctly", (addressDAO.getById(addressTest.getAddressId()).getCountry().equals("BRAZIL")));
+		// Assert that the product owner was correctly updated
+		assertTrue("Address was no updated correctly", (productOwnerDAO.getById(productOwner.getProductOwnerId()).getName().equals(newName)));
 				
-				// TESTING DELETE
-				addressDAO.delete(addressTest);
+		// TESTING DELETE
+		productOwnerDAO.delete(productOwner);
 				
-				// Assert that the customer was correctly deleted
-				assertTrue("Delete query did not delete", addressDAO.getById(addressTest.getAddressId()) == null);	
-	*/}
+		// Assert that the product owner was correctly deleted
+		assertTrue("Delete query did not delete", productOwnerDAO.getById(productOwner.getProductOwnerId()) == null);	
+	}
 }

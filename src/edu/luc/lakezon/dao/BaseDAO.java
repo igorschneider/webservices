@@ -11,19 +11,23 @@ import edu.luc.lakezon.customer.Customer;
 
 public abstract class BaseDAO<T> {
 
-	protected SessionFactory sessionFactory;
-	protected Session session;
+	protected static SessionFactory sessionFactory;
+	protected static Session session;
 	protected Query query;
 
 	public BaseDAO() {
-		sessionFactory = new Configuration().configure().buildSessionFactory();
-		session = sessionFactory.openSession();
+		if (sessionFactory == null) {
+			sessionFactory = new Configuration().configure().buildSessionFactory();
+			session = sessionFactory.openSession();
+		}
 	}
 	
 	@Override
 	public void finalize() throws Throwable {
-		session.close();
-		sessionFactory.close();
+		if (sessionFactory != null) {
+			session.close();
+			sessionFactory.close();
+		}
 		
 		super.finalize();
 	}
