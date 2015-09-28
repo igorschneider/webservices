@@ -3,44 +3,52 @@ package edu.luc.lakezon.product;
 
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.junit.Assert;
 import org.junit.Test;
 
 import edu.luc.lakezon.product.ProductOwner;
 
 public class ProductOwnerTest {
 
+	ProductOwner productOwner = new ProductOwner();
+	
 	@Test
-	public void testGetterSetter() {
-		
-		// Create a ProductOwner object
-		ProductOwner productOwner = new ProductOwner();
-
-		// Set the id
+	public void testGetterSetterId() {
 		Integer idExpected = 5;
 		productOwner.setProductOwnerId(idExpected);
 		
-		// Get the id
 		Integer idActual = 0;
 		idActual = productOwner.getProductOwnerId();
 		
-		// Assert the id is set and get correctly
 		assertTrue(idActual == idExpected);
-
-		// Set the name
+	}
+	
+	@Test
+	public void testGetterSetterName() {
 		String nameExpected = "Company A";
 		productOwner.setName(nameExpected);
 		
-		// Get the name
 		String nameActual = "";
 		nameActual = productOwner.getName();
 		
-		// Assert the name is set and get correctly
 		assertTrue(nameActual == nameExpected);
+	}
+	
+	@Test
+	public void testGetterSetterProductsList() {
+		Set<Product> productsListExpected = new HashSet<Product>(0);
+		productOwner.setProductsList(productsListExpected);
+		
+		Set<Product> productsListActual;
+		productsListActual = productOwner.getProductsList();
+		
+		assertTrue(productsListActual == productsListExpected);
 	}
 	
 	@Test

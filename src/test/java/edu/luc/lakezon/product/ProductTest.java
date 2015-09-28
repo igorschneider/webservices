@@ -10,10 +10,76 @@ import org.junit.Test;
 
 public class ProductTest {
 
+	Product product = new Product();
+	
+	@Test
+	public void testGetterSetterId() {
+		Integer idExpected = 5;
+		product.setProductId(idExpected);
+		
+		Integer idActual = 0;
+		idActual = product.getProductId();
+		
+		assertTrue(idActual == idExpected);
+	}
+	
+	@Test
+	public void testGetterSetterName() {
+		String nameExpected = "Product 1";
+		product.setName(nameExpected);
+		
+		String nameActual = "";
+		nameActual = product.getName();
+		
+		assertTrue(nameActual == nameExpected);
+	}
+	
+	@Test
+	public void testGetterSetterDescription() {
+		String descriptionExpected = "Description 1";
+		product.setDescription(descriptionExpected);
+		
+		String descriptionActual = "";
+		descriptionActual = product.getDescription();
+		
+		assertTrue(descriptionActual == descriptionExpected);
+	}
+	
+	@Test
+	public void testGetterSetterQuantity() {
+		Integer quantityExpected = 5;
+		product.setQuantity(quantityExpected);
+		
+		Integer quantityActual = 0;
+		quantityActual = product.getQuantity();
+		
+		assertTrue(quantityActual == quantityExpected);
+	}
+	
+	@Test
+	public void testGetterSetterImage() {
+		String imageExpected = "Image URL";
+		product.setImg(imageExpected);
+		
+		String imageActual = "";
+		imageActual = product.getImg();
+		
+		assertTrue(imageActual == imageExpected);
+	}
+	
+	@Test
+	public void testGetterSetterProductOwner() {
+		ProductOwner productOwnerExpected = new ProductOwner();
+		product.setProductOwner(productOwnerExpected);
+		
+		ProductOwner productOwnerActual;
+		productOwnerActual = product.getProductOwner();
+		
+		assertTrue(productOwnerActual == productOwnerExpected);
+	}
+	
 	@Test
 	public void test() {
-
-
 		ProductOwner productOwner = new ProductOwner();
 		productOwner.setName("Amazon11333");
 
