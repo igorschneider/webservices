@@ -20,7 +20,6 @@ import edu.luc.lakezon.factory.TestFactory;
 
 public class OrderDetailTest {
 
-	OrderDetail orderDetailTest = TestFactory.initOrderDetail();
 	private Customer custT= TestFactory.initCustomer();
 	private Product prodT = TestFactory.initProduct();
 	private Calendar rightNow = Calendar.getInstance();
