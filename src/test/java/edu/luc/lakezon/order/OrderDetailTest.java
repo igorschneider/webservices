@@ -18,23 +18,18 @@ import edu.luc.lakezon.dao.product.ProductDAO;
 import edu.luc.lakezon.dao.product.ProductOwnerDAO;
 import edu.luc.lakezon.factory.TestFactory;
 
-
 public class OrderDetailTest {
-	
-	OrderDetail orderDetailTest = TestFactory.initOrderDetail();
-	private OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
-	private OrderDAO orderDAO = new OrderDAO();;
-	private ProductDAO productDAO = new ProductDAO();
-	private Customer custT= TestFactory.initCustomer();
-	private Calendar rightNow = Calendar.getInstance();
-	private Order order = TestFactory.initOrder();
-	private CustomerDAO customerDAO = new CustomerDAO();
-	private Product product = TestFactory.initProduct();
-	private Product prodT = TestFactory.initProduct();
-	private Order ordT = new Order();
 
-//	private OrderDetail orderDetail = new OrderDetail(order,product,0);
+	OrderDetail orderDetailTest = TestFactory.initOrderDetail();
+	private Customer custT= TestFactory.initCustomer();
+	private Product prodT = TestFactory.initProduct();
+	private Calendar rightNow = Calendar.getInstance();
+	private Order ordT = new Order();
 	private OrderDetail orderDetail = new OrderDetail();
+	private OrderDetailDAO orderDetailDAO;
+	private OrderDAO orderDAO;
+	private ProductDAO productDAO;
+	private CustomerDAO customerDAO;
 
 	@Test
 	public void testGetterSetterId() {
@@ -44,7 +39,7 @@ public class OrderDetailTest {
 		Integer productIdExpected = 6;
 		orderN.setOrderId(orderIdExpected);
 		productN.setProductId(productIdExpected);
-		
+
 		orderDetail.setOrder(orderN);
 		orderDetail.setProduct(productN);
 
@@ -69,7 +64,12 @@ public class OrderDetailTest {
 
 	@Test
 	public void testCRUD() {
-		
+
+		orderDetailDAO = new OrderDetailDAO();
+		orderDAO = new OrderDAO();
+		productDAO = new ProductDAO();
+		customerDAO = new CustomerDAO();
+
 		customerDAO.save(custT);
 		ordT.setCustomer(custT);
 		ordT.setOrderDate(rightNow);
@@ -79,8 +79,7 @@ public class OrderDetailTest {
 		productOwnerDAO.save(prodT.getProductOwner());
 		productDAO.save(prodT);
 
-//		// CREATING OrderDetail
-//		OrderDetail ordDT = new OrderDetail(ordT,prodT,55);
+		// TESTING CREATE
 		OrderDetail ordDT = new OrderDetail();
 		ordDT.setOrder(ordT);
 		ordDT.setProduct(prodT);
@@ -88,27 +87,30 @@ public class OrderDetailTest {
 		orderDetailDAO.save(ordDT);
 
 		// Assert the id is set
-		assertTrue("ID is set", (ordDT.getOrder().getOrderId() != 0)&&(ordDT.getProduct().getProductId() != 0));
+		assertTrue("ID is set",
+				(ordDT.getOrder().getOrderId() != 0)&&(ordDT.getProduct().getProductId() != 0));
 
 		// Search for the orderDetail
 		orderDetailDAO.getById(ordDT.getOrder().getOrderId(),ordDT.getProduct().getProductId());
-//
-//		// TESTING UPDATE
+
+		// TESTING UPDATE
+
 		// Change the Quantity
 		ordDT.setQuantity(5);
-//
-		// Update the db
+
+		// Update the database
 		orderDetailDAO.update(ordDT);
-//
+
 		// Assert that the quantity was correctly updated
-		assertTrue("Quantity was no updated correctly", (orderDetailDAO.getById(ordDT.getOrder().getOrderId(),ordDT.getProduct().getProductId()).getQuantity() == 5));
-////
+		assertTrue("Quantity was no updated correctly",
+				(orderDetailDAO.getById(ordDT.getOrder().getOrderId(),ordDT.getProduct().getProductId()).getQuantity() == 5));
+
 		// TESTING DELETE
 		orderDetailDAO.delete(ordDT);
-////
+
 		// Assert that the orderDetail was correctly deleted
-		assertTrue("Delete query did not delete", orderDetailDAO.getById(ordDT.getOrder().getOrderId(),ordDT.getProduct().getProductId()) == null);
+		assertTrue("Delete query did not delete",
+				orderDetailDAO.getById(ordDT.getOrder().getOrderId(),ordDT.getProduct().getProductId()) == null);
 	}
-	
-	
+
 }

@@ -12,6 +12,7 @@ import edu.luc.lakezon.business.product.ProductOwner;
 import edu.luc.lakezon.business.product.Review;
 
 public final class TestFactory {
+
 	private static Customer customerTest;
 	private static Address addressTest;
 	private static Review reviewTest;
@@ -19,7 +20,7 @@ public final class TestFactory {
 	private static ProductOwner prodOwnerTest;
 	private static Order orderTest;
 	private static OrderDetail orderDetailTest;
-	
+
 	public static Customer initCustomer() {
 
 		if (customerTest == null) {
@@ -30,8 +31,8 @@ public final class TestFactory {
 			customerTest.setName("Bob Louis");
 			customerTest.setPassword("4588");
 		}
-		return customerTest;
 
+		return customerTest;
 	}
 
 	public static Address initAddress() {
@@ -48,63 +49,67 @@ public final class TestFactory {
 
 		return addressTest;
 	}
-	
-	public static Product initProduct(){
-		if(productTest == null){
-		 productTest = new Product();
-		 productTest.setDescription("Large Table");	
-		 productTest.setImg("img.jpg");
-		 productTest.setName("American Table");
-		 productTest.setProductOwner(initProductOwner());
-		 productTest.setQuantity(4);
-		 productTest.setPrice(8.88);
+
+	public static Product initProduct() {
+
+		if (productTest == null) {
+			productTest = new Product();
+			productTest.setDescription("Large Table");	
+			productTest.setImg("img.jpg");
+			productTest.setName("American Table");
+			productTest.setProductOwner(initProductOwner());
+			productTest.setQuantity(4);
+			productTest.setPrice(8.88);
 		}
-		
+
 		return productTest;
 	}
-	
-	
-	
+
 	public static Review initReview(){
-		if(reviewTest == null){
+		if (reviewTest == null) {
 			reviewTest = new Review();
 			reviewTest.setCustomer(initCustomer());
 			reviewTest.setDescription("Best item ever!");
 			reviewTest.setRating(4);
 			reviewTest.setProduct(initProduct());
 			reviewTest.setReviewDate(Calendar.getInstance());	
-		
 		}
-		
-		return reviewTest;		
+
+		return reviewTest;
 	}
-	
-	public static ProductOwner initProductOwner(){
-		if(prodOwnerTest == null){
+
+	public static ProductOwner initProductOwner() {
+
+		if (prodOwnerTest == null) {
 			prodOwnerTest = new ProductOwner();
 			prodOwnerTest.setName("Amazon Warehouse");
 		}
+
 		return prodOwnerTest;
 	}
-	public static Order initOrder(){
-		if(orderTest == null){
+
+	public static Order initOrder() {
+
+		if (orderTest == null) {
 			orderTest = new Order();
 			orderTest.setCustomer(initCustomer());
 			orderTest.setOrderDate(Calendar.getInstance());
 			orderTest.setStatus(Status.PROCESSING);
 		}
+
 		return orderTest;
 	}
-	
-	public static OrderDetail initOrderDetail(){
-		if(orderDetailTest == null){
+
+	public static OrderDetail initOrderDetail() {
+
+		if (orderDetailTest == null) {
 			orderDetailTest = new OrderDetail();
 			orderDetailTest.setOrder(initOrder());
 			orderDetailTest.setProduct(initProduct());
 			orderDetailTest.setQuantity(55);
 		}
+
 		return orderDetailTest;
 	}
 
-	
 }

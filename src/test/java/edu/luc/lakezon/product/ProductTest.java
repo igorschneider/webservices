@@ -69,7 +69,7 @@ public class ProductTest {
 
 		assertTrue(imageActual == imageExpected);
 	}
-	
+
 	@Test
 	public void testGetterSetterPrice() {
 		Double priceExpected = 5.55;
@@ -97,8 +97,9 @@ public class ProductTest {
 
 		ProductDAO productDAO = new ProductDAO();
 		ProductOwnerDAO productOwnerDAO = new ProductOwnerDAO();
+
+		// TESTING CREATE
 		productOwnerDAO.save(productTest.getProductOwner());
-		// CREATING ADDRESS
 		productDAO.save(productTest);
 
 		// Assert the id is set
@@ -112,7 +113,7 @@ public class ProductTest {
 		// Change the address
 		productTest.setQuantity(455);
 
-		// Update the db
+		// Update the database
 		productDAO.update(productTest);
 
 		// Assert that the customer was correctly updated
@@ -123,7 +124,8 @@ public class ProductTest {
 		productDAO.delete(productTest);
 
 		// Assert that the customer was correctly deleted
-		assertTrue("Delete query did not delete", productDAO.getById(productTest.getProductId()) == null);
+		assertTrue("Delete query did not delete",
+				productDAO.getById(productTest.getProductId()) == null);
 	}
 
 }

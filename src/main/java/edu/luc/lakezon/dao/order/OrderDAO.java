@@ -7,4 +7,5 @@ public class OrderDAO extends BaseDAO<Order>{
 	public Order getById(Integer id) {
 		return super.getById(id, "Order", "orderId");
 	}
+
 }

@@ -19,14 +19,14 @@ public abstract class BaseDAO<T> {
 			session = sessionFactory.openSession();
 		}
 	}
-	
+
 	@Override
 	public void finalize() throws Throwable {
 		if (sessionFactory != null) {
 			session.close();
 			sessionFactory.close();
 		}
-		
+
 		super.finalize();
 	}
 
@@ -34,7 +34,7 @@ public abstract class BaseDAO<T> {
 		session.beginTransaction();
 
 		session.save(t);
-		
+
 		session.getTransaction().commit();
 	}
 
@@ -42,7 +42,7 @@ public abstract class BaseDAO<T> {
 		session.beginTransaction();
 
 		session.update(t);
-		
+
 		session.getTransaction().commit();
 	}
 
@@ -50,19 +50,20 @@ public abstract class BaseDAO<T> {
 		session.beginTransaction();
 
 		session.delete(t);
-		
+
 		session.getTransaction().commit();
 	}
 
 	public T getById(Integer id, String table, String field) {
 		T t = null;
-		
+
 		session.beginTransaction();
 
 		query = session.createQuery("from " + table + " where " + field + " = :" + field);
 		query.setParameter(field, id);
-		
+
 		try {
+			@SuppressWarnings("unchecked")
 			Iterator<T> i = (Iterator<T>) query.list().iterator();
 			if (i != null && i.hasNext()) {
 				t = (T) i.next();
@@ -70,22 +71,23 @@ public abstract class BaseDAO<T> {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		
+
 		session.getTransaction().commit();
 
 		return t;
 	}
-	
+
 	public T getById(Integer id1, Integer id2,String table, String field1, String field2) {
 		T t = null;
-		
+
 		session.beginTransaction();
 
 		query = session.createQuery("from " + table + " where " + field1 + " = :" + field1 +" AND "+ field2 + " = :" + field2);
 		query.setParameter(field1, id1);
 		query.setParameter(field2, id2);
-		
+
 		try {
+			@SuppressWarnings("unchecked")
 			Iterator<T> i = (Iterator<T>) query.list().iterator();
 			if (i != null && i.hasNext()) {
 				t = (T) i.next();
@@ -93,9 +95,10 @@ public abstract class BaseDAO<T> {
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
-		
+
 		session.getTransaction().commit();
 
 		return t;
 	}
+
 }

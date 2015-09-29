@@ -16,16 +16,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "productowner")
 public class ProductOwner {
-	
+
 	@Id
 	@SequenceGenerator(name = "seq-gen", sequenceName = "productownerid_seq", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq-gen")
 	@Column(name = "productownerid")
 	private int productOwnerId;
-	
+
 	@Column(name = "name")
 	private String name;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "productOwner")
 	private Set<Product> productsList = new HashSet<Product>(0);
 

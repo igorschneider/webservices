@@ -98,7 +98,7 @@ public class ReviewTest {
 		prodOwnerDAO = new ProductOwnerDAO();
 		customerDAO = new CustomerDAO();
 
-		// CREATING ADDRESS
+		// TESTING CREATE
 		customerDAO.save(reviewTest.getCustomer());
 		prodOwnerDAO.save(reviewTest.getProduct().getProductOwner());
 		productDAO.save(reviewTest.getProduct());
@@ -115,16 +115,19 @@ public class ReviewTest {
 		// Change the rating
 		reviewTest.setRating(5);
 
-		// Update the db
+		// Update the database
 		reviewDAO.update(reviewTest);
 
 		// Assert that the rating was correctly updated
-		assertTrue("Rating was no updated correctly", (reviewDAO.getById(reviewTest.getReviewId()).getRating() == 5));
+		assertTrue("Rating was no updated correctly",
+				(reviewDAO.getById(reviewTest.getReviewId()).getRating() == 5));
 
 		// TESTING DELETE
 		reviewDAO.delete(reviewTest);
 
 		// Assert that the customer was correctly deleted
-		assertTrue("Delete query did not delete", reviewDAO.getById(reviewTest.getReviewId()) == null);
+		assertTrue("Delete query did not delete",
+				reviewDAO.getById(reviewTest.getReviewId()) == null);
 	}
+
 }

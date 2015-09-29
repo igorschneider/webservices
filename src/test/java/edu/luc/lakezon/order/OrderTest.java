@@ -15,35 +15,33 @@ import edu.luc.lakezon.business.order.Status;
 import edu.luc.lakezon.business.product.Product;
 import edu.luc.lakezon.dao.customer.CustomerDAO;
 import edu.luc.lakezon.dao.order.OrderDAO;
-import edu.luc.lakezon.dao.order.OrderDetailDAO;
 import edu.luc.lakezon.dao.product.ProductDAO;
 import edu.luc.lakezon.dao.product.ProductOwnerDAO;
 import edu.luc.lakezon.factory.TestFactory;
 
 public class OrderTest {
-	private OrderDAO orderDAO = new OrderDAO();
-	private OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
-	private ProductDAO productDAO = new ProductDAO();
+
 	private Order ordT = new Order();
 	private Order orderTest = TestFactory.initOrder();
 	private Order ordC;
-	private CustomerDAO customerDAO = new CustomerDAO();
 	private Product prodT = TestFactory.initProduct();
 	private Customer custT= TestFactory.initCustomer();
 	private Calendar rightNow = Calendar.getInstance();
-	private Status newStatus = Status.CANCELED;
+	private OrderDAO orderDAO;
+	private ProductDAO productDAO;
+	private CustomerDAO customerDAO;
 
 	@Test
 	public void testGetterSetterId() {
 		Integer idExpected = 500;
 		orderTest.setOrderId(idExpected);
-		
+
 		Integer idActual = 0;
 		idActual = orderTest.getOrderId();
-		
+
 		assertTrue(idActual == idExpected);
 	}
-	
+
 	@Test
 	public void testGetterSetterOrderDate() {
 		Calendar dateExpected = Calendar.getInstance();
@@ -54,7 +52,7 @@ public class OrderTest {
 
 		assertTrue(dateActual == dateExpected);
 	}
-	
+
 	@Test
 	public void testGetterSetterStatus() {
 		Status statusExpected = Status.PROCESSING;
@@ -65,7 +63,7 @@ public class OrderTest {
 
 		assertTrue(statusActual == statusExpected);
 	}
-	
+
 	@Test
 	public void testGetterSetterCustomer() {
 		Customer customerExpected = new Customer();
@@ -76,24 +74,25 @@ public class OrderTest {
 
 		assertTrue(customerActual == customerExpected);
 	}
-	
+
 	@Test
 	public void testGetterSetterOrderDetailList() {
 		Set<OrderDetail> orderDetailListExpected = new HashSet<OrderDetail>(0);
 		orderTest.setOrderDetailList(orderDetailListExpected);
-		
+
 		Set<OrderDetail> orderDetailListActual;
 		orderDetailListActual = orderTest.getOrderDetailList();
-		
+
 		assertTrue(orderDetailListActual == orderDetailListExpected);
 	}
-	
 
-	
 	@Test
 	public void testCRUD() {
-		
-		
+
+		orderDAO = new OrderDAO();
+		productDAO = new ProductDAO();
+		customerDAO = new CustomerDAO();
+
 		// TESTING CREATE
 		customerDAO.save(custT);
 		ordT.setCustomer(custT);
@@ -103,7 +102,6 @@ public class OrderTest {
 		ProductOwnerDAO productOwnerDAO = new ProductOwnerDAO();
 		productOwnerDAO.save(prodT.getProductOwner());
 		productDAO.save(prodT);
-//		OrderDetail ordDT = new OrderDetail(ordT,prodT,55);
 		OrderDetail ordDT = new OrderDetail();
 		ordDT.setOrder(ordT);
 		ordDT.setProduct(prodT);
@@ -114,32 +112,33 @@ public class OrderTest {
 
 		// Assert the id is set
 		assertTrue("ID is set", ordT.getOrderId() != 0);
-		
+
 		// Search for the order
 		ordC = orderDAO.getById(ordT.getOrderId());
-	
+
 		// TESTING UPDATE
+
 		// Change the date
 		Calendar newDate = Calendar.getInstance();
 		ordT.setOrderDate(newDate);
-		
+
 		// Update the object
 		orderDAO.update(ordT);
-		
-		//Search for the updated order
-		ordC = orderDAO.getById(ordT.getOrderId());
-		
-		// Assert that the order was correctly updated
-		assertTrue("Order was no updated correctly", (ordC.getOrderDate()).equals(newDate));
-		
-		// TESTING DELETE
-		orderDAO.delete(ordT);
 
 		//Search for the updated order
 		ordC = orderDAO.getById(ordT.getOrderId());
-		
+
+		// Assert that the order was correctly updated
+		assertTrue("Order was no updated correctly", (ordC.getOrderDate()).equals(newDate));
+
+		// TESTING DELETE
+		orderDAO.delete(ordT);
+
+		//Search for the deleted order
+		ordC = orderDAO.getById(ordT.getOrderId());
+
 		// Assert that the order was correctly deleted
 		assertTrue("Delete query did not delete", ordC == null);
-	}	
+	}
 
 }
