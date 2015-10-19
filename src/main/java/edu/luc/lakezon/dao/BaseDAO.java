@@ -1,6 +1,8 @@
 package edu.luc.lakezon.dao;
 
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -54,6 +56,25 @@ public abstract class BaseDAO<T> {
 		session.getTransaction().commit();
 	}
 
+	@SuppressWarnings("unchecked")
+	public Set<T> getAll(String table) {		
+		Set<T> setT = null;
+		
+		session.beginTransaction();
+
+		query = session.createQuery("from " + table);
+
+		try {
+			setT = new HashSet<T>(query.list());
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		session.getTransaction().commit();
+		
+		return setT;
+	}
+	
 	public T getById(Integer id, String table, String field) {
 		T t = null;
 
