@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 import edu.luc.lakezon.business.product.ProductOwner;
 import edu.luc.lakezon.dao.product.ProductOwnerDAO;
 import edu.luc.lakezon.service.representation.product.ProductOwnerRepresentation;
@@ -46,21 +48,19 @@ public class ProductOwnerActivity {
 	}
 	
 	
-	public ProductOwnerRepresentation createEmployee(ProductOwner po) {
-		
+	public ProductOwnerRepresentation createProductOwner(String name) {
+		ProductOwner po = new ProductOwner();
+		po.setName(name);
 		dao.save(po);
-		po.getProductOwnerId();
-		ProductOwnerDAO poDAO= new ProductOwnerDAO();
 		ProductOwnerRepresentation poRep = new ProductOwnerRepresentation();
-		poRep.setName(poDAO.getById(po.getProductOwnerId()).getName());
-		poRep.setProductsList(poDAO.getById(po.getProductOwnerId()).getProductsList());
+		poRep.setName(po.getName());
+		poRep.setProductOwnerId(po.getProductOwnerId());
 		return poRep;
 	}
 	
-	public String deleteProductOwner(ProductOwner po) {
-		
+	public Response deleteProductOwner(ProductOwner po) {
 		dao.delete(po);
-		return "OK";
+		return Response.status(Status.OK).build();
 	}
 	
 }
