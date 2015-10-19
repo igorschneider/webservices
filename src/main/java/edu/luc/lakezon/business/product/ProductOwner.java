@@ -13,9 +13,17 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
+
+
+
 @Entity
 @Table(name = "productowner")
-public class ProductOwner {
+@XmlRootElement
+public class ProductOwner implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@SequenceGenerator(name = "seq-gen", sequenceName = "productownerid_seq", allocationSize = 1)
@@ -29,6 +37,8 @@ public class ProductOwner {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "productOwner")
 	private Set<Product> productsList = new HashSet<Product>(0);
 
+	
+	// GETTERS AND SETTERS 
 	public int getProductOwnerId() {
 		return productOwnerId;
 	}
