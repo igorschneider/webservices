@@ -61,5 +61,20 @@
   		<artifactId>postgresql</artifactId>
   		<version>9.4-1203-jdbc41</version>
   	</dependency>
+  	<dependency>
+  		<groupId>org.apache.cxf</groupId>
+  		<artifactId>cxf-rt-frontend-jaxws</artifactId>
+  		<version>2.7.17</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.cxf</groupId>
+  		<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+  		<version>2.7.17</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.apache.cxf</groupId>
+  		<artifactId>cxf-rt-transports-http</artifactId>
+  		<version>2.7.17</version>
+  	</dependency>
   </dependencies>
 </project>
