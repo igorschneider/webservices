@@ -10,26 +10,37 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "")
 public class AddressRepresentation {
 	
-	private String addressId;
+	private Integer addressId;
 	private String addressline1;
+	private String addressline2;
 	private String city;
 	private String country;
 	private String state;
-	private String zipcode;
+	private Integer zipcode;
 
 	public AddressRepresentation() {}
 
-	public String getAddressId() {
+	public Integer getAddressId() {
 		return addressId;
 	}
 
-	public void setAddressId(String addressId) {
+	public void setAddressId(Integer addressId) {
 		this.addressId = addressId;
 	}
 
 	public String getAddressline1() {
 		return addressline1;
 	}
+	
+	public String getAddressline2() {
+		return addressline2;
+	}
+
+
+	public void setAddressline2(String addressline2) {
+		this.addressline2 = addressline2;
+	}
+	
 
 	public void setAddressline1(String addressline1) {
 		this.addressline1 = addressline1;
@@ -59,11 +70,11 @@ public class AddressRepresentation {
 		this.state = state;
 	}
 
-	public String getZipcode() {
+	public Integer getZipcode() {
 		return zipcode;
 	}
 
-	public void setZipcode(String zipcode) {
+	public void setZipcode(Integer zipcode) {
 		this.zipcode = zipcode;
 	}
 	
