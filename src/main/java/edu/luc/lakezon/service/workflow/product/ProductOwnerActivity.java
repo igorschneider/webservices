@@ -60,7 +60,7 @@ public class ProductOwnerActivity {
 	
 	public Response deleteProductOwner(ProductOwner po) {
 		dao.delete(po);
-		return Response.status(Status.OK).build();
+		return Response.status(Status.).build();
 	}
 	
 }
