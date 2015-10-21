@@ -1,6 +1,7 @@
 package edu.luc.lakezon.service.product;
 import java.util.Set;
 
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -45,18 +46,27 @@ public class ProductOwnerResource implements ProductOwnerService {
 	@Path("/productOwner")
 	@Override
 	public ProductOwnerRepresentation createProductOwner(ProductOwnerRequest ProductOwnerRequest) {
-		System.out.println("POST METHOD Request from Client with ............." + ProductOwnerRequest.getName() + "  " + ProductOwnerRequest.getProductsList());
 		ProductOwnerActivity poActivity = new ProductOwnerActivity();
 		return poActivity.createProductOwner(ProductOwnerRequest.getName());
 	}
 
 
-	@Override
-	public Response deleteProductOwner(Integer id) {
-		System.out.println("POST METHOD Request from Client with ............." + ProductOwnerRequest.getName() + "  " + ProductOwnerRequest.getProductsList());
-		ProductOwnerActivity poActivity = new ProductOwnerActivity();
-		return deleteProductOwner(poActivity.getProductOwner(id));
-	}
 	
+	@DELETE
+	@Produces({"application/xml" , "application/json"})
+	@Path("/productowner")
+	@Override
+	public Response deleteProductOwner(@PathParam("productownerId") Integer id) {
+		System.out.println("DELETE METHOD Request from Client  ............." );
+		ProductOwnerActivity poActivity = new ProductOwnerActivity();
+		return deleteProductOwner(poActivity.getProductOwner(id).getProductOwnerId());
+	}
+
+
+	@Override
+	public ProductOwnerRepresentation updateProductOwner(@PathParam("productownerId") Integer id , ProductOwnerRequest productOwnerRequest) {
+		ProductOwnerActivity poActivity = new ProductOwnerActivity();
+		return poActivity.updateProductOwner(id ,productOwnerRequest);
+	}
 
 }

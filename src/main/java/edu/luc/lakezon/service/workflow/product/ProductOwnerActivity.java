@@ -9,6 +9,7 @@ import javax.ws.rs.core.Response.Status;
 import edu.luc.lakezon.business.product.ProductOwner;
 import edu.luc.lakezon.dao.product.ProductOwnerDAO;
 import edu.luc.lakezon.service.representation.product.ProductOwnerRepresentation;
+import edu.luc.lakezon.service.representation.product.ProductOwnerRequest;
 
 public class ProductOwnerActivity {
 
@@ -58,9 +59,22 @@ public class ProductOwnerActivity {
 		return poRep;
 	}
 	
+	
+	public ProductOwnerRepresentation updateProductOwner(Integer id , ProductOwnerRequest productOwnerRequest) {
+		
+		ProductOwner po = new ProductOwner();
+		po = dao.getById(id);
+		po.setName(productOwnerRequest.getName());
+		dao.update(po);
+		ProductOwnerRepresentation poRep = new ProductOwnerRepresentation();
+		poRep.setName(po.getName());
+		poRep.setProductOwnerId(po.getProductOwnerId());
+		return poRep;
+	}
+	
 	public Response deleteProductOwner(ProductOwner po) {
 		dao.delete(po);
-		return Response.status(Status.).build();
+		return Response.status(Status.OK).build();
 	}
 	
 }
