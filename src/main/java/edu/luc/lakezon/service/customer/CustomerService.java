@@ -13,8 +13,8 @@ public interface CustomerService {
 
 	public Set<CustomerRepresentation> getCustomers();
 	public CustomerRepresentation getCustomer(String customerId);
-	public CustomerRepresentation createCustomer();
-	public Response updateCustomer(CustomerRequest customerRequest);
+	public CustomerRepresentation createCustomer(CustomerRequest customerRequest);
+	public Response updateCustomer(String customerId, CustomerRequest customerRequest);
 	public Response deleteCustomer(String customerId);
 	
 }
