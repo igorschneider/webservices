@@ -37,9 +37,9 @@ public class AddressActivity {
 		return addressRepresentations;
 	}
 	
-	public AddressRepresentation getAddress(Integer id) {
+	public AddressRepresentation getAddress(String id) {
 		
-		Address addr = dao.getById(id);
+		Address addr = dao.getById(Integer.parseInt(id));
 		
 		AddressRepresentation addrRep = new AddressRepresentation();
 		addrRep.setAddressId(addr.getAddressId());
@@ -55,7 +55,7 @@ public class AddressActivity {
 	}
 	
 	
-	public AddressRepresentation createAddress(String addressLine1, String addressLine2, String city, String country, String state, Integer zipCode) {
+	public AddressRepresentation createAddress(String addressLine1, String addressLine2, String city, String country, String state, String zipCode) {
 		
 		Address addr = new Address();
 		addr.setAddressline1(addressLine1);
@@ -63,7 +63,7 @@ public class AddressActivity {
 		addr.setCity(city);
 		addr.setCountry(country);
 		addr.setState(state);
-		addr.setZipcode(zipCode);
+		addr.setZipcode(Integer.parseInt(zipCode));
 	
 		dao.save(addr);
 		
@@ -80,16 +80,25 @@ public class AddressActivity {
 		return addrRep;
 	}
 	
-	public String deleteAddress(Integer id) {
-		Address addr = dao.getById(id);
+	public String deleteAddress(String id) {
+		Address addr = dao.getById(Integer.parseInt(id));
 		dao.delete(addr);
 		
 		return "OK";
 	}
 	
-	public String updateAddress(Address addr) {
+	public String updateAddress(String id, String addressLine1, String addressLine2, String city, String country, String state, String zipCode) {
 		
-		dao.delete(addr);
+		Address addrUp = new Address();
+		addrUp.setAddressId(Integer.parseInt(id));
+		addrUp.setAddressline1(addressLine1);
+		addrUp.setAddressline2(addressLine2);
+		addrUp.setCity(city);
+		addrUp.setCountry(country);
+		addrUp.setState(state);
+		addrUp.setZipcode(Integer.parseInt(zipCode));
+		
+		dao.update(addrUp);
 		
 		return "OK";
 	}
