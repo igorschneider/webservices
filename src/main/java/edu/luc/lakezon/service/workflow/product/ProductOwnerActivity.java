@@ -14,7 +14,7 @@ import edu.luc.lakezon.service.representation.product.ProductOwnerRequest;
 public class ProductOwnerActivity {
 
 	
-	private static ProductOwnerDAO dao = new ProductOwnerDAO();
+	private ProductOwnerDAO dao = new ProductOwnerDAO();
 	
 	public Set<ProductOwnerRepresentation> getProductOwners() {
 		
