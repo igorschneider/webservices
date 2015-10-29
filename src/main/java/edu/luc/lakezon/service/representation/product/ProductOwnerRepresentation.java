@@ -1,15 +1,18 @@
 package edu.luc.lakezon.service.representation.product;
 
-import java.util.HashSet;
-import java.util.Set;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
-import edu.luc.lakezon.business.product.Product;
-
+@XmlRootElement(name = "ProductOwner")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "")
 public class ProductOwnerRepresentation {
 
 	private int productOwnerId;
 	private String name;
-	private Set<Product> productsList = new HashSet<Product>(0);
+
 	
 	// GETTERS AND SETTERS
 	public int getProductOwnerId() {
@@ -23,12 +26,6 @@ public class ProductOwnerRepresentation {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public Set<Product> getProductsList() {
-		return productsList;
-	}
-	public void setProductsList(Set<Product> productsList) {
-		this.productsList = productsList;
 	}
 	
 }

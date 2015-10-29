@@ -18,7 +18,7 @@ public class ProductOwnerActivity {
 	
 	public Set<ProductOwnerRepresentation> getProductOwners() {
 		
-		Set<ProductOwner> productOwners = new HashSet<ProductOwner>();
+		Set<ProductOwner> productOwners = null;
 		Set<ProductOwnerRepresentation> productOwnerRepresentations = new HashSet<ProductOwnerRepresentation>();
 		productOwners = dao.getAll();
 		
@@ -27,7 +27,7 @@ public class ProductOwnerActivity {
 			ProductOwner po = (ProductOwner)it.next();
 			ProductOwnerRepresentation productOwnerRepresentation = new ProductOwnerRepresentation();
 			productOwnerRepresentation.setName(po.getName());
-			productOwnerRepresentation.setProductsList(po.getProductsList());
+			productOwnerRepresentation.setProductOwnerId(po.getProductOwnerId());
           
           //now add this representation in the list
 			productOwnerRepresentations.add(productOwnerRepresentation);
@@ -43,7 +43,6 @@ public class ProductOwnerActivity {
 		
 		ProductOwnerRepresentation poRep = new ProductOwnerRepresentation();
 		poRep.setName(po.getName());
-		poRep.setProductsList(po.getProductsList());
 		
 		return poRep;
 	}
