@@ -14,7 +14,7 @@
   	
   <bean id="jacksonProvider" class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider" />
       	
-  <jaxrs:server name="Lakezon" address="http://localhost:8090">
+  <jaxrs:server name="Lakezon" address="http://lakezon.herokuapp.com">
 		<jaxrs:serviceBeans>
 			<ref bean="customerServiceRest" />
 			<ref bean="productOwnerServiceRest" />
