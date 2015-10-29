@@ -15,12 +15,11 @@ import edu.luc.lakezon.service.representation.customer.CustomerRepresentation;
 import edu.luc.lakezon.service.representation.customer.CustomerRequest;
 import edu.luc.lakezon.service.workflow.customer.CustomerActivity;
 
-@Path("/customer/")
+@Path("/customer")
 public class CustomerResource implements CustomerService {
 	
 	@GET
 	@Produces({"application/xml" , "application/json"})
-	@Override
 	public Set<CustomerRepresentation> getCustomers() {
 		CustomerActivity customerActivity = new CustomerActivity();
 		return customerActivity.getCustomers();

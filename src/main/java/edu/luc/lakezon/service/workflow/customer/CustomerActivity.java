@@ -14,7 +14,7 @@ import edu.luc.lakezon.service.representation.customer.CustomerRequest;
 
 public class CustomerActivity {
 
-	private static CustomerDAO customerDAO = new CustomerDAO();
+	private CustomerDAO customerDAO = new CustomerDAO();
 	
 	public Set<CustomerRepresentation> getCustomers() {
 		
