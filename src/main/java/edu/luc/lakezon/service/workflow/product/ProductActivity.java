@@ -17,7 +17,7 @@ public class ProductActivity {
 	private ProductDAO dao = new ProductDAO();
 	
 	public Set<ProductRepresentation> getProducts() {
-		
+		System.out.println("ENTROUUUU NO ACTIVITY");
 		Set<Product> products = null;
 		Set<ProductRepresentation> productRepresentations = new HashSet<ProductRepresentation>();
 		products = dao.getAll();
@@ -50,6 +50,7 @@ public class ProductActivity {
 	
 	
 	public ProductRepresentation createProduct(String name, String description ,Double price, Integer quantity, String img) {
+		System.out.println("ENTROUUUU NO createee");
 		Product po = new Product();
 		po.setName(name);
 		po.setDescription(description);

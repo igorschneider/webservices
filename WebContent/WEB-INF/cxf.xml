@@ -18,6 +18,7 @@
 		<jaxrs:serviceBeans>
 			<ref bean="customerServiceRest" />
 			<ref bean="productOwnerServiceRest" />
+			<ref bean="productServiceRest" />
 			<ref bean="addressServiceRest" />
 			<ref bean="orderServiceRest" />
 		</jaxrs:serviceBeans>
