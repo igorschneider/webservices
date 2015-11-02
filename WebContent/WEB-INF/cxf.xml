@@ -18,6 +18,7 @@
 		<jaxrs:serviceBeans>
 			<ref bean="customerServiceRest" />
 			<ref bean="productOwnerServiceRest" />
+			<ref bean="addressServiceRest" />
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
 			<ref bean="jacksonProvider" />
@@ -26,6 +27,8 @@
 		<jaxrs:schemaLocations>
 			<jaxrs:schemaLocation>edu.luc.lakezon.service.representation.customer.CustomerRequest</jaxrs:schemaLocation>
 			<jaxrs:schemaLocation>edu.luc.lakezon.service.representation.customer.CustomerRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>edu.luc.lakezon.service.representation.customer.AddressRequest</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>edu.luc.lakezon.service.representation.customer.AddressRepresentation</jaxrs:schemaLocation>
 			<jaxrs:schemaLocation>edu.luc.lakezon.service.representation.product.ProductOwnerRequest</jaxrs:schemaLocation>
 			<jaxrs:schemaLocation>edu.luc.lakezon.service.representation.product.ProductOwnerRepresentation</jaxrs:schemaLocation>
 		</jaxrs:schemaLocations>
@@ -33,5 +36,7 @@
 	</jaxrs:server>
   	<bean id="customerServiceRest" class="edu.luc.lakezon.service.customer.CustomerResource" />
   	<bean id="productOwnerServiceRest" class="edu.luc.lakezon.service.product.ProductOwnerResource" />
+  	<bean id="addressServiceRest" class="edu.luc.lakezon.service.customer.AddressResource" />
+  	
   
 </beans>
