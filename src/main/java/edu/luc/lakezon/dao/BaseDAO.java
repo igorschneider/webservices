@@ -75,6 +75,26 @@ public abstract class BaseDAO<T> {
 		return setT;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public Set<T> getAllById(Integer id, String table, String field) {		
+		Set<T> setT = null;
+		
+		session.beginTransaction();
+
+		query = session.createQuery("from " + table + " where " + field + " = :" + field);
+		query.setParameter(field, id);
+
+		try {
+			setT = new HashSet<T>(query.list());
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		session.getTransaction().commit();
+		
+		return setT;
+	}
+	
 	public T getById(Integer id, String table, String field) {
 		T t = null;
 
