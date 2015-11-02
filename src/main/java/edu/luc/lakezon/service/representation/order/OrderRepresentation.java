@@ -2,8 +2,16 @@ package edu.luc.lakezon.service.representation.order;
 
 import java.util.Calendar;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
 import edu.luc.lakezon.business.order.Status;
 
+@XmlRootElement(name = "Order")
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "")
 public class OrderRepresentation {
 
 	private Integer orderId;

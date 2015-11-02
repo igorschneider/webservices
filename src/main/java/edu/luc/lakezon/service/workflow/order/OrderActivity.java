@@ -27,8 +27,6 @@ public class OrderActivity {
 		
 		orders = orderDAO.getAllById(Integer.parseInt(customerId));
 		
-		System.out.println("OrderActivity - customerId: " + customerId);
-		
 		Iterator<Order> it = orders.iterator(); 
 		
 		while (it.hasNext()) {
@@ -44,8 +42,6 @@ public class OrderActivity {
 			orderRepresentations.add(orderRepresentation);
 		}
 		
-		System.out.println("OrderActivity - Finish");
-
 		return orderRepresentations;
 	}
 	
@@ -58,7 +54,7 @@ public class OrderActivity {
 		orderRepresentation.setOrderId(order.getOrderId());
 		orderRepresentation.setStatus(order.getStatus());
 		orderRepresentation.setOrderDate(order.getOrderDate());
-		orderRepresentation.setCustomerId(Integer.parseInt(orderId));
+		orderRepresentation.setCustomerId(Integer.parseInt(customerId));
 		
 		return orderRepresentation;
 	}
