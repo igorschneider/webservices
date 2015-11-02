@@ -80,7 +80,8 @@ public class CustomerActivity {
 		return customerRepresentation;
 	}
 	
-	public Response updateCustomer(String customerId, CustomerRequest customerRequest) {
+	public CustomerRepresentation updateCustomer(String customerId, 
+			CustomerRequest customerRequest) {
 		Customer customer = customerDAO.getById(Integer.parseInt(customerId));
 
 		customer.setName(customerRequest.getName());
@@ -90,7 +91,16 @@ public class CustomerActivity {
 
 		customerDAO.save(customer);
 
-		return Response.status(Status.OK).build();
+		CustomerRepresentation customerRepresentation = 
+				new CustomerRepresentation();
+
+		customerRepresentation.setCustomerId(customer.getCustomerId());
+		customerRepresentation.setName(customer.getName());
+		customerRepresentation.setGender(customer.getGender());
+		customerRepresentation.setBirthdate(customer.getBirthdate());
+		customerRepresentation.setPassword(customer.getPassword());
+		
+		return customerRepresentation;
 	}
 
 	public Response deleteCustomer(String customerId) {

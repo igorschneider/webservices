@@ -46,7 +46,7 @@ public class CustomerResource implements CustomerService {
 	@Produces({"application/xml" , "application/json"})
 	@Path("/{customerId}")
 	@Override
-	public Response updateCustomer(@PathParam("customerId") String customerId,
+	public CustomerRepresentation updateCustomer(@PathParam("customerId") String customerId,
 			CustomerRequest customerRequest) {
 		CustomerActivity customerActivity = new CustomerActivity();
 		return customerActivity.updateCustomer(customerId, customerRequest);
