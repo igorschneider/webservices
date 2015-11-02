@@ -33,6 +33,9 @@ public abstract class BaseDAO<T> {
 	}
 
 	public void save(T t) {
+		if (!session.isOpen())
+			session = sessionFactory.openSession();
+		
 		session.beginTransaction();
 
 		session.save(t);
@@ -41,6 +44,9 @@ public abstract class BaseDAO<T> {
 	}
 
 	public void update(T t) {
+		if (!session.isOpen())
+			session = sessionFactory.openSession();
+		
 		session.beginTransaction();
 
 		session.update(t);
@@ -49,6 +55,9 @@ public abstract class BaseDAO<T> {
 	}
 
 	public void delete(T t) {
+		if (!session.isOpen())
+			session = sessionFactory.openSession();
+		
 		session.beginTransaction();
 
 		session.delete(t);
@@ -58,6 +67,9 @@ public abstract class BaseDAO<T> {
 
 	@SuppressWarnings("unchecked")
 	public Set<T> getAll(String table) {		
+		if (!session.isOpen())
+			session = sessionFactory.openSession();
+		
 		Set<T> setT = null;
 		
 		session.beginTransaction();
@@ -77,6 +89,9 @@ public abstract class BaseDAO<T> {
 	
 	@SuppressWarnings("unchecked")
 	public Set<T> getAllById(Integer id, String table, String field) {		
+		if (!session.isOpen())
+			session = sessionFactory.openSession();
+		
 		Set<T> setT = null;
 		
 		session.beginTransaction();
@@ -96,6 +111,9 @@ public abstract class BaseDAO<T> {
 	}
 	
 	public T getById(Integer id, String table, String field) {
+		if (!session.isOpen())
+			session = sessionFactory.openSession();
+		
 		T t = null;
 
 		session.beginTransaction();
@@ -119,6 +137,9 @@ public abstract class BaseDAO<T> {
 	}
 
 	public T getById(Integer id1, Integer id2,String table, String field1, String field2) {
+		if (!session.isOpen())
+			session = sessionFactory.openSession();
+		
 		T t = null;
 
 		session.beginTransaction();
