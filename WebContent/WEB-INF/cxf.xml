@@ -39,7 +39,7 @@
 	</jaxrs:server>
   	<bean id="customerServiceRest" class="edu.luc.lakezon.service.customer.CustomerResource" />
   	<bean id="productOwnerServiceRest" class="edu.luc.lakezon.service.product.ProductOwnerResource" />
-  	<bean id="addresServiceRest" class="edu.luc.lakezon.service.customer.AddressResource" />
+  	<bean id="addressServiceRest" class="edu.luc.lakezon.service.customer.AddressResource" />
   	<bean id="orderServiceRest" class="edu.luc.lakezon.service.order.OrderResource" />
   
 </beans>
