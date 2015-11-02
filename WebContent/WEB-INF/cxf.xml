@@ -32,6 +32,8 @@
 			<jaxrs:schemaLocation>edu.luc.lakezon.service.representation.customer.AddressRepresentation</jaxrs:schemaLocation>
 			<jaxrs:schemaLocation>edu.luc.lakezon.service.representation.product.ProductOwnerRequest</jaxrs:schemaLocation>
 			<jaxrs:schemaLocation>edu.luc.lakezon.service.representation.product.ProductOwnerRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>edu.luc.lakezon.service.representation.product.ProductRequest</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>edu.luc.lakezon.service.representation.product.ProductRepresentation</jaxrs:schemaLocation>
 			<jaxrs:schemaLocation>edu.luc.lakezon.service.representation.order.OrderRequest</jaxrs:schemaLocation>
 			<jaxrs:schemaLocation>edu.luc.lakezon.service.representation.order.OrderRepresentation</jaxrs:schemaLocation>
 		</jaxrs:schemaLocations>
@@ -39,6 +41,7 @@
 	</jaxrs:server>
   	<bean id="customerServiceRest" class="edu.luc.lakezon.service.customer.CustomerResource" />
   	<bean id="productOwnerServiceRest" class="edu.luc.lakezon.service.product.ProductOwnerResource" />
+    <bean id="productServiceRest" class="edu.luc.lakezon.service.product.ProductResource" />
   	<bean id="addressServiceRest" class="edu.luc.lakezon.service.customer.AddressResource" />
   	<bean id="orderServiceRest" class="edu.luc.lakezon.service.order.OrderResource" />
   
