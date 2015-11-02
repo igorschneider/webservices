@@ -13,11 +13,11 @@ import edu.luc.lakezon.service.representation.customer.AddressRequest;
 public interface AddressService {
 	
 	public Set<AddressRepresentation> getAddresses();
-	public AddressRepresentation getAddress(Integer addressId);
+	public AddressRepresentation getAddress(String addressId);
 	public AddressRepresentation createAddress(AddressRequest addressRequest);
    
-    public Response updateAddress(AddressRequest addressRequest);
-    public Response deleteAddress(Integer addressId);
+    public AddressRepresentation updateAddress(String addressId, AddressRequest addressRequest);
+    public Response deleteAddress(String addressId);
 	
 
 }

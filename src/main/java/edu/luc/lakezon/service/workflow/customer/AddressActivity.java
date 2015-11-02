@@ -4,15 +4,20 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import edu.luc.lakezon.business.customer.Address;
+import edu.luc.lakezon.business.customer.Customer;
 import edu.luc.lakezon.dao.customer.AddressDAO;
 import edu.luc.lakezon.service.representation.customer.AddressRepresentation;
+import edu.luc.lakezon.service.representation.customer.AddressRequest;
+import edu.luc.lakezon.service.representation.customer.CustomerRepresentation;
+import edu.luc.lakezon.service.representation.customer.CustomerRequest;
 
 public class AddressActivity {
 	
-	private static AddressDAO dao = new AddressDAO();
+	private AddressDAO dao = new AddressDAO();
 	
 	public Set<AddressRepresentation> getAddresses() {
 		
@@ -55,15 +60,15 @@ public class AddressActivity {
 	}
 	
 	
-	public AddressRepresentation createAddress(String addressLine1, String addressLine2, String city, String country, String state, String zipCode) {
+	public AddressRepresentation createAddress(AddressRequest addressRequest) {
 		
 		Address addr = new Address();
-		addr.setAddressline1(addressLine1);
-		addr.setAddressline2(addressLine2);
-		addr.setCity(city);
-		addr.setCountry(country);
-		addr.setState(state);
-		addr.setZipcode(Integer.parseInt(zipCode));
+		addr.setAddressline1(addressRequest.getAddressline1());
+		addr.setAddressline2(addressRequest.getAddressline2());
+		addr.setCity(addressRequest.getCity());
+		addr.setCountry(addressRequest.getCountry());
+		addr.setState(addressRequest.getState());
+		addr.setZipcode(Integer.parseInt(addressRequest.getZipcode()));
 	
 		dao.save(addr);
 		
@@ -80,27 +85,42 @@ public class AddressActivity {
 		return addrRep;
 	}
 	
-	public String deleteAddress(String id) {
+	public Response deleteAddress(String id) {
+		
 		Address addr = dao.getById(Integer.parseInt(id));
+
 		dao.delete(addr);
 		
-		return "OK";
+		return Response.status(Status.OK).build();
+		
 	}
 	
-	public String updateAddress(String id, String addressLine1, String addressLine2, String city, String country, String state, String zipCode) {
-		
-		Address addrUp = new Address();
-		addrUp.setAddressId(Integer.parseInt(id));
-		addrUp.setAddressline1(addressLine1);
-		addrUp.setAddressline2(addressLine2);
-		addrUp.setCity(city);
-		addrUp.setCountry(country);
-		addrUp.setState(state);
-		addrUp.setZipcode(Integer.parseInt(zipCode));
+	public AddressRepresentation updateAddress(String addressId, AddressRequest addressRequest) {
+
+		Address addrUp = dao.getById(Integer.parseInt(addressId));
+
+		addrUp.setAddressline1(addressRequest.getAddressline1());
+		addrUp.setAddressline2(addressRequest.getAddressline2());
+		addrUp.setCity(addressRequest.getCity());
+		addrUp.setCountry(addressRequest.getCountry());
+		addrUp.setState(addressRequest.getState());
+		addrUp.setZipcode(Integer.parseInt(addressRequest.getZipcode()));
 		
 		dao.update(addrUp);
 		
-		return "OK";
+		AddressRepresentation addressRepresentation = new AddressRepresentation();
+
+		addressRepresentation.setAddressId(addrUp.getAddressId());
+		addressRepresentation.setAddressline1(addrUp.getAddressline1());
+		addressRepresentation.setAddressline2(addrUp.getAddressline2());
+		addressRepresentation.setCity(addrUp.getCity());
+		addressRepresentation.setCountry(addrUp.getCountry());
+		addressRepresentation.setState(addrUp.getState());
+		addressRepresentation.setZipcode(addrUp.getZipcode());
+		
+
+		
+		return addressRepresentation;
 	}
 	
 
