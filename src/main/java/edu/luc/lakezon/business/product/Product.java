@@ -46,7 +46,7 @@ public class Product {
 	private Double price;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-	private Set<Review> reviewsList = new HashSet<Review>(0);
+	private Set<Review> reviewsList;
 
 	public Integer getProductId() {
 		return productId;
