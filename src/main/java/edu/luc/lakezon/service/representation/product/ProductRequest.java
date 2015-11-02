@@ -6,25 +6,18 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
-@XmlRootElement(name = "Product")
+@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-
-public class ProductRepresentation  {
-
+public class ProductRequest {
 	
 	private String name;
 	private String description;
 	private Integer quantity;
 	private String img;
+	private Double price;
+      
 	
-	// GETTERS AND SETTERS
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
 	public String getDescription() {
 		return description;
 	}
@@ -43,5 +36,17 @@ public class ProductRepresentation  {
 	public void setImg(String img) {
 		this.img = img;
 	}
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 }
