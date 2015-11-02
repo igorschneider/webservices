@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import edu.luc.lakezon.business.product.Product;
+import edu.luc.lakezon.business.product.ProductOwner;
 import edu.luc.lakezon.dao.product.ProductDAO;
 import edu.luc.lakezon.service.representation.product.ProductRepresentation;
 import edu.luc.lakezon.service.representation.product.ProductRequest;
@@ -17,7 +18,7 @@ public class ProductActivity {
 	private ProductDAO dao = new ProductDAO();
 	
 	public Set<ProductRepresentation> getProducts() {
-		System.out.println("ENTROUUUU NO ACTIVITY");
+		
 		Set<Product> products = null;
 		Set<ProductRepresentation> productRepresentations = new HashSet<ProductRepresentation>();
 		products = dao.getAll();
@@ -49,19 +50,21 @@ public class ProductActivity {
 	}
 	
 	
-	public ProductRepresentation createProduct(String name, String description ,Double price, Integer quantity, String img) {
-		System.out.println("ENTROUUUU NO createee");
-		Product po = new Product();
-		po.setName(name);
-		po.setDescription(description);
-		po.setPrice(price);
-		po.setQuantity(quantity);
-		dao.save(po);
-		ProductRepresentation poRep = new ProductRepresentation();
-		poRep.setName(po.getName());
-		poRep.setImg(po.getImg());
-		poRep.setQuantity(po.getQuantity());
-		return poRep;
+	public ProductRepresentation createProduct(String name, String description ,Double price, Integer quantity, String img , Integer productOwnerId) {
+		Product prod = new Product();
+		ProductOwner po = new ProductOwner();
+		po.setProductOwnerId(productOwnerId);
+		prod.setName(name);
+		prod.setDescription(description);
+		prod.setPrice(price);
+		prod.setQuantity(quantity);
+		prod.setProductOwner(po);
+		dao.save(prod);
+		ProductRepresentation pdRep = new ProductRepresentation();
+		pdRep.setName(prod.getName());
+		pdRep.setImg(prod.getImg());
+		pdRep.setQuantity(prod.getQuantity());
+		return pdRep;
 	}
 	
 	

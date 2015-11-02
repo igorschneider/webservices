@@ -45,7 +45,7 @@ public class ProductResource implements ProductService {
 	public ProductRepresentation createProduct(ProductRequest pr) {
 		ProductActivity prodActivity = new ProductActivity();
 		return prodActivity.createProduct(pr.getName(),pr.getDescription(),pr.getPrice(),
-				pr.getQuantity(),pr.getImg());
+				pr.getQuantity(),pr.getImg(),pr.getProductOwnerId());
 	}
 
 

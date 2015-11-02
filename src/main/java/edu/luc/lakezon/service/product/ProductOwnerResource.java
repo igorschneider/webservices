@@ -17,6 +17,7 @@ import javax.ws.rs.core.CacheControl;
 
 import edu.luc.lakezon.service.representation.product.ProductOwnerRepresentation;
 import edu.luc.lakezon.service.representation.product.ProductOwnerRequest;
+import edu.luc.lakezon.service.workflow.customer.CustomerActivity;
 import edu.luc.lakezon.service.workflow.product.ProductOwnerActivity;
 
 
@@ -65,8 +66,9 @@ public class ProductOwnerResource implements ProductOwnerService {
 	@Path("{productownerId}")
 	@Override
 	public Response deleteProductOwner(@PathParam("productownerId") Integer id) {
-		System.out.println("DELETE METHOD Request from Client  ............." );
+		System.out.println("DELETE METHOD Request from product owner  ............." );
 		ProductOwnerActivity poActivity = new ProductOwnerActivity();
-		return deleteProductOwner(poActivity.getProductOwner(id).getProductOwnerId());
+		return poActivity.deleteProductOwner(id);
 	}
+	
 }

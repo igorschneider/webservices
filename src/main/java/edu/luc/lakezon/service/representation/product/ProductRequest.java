@@ -16,8 +16,15 @@ public class ProductRequest {
 	private Integer quantity;
 	private String img;
 	private Double price;
+	private Integer productOwnerId;
       
 	
+	public Integer getProductOwnerId() {
+		return productOwnerId;
+	}
+	public void setProductOwnerId(Integer productOwnerId) {
+		this.productOwnerId = productOwnerId;
+	}
 	public String getDescription() {
 		return description;
 	}
