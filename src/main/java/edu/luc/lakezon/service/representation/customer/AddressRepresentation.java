@@ -18,8 +18,6 @@ public class AddressRepresentation {
 	private String state;
 	private Integer zipcode;
 
-	public AddressRepresentation() {}
-
 	public Integer getAddressId() {
 		return addressId;
 	}
@@ -36,12 +34,10 @@ public class AddressRepresentation {
 		return addressline2;
 	}
 
-
 	public void setAddressline2(String addressline2) {
 		this.addressline2 = addressline2;
 	}
 	
-
 	public void setAddressline1(String addressline1) {
 		this.addressline1 = addressline1;
 	}
@@ -77,7 +73,5 @@ public class AddressRepresentation {
 	public void setZipcode(Integer zipcode) {
 		this.zipcode = zipcode;
 	}
-	
-	
 
 }
