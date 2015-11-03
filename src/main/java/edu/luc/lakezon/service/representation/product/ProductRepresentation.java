@@ -9,7 +9,6 @@ import javax.xml.bind.annotation.XmlType;
 @XmlRootElement(name = "Product")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-
 public class ProductRepresentation  {
 
 	private Integer id;
@@ -17,10 +16,17 @@ public class ProductRepresentation  {
 	private String description;
 	private Integer quantity;
 	private String img;
+	private Double price;
 	
 	// GETTERS AND SETTERS
 	
 	
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
 	public Integer getId() {
 		return id;
 	}

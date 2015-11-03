@@ -31,6 +31,7 @@ public class ProductActivity {
 			productRepresentation.setDescription(po.getDescription());
 			productRepresentation.setImg(po.getImg());
 			productRepresentation.setQuantity(po.getQuantity());
+			productRepresentation.setPrice(po.getPrice());
           
           //now add this representation in the list
 			productRepresentations.add(productRepresentation);
@@ -43,10 +44,14 @@ public class ProductActivity {
 	public ProductRepresentation getProduct(Integer id) {
 		
 		Product po = dao.getById(id);
-		ProductRepresentation poRep = new ProductRepresentation();
-		poRep.setName(po.getName());
+		ProductRepresentation productRepresentation = new ProductRepresentation();
+		productRepresentation.setName(po.getName());
+		productRepresentation.setDescription(po.getDescription());
+		productRepresentation.setImg(po.getImg());
+		productRepresentation.setQuantity(po.getQuantity());
+		productRepresentation.setPrice(po.getPrice());
 		
-		return poRep;
+		return productRepresentation;
 	}
 	
 	
