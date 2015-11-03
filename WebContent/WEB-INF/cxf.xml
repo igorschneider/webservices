@@ -23,6 +23,7 @@
 			<ref bean="reviewServiceRest" />
 			<ref bean="orderServiceRest" />
 			<ref bean="orderDetailServiceRest" />
+			<ref bean="paymentServiceRest" />
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
 			<ref bean="jacksonProvider" />
@@ -43,6 +44,9 @@
 			<jaxrs:schemaLocation>edu.luc.lakezon.service.representation.order.OrderRepresentation</jaxrs:schemaLocation>
 			<jaxrs:schemaLocation>edu.luc.lakezon.service.representation.order.OrderDetailRequest</jaxrs:schemaLocation>
 			<jaxrs:schemaLocation>edu.luc.lakezon.service.representation.order.OrderDetailRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>edu.luc.lakezon.service.representation.order.PaymentRequest</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>com.braintreegateway.Result</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>com.braintreegateway.Transaction</jaxrs:schemaLocation>
 		</jaxrs:schemaLocations>
 
 	</jaxrs:server>
@@ -53,5 +57,6 @@
     <bean id="reviewServiceRest" class="edu.luc.lakezon.service.product.ReviewResource" />
   	<bean id="orderServiceRest" class="edu.luc.lakezon.service.order.OrderResource" />
   	<bean id="orderDetailServiceRest" class="edu.luc.lakezon.service.order.OrderDetailResource" />
+  	<bean id="paymentServiceRest" class="edu.luc.lakezon.service.order.PaymentResource" />
   
 </beans>
