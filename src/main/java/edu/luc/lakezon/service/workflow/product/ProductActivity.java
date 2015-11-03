@@ -71,8 +71,10 @@ public class ProductActivity {
 		dao.save(prod);
 		ProductRepresentation pdRep = new ProductRepresentation();
 		pdRep.setName(prod.getName());
+		pdRep.setDescription(prod.getDescription());
 		pdRep.setImg(prod.getImg());
 		pdRep.setQuantity(prod.getQuantity());
+		pdRep.setPrice(prod.getPrice());
 		return pdRep;
 	}
 	
@@ -95,6 +97,7 @@ public class ProductActivity {
 		poRep.setDescription(pd.getDescription());
 		poRep.setImg(pd.getImg());
 		poRep.setQuantity(pd.getQuantity());
+		poRep.setPrice(pd.getPrice());
 		return poRep;
 	}
 	
