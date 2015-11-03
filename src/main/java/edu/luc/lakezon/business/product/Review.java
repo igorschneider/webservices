@@ -41,6 +41,7 @@ public class Review {
 	@Column(name = "reviewdate")
 	private Calendar reviewDate;
 
+
 	public Integer getReviewId() {
 		return reviewId;
 	}
