@@ -16,25 +16,31 @@ public abstract class BaseDAO<T> {
 	protected Query query;
 
 	public BaseDAO() {
+		prepareSession();
+	}
+
+//	@Override
+//	public void finalize() throws Throwable {
+//		if (sessionFactory != null) {
+//			session.close();
+//			sessionFactory.close();
+//		}
+//
+//		super.finalize();
+//	}
+	
+	private void prepareSession() {
 		if (sessionFactory == null) {
 			sessionFactory = new Configuration().configure().buildSessionFactory();
 			session = sessionFactory.openSession();
 		}
-	}
-
-	@Override
-	public void finalize() throws Throwable {
-		if (sessionFactory != null) {
-			session.close();
-			sessionFactory.close();
+		else if (!(session.isOpen())) {
+			session = sessionFactory.openSession();
 		}
-
-		super.finalize();
 	}
 
 	public void save(T t) {
-		if (!session.isOpen())
-			session = sessionFactory.openSession();
+		prepareSession();
 		
 		session.beginTransaction();
 
@@ -44,8 +50,7 @@ public abstract class BaseDAO<T> {
 	}
 
 	public void update(T t) {
-		if (!session.isOpen())
-			session = sessionFactory.openSession();
+		prepareSession();
 		
 		session.beginTransaction();
 
@@ -55,8 +60,7 @@ public abstract class BaseDAO<T> {
 	}
 
 	public void delete(T t) {
-		if (!session.isOpen())
-			session = sessionFactory.openSession();
+		prepareSession();
 		
 		session.beginTransaction();
 
@@ -67,8 +71,7 @@ public abstract class BaseDAO<T> {
 
 	@SuppressWarnings("unchecked")
 	public Set<T> getAll(String table) {		
-		if (!session.isOpen())
-			session = sessionFactory.openSession();
+		prepareSession();
 		
 		Set<T> setT = null;
 		
@@ -89,8 +92,7 @@ public abstract class BaseDAO<T> {
 	
 	@SuppressWarnings("unchecked")
 	public Set<T> getAllById(Integer id, String table, String field) {		
-		if (!session.isOpen())
-			session = sessionFactory.openSession();
+		prepareSession();
 		
 		Set<T> setT = null;
 		
@@ -111,8 +113,7 @@ public abstract class BaseDAO<T> {
 	}
 	
 	public T getById(Integer id, String table, String field) {
-		if (!session.isOpen())
-			session = sessionFactory.openSession();
+		prepareSession();
 		
 		T t = null;
 
@@ -137,8 +138,7 @@ public abstract class BaseDAO<T> {
 	}
 
 	public T getById(Integer id1, Integer id2,String table, String field1, String field2) {
-		if (!session.isOpen())
-			session = sessionFactory.openSession();
+		prepareSession();
 		
 		T t = null;
 
