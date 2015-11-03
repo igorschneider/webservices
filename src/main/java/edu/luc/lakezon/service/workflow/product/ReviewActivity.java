@@ -33,6 +33,7 @@ public class ReviewActivity {
 		while(it.hasNext()) {
 			Review re = (Review)it.next();
 			ReviewRepresentation reviewRepresentation = new ReviewRepresentation();
+			reviewRepresentation.setReviewId(re.getReviewId());
 			reviewRepresentation.setCustomerId(re.getCustomer().getCustomerId());
 			reviewRepresentation.setDescription(re.getDescription());
 			reviewRepresentation.setProductId(re.getProduct().getProductId());
