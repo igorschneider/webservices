@@ -15,7 +15,6 @@ public interface AddressService {
 	public Set<AddressRepresentation> getAddresses();
 	public AddressRepresentation getAddress(String addressId);
 	public AddressRepresentation createAddress(AddressRequest addressRequest);
-   
     public AddressRepresentation updateAddress(String addressId, AddressRequest addressRequest);
     public Response deleteAddress(String addressId);
 	

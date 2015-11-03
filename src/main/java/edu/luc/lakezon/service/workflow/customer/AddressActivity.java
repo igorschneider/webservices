@@ -8,12 +8,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import edu.luc.lakezon.business.customer.Address;
-import edu.luc.lakezon.business.customer.Customer;
 import edu.luc.lakezon.dao.customer.AddressDAO;
 import edu.luc.lakezon.service.representation.customer.AddressRepresentation;
 import edu.luc.lakezon.service.representation.customer.AddressRequest;
-import edu.luc.lakezon.service.representation.customer.CustomerRepresentation;
-import edu.luc.lakezon.service.representation.customer.CustomerRequest;
 
 public class AddressActivity {
 	
@@ -55,10 +52,8 @@ public class AddressActivity {
 		addrRep.setState(addr.getState());
 		addrRep.setZipcode(addr.getZipcode());
 		
-		
 		return addrRep;
 	}
-	
 	
 	public AddressRepresentation createAddress(AddressRequest addressRequest) {
 		
@@ -80,7 +75,6 @@ public class AddressActivity {
 		addrRep.setCountry(addr.getCountry());
 		addrRep.setState(addr.getState());
 		addrRep.setZipcode(addr.getZipcode());
-		
 		
 		return addrRep;
 	}
@@ -118,10 +112,7 @@ public class AddressActivity {
 		addressRepresentation.setState(addrUp.getState());
 		addressRepresentation.setZipcode(addrUp.getZipcode());
 		
-
-		
 		return addressRepresentation;
 	}
 	
-
 }

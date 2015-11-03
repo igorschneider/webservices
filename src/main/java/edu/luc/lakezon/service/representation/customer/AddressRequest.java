@@ -1,6 +1,5 @@
 package edu.luc.lakezon.service.representation.customer;
 
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -20,7 +19,6 @@ public class AddressRequest {
 
 	public AddressRequest() {}
 
-
 	public String getAddressline1() {
 		return addressline1;
 	}
@@ -33,12 +31,10 @@ public class AddressRequest {
 		return addressline2;
 	}
 
-
 	public void setAddressline2(String addressline2) {
 		this.addressline2 = addressline2;
 	}
 	
-
 	public String getCity() {
 		return city;
 	}
@@ -70,9 +66,5 @@ public class AddressRequest {
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
-
-
-
-	
 
 }

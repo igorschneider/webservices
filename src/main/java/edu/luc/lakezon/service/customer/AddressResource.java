@@ -10,9 +10,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
-
-
 
 import edu.luc.lakezon.service.representation.customer.AddressRepresentation;
 import edu.luc.lakezon.service.representation.customer.AddressRequest;
@@ -23,11 +20,11 @@ public class AddressResource implements AddressService {
 
 	@GET
 	@Produces({"application/xml" , "application/json"})
+	@Override
 	public Set<AddressRepresentation> getAddresses() {
 		AddressActivity addrActivity = new AddressActivity();
 		return addrActivity.getAddresses();	
 	}
-
 
 	@GET
 	@Produces({"application/xml" , "application/json"})
@@ -50,7 +47,8 @@ public class AddressResource implements AddressService {
 	@Produces({"application/xml" , "application/json"})
 	@Path("/{addressId}")
 	@Override
-	public AddressRepresentation updateAddress(@PathParam("addressId") String addressId, AddressRequest addressRequest) {
+	public AddressRepresentation updateAddress(@PathParam("addressId") String addressId, 
+			AddressRequest addressRequest) {
 		AddressActivity addressActivity = new AddressActivity();
 		return addressActivity.updateAddress(addressId, addressRequest);
 	}
@@ -63,7 +61,5 @@ public class AddressResource implements AddressService {
 		AddressActivity addressActivity = new AddressActivity();
 		return addressActivity.deleteAddress(addressId);
 	}
-
-
 
 }
