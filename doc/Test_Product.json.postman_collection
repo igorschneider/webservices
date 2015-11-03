@@ -15,7 +15,9 @@
 		"98c443c1-0cf5-a1ea-921c-9c93a15ca89b",
 		"8e798935-99f8-1e4f-ca4e-49da8f54a269",
 		"2f8faec7-9097-9af7-47e9-c6c0fa48719d",
-		"a6e71cbb-a845-338d-e2e1-10dca4f3570d"
+		"a6e71cbb-a845-338d-e2e1-10dca4f3570d",
+		"c51f3c93-6f65-8c10-ad85-13ae388192d8",
+		"f0cad376-62f2-ea29-eed6-645f5c87c79f"
 	],
 	"folders": [],
 	"timestamp": 1446525384681,
@@ -241,6 +243,26 @@
 			"rawModeData": "<reviewRequest>\n    <productId>76</productId>\n    <customerId>124</customerId>\n    <rating>5</rating>\n    <description>Update Test</description>\n    <reviewDate>2015-09-28T00:00:00-05:00</reviewDate>\n</reviewRequest>"
 		},
 		{
+			"id": "c51f3c93-6f65-8c10-ad85-13ae388192d8",
+			"headers": "Content-Type: application/xml\n",
+			"url": "http://localhost:8090/product/141",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1446529448557,
+			"name": "putProduct",
+			"description": "Test update product",
+			"collectionId": "6fb7177e-aae0-b2b6-bd36-425e6c72d73e",
+			"responses": [],
+			"rawModeData": "<productRequest>\r\n<productOwnerId>39</productOwnerId>\r\n<name>Wonderful test product updated</name>\r\n<description>the best test product ever</description>\r\n<quantity>7</quantity>\r\n<img>img.jpg</img>\r\n<price>400.3</price>\r\n</productRequest>"
+		},
+		{
 			"id": "d0e2ce83-c7c1-d3be-2698-5f91c0ec87b2",
 			"headers": "Content-Type: text/xml\n",
 			"url": "http://localhost:8090/product",
@@ -278,6 +300,26 @@
 			"description": "Get Product with id 5",
 			"collectionId": "6fb7177e-aae0-b2b6-bd36-425e6c72d73e",
 			"responses": []
+		},
+		{
+			"id": "f0cad376-62f2-ea29-eed6-645f5c87c79f",
+			"headers": "Content-Type: application/xml\n",
+			"url": "http://localhost:8090/productowner/39",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "PUT",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1446529432373,
+			"name": "putProductOwner",
+			"description": "Test update po",
+			"collectionId": "6fb7177e-aae0-b2b6-bd36-425e6c72d73e",
+			"responses": [],
+			"rawModeData": "<productOwnerRequest>\r\n<name>New Store</name>\r\n</productOwnerRequest>"
 		}
 	]
 }
