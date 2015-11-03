@@ -82,7 +82,8 @@ public class ProductActivity {
 		return poRep;
 	}
 	
-	public Response deleteProduct(Product po) {
+	public Response deleteProduct(Integer id) {
+		Product po = dao.getById(id);
 		dao.delete(po);
 		return Response.status(Status.OK).build();
 	}
