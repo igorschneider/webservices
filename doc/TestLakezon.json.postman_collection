@@ -92,12 +92,12 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1446500031967,
+			"time": 1446510380770,
 			"name": "postNewProduct",
 			"description": "Add a new product",
 			"collectionId": "0c519f04-6f1b-4b59-d4cf-1facde74568e",
 			"responses": [],
-			"rawModeData": "<ProductRequest>\r\n<productownerid>39</productownerid>\r\n<name>American Table</name>\r\n<description>Large Table</description>\r\n<quantity>4</quantity>\r\n<img>img.jpg</img>\r\n</ProductRequest>"
+			"rawModeData": "<productRequest>\r\n<productownerid>39</productownerid>\r\n<name>American Table</name>\r\n<description>Large Table</description>\r\n<quantity>4</quantity>\r\n<img>img.jpg</img>\r\n</productRequest>"
 		},
 		{
 			"id": "57563c97-6ae9-b6c9-9dc7-67cb46a2c22a",
