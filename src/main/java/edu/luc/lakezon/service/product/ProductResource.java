@@ -45,8 +45,7 @@ public class ProductResource implements ProductService {
 	@Override
 	public ProductRepresentation createProduct(ProductRequest pr) {
 		ProductActivity prodActivity = new ProductActivity();
-		return prodActivity.createProduct(pr.getName(),pr.getDescription(),pr.getPrice(),
-				pr.getQuantity(),pr.getImg(),pr.getProductOwnerId());
+		return prodActivity.createProduct(pr);
 	}
 
 

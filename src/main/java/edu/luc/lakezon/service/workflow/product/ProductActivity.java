@@ -6,9 +6,12 @@ import java.util.Set;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+
+import edu.luc.lakezon.business.customer.Customer;
 import edu.luc.lakezon.business.product.Product;
 import edu.luc.lakezon.business.product.ProductOwner;
 import edu.luc.lakezon.dao.product.ProductDAO;
+import edu.luc.lakezon.dao.product.ProductOwnerDAO;
 import edu.luc.lakezon.service.representation.product.ProductRepresentation;
 import edu.luc.lakezon.service.representation.product.ProductRequest;
 
@@ -16,7 +19,7 @@ public class ProductActivity {
 
 	
 	private ProductDAO dao = new ProductDAO();
-	
+	private ProductOwnerDAO podao = new ProductOwnerDAO();
 	public Set<ProductRepresentation> getProducts() {
 		
 		Set<Product> products = null;
@@ -55,14 +58,14 @@ public class ProductActivity {
 	}
 	
 	
-	public ProductRepresentation createProduct(String name, String description ,Double price, Integer quantity, String img , Integer productOwnerId) {
+	public ProductRepresentation createProduct(ProductRequest prodresq) {
 		Product prod = new Product();
 		ProductOwner po = new ProductOwner();
-		po.setProductOwnerId(productOwnerId);
-		prod.setName(name);
-		prod.setDescription(description);
-		prod.setPrice(price);
-		prod.setQuantity(quantity);
+		po = podao.getById(prodresq.getProductOwnerId());
+		prod.setName(prodresq.getName());
+		prod.setDescription(prodresq.getDescription());
+		prod.setPrice(prodresq.getPrice());
+		prod.setQuantity(prodresq.getQuantity());
 		prod.setProductOwner(po);
 		dao.save(prod);
 		ProductRepresentation pdRep = new ProductRepresentation();
