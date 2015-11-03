@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 import edu.luc.lakezon.service.representation.product.ProductRepresentation;
 import edu.luc.lakezon.service.representation.product.ProductRequest;
 import edu.luc.lakezon.service.workflow.product.ProductActivity;
+import edu.luc.lakezon.service.workflow.product.ProductOwnerActivity;
 
 
 
@@ -65,6 +66,6 @@ public class ProductResource implements ProductService {
 	public Response deleteProduct(@PathParam("productId") Integer id) {
 		System.out.println("DELETE METHOD Request from Product  ............." );
 		ProductActivity poActivity = new ProductActivity();
-		return deleteProduct(poActivity.getProduct(id).getId());
+		return poActivity.deleteProduct(id);
 	}
 }
