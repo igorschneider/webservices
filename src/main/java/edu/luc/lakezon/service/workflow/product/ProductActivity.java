@@ -28,13 +28,13 @@ public class ProductActivity {
 		
 		Iterator<Product> it = products.iterator();
 		while(it.hasNext()) {
-			Product po = (Product)it.next();
+			Product pd = (Product)it.next();
 			ProductRepresentation productRepresentation = new ProductRepresentation();
-			productRepresentation.setName(po.getName());
-			productRepresentation.setDescription(po.getDescription());
-			productRepresentation.setImg(po.getImg());
-			productRepresentation.setQuantity(po.getQuantity());
-			productRepresentation.setPrice(po.getPrice());
+			productRepresentation.setName(pd.getName());
+			productRepresentation.setDescription(pd.getDescription());
+			productRepresentation.setImg(pd.getImg());
+			productRepresentation.setQuantity(pd.getQuantity());
+			productRepresentation.setPrice(pd.getPrice());
           
           //now add this representation in the list
 			productRepresentations.add(productRepresentation);
@@ -46,13 +46,13 @@ public class ProductActivity {
 	
 	public ProductRepresentation getProduct(Integer id) {
 		
-		Product po = dao.getById(id);
+		Product pd = dao.getById(id);
 		ProductRepresentation productRepresentation = new ProductRepresentation();
-		productRepresentation.setName(po.getName());
-		productRepresentation.setDescription(po.getDescription());
-		productRepresentation.setImg(po.getImg());
-		productRepresentation.setQuantity(po.getQuantity());
-		productRepresentation.setPrice(po.getPrice());
+		productRepresentation.setName(pd.getName());
+		productRepresentation.setDescription(pd.getDescription());
+		productRepresentation.setImg(pd.getImg());
+		productRepresentation.setQuantity(pd.getQuantity());
+		productRepresentation.setPrice(pd.getPrice());
 		
 		return productRepresentation;
 	}
@@ -63,6 +63,7 @@ public class ProductActivity {
 		ProductOwner po = new ProductOwner();
 		po = podao.getById(prodresq.getProductOwnerId());
 		prod.setName(prodresq.getName());
+		prod.setImg(prodresq.getImg());
 		prod.setDescription(prodresq.getDescription());
 		prod.setPrice(prodresq.getPrice());
 		prod.setQuantity(prodresq.getQuantity());
@@ -78,21 +79,28 @@ public class ProductActivity {
 	
 	public ProductRepresentation updateProduct(Integer id , ProductRequest productRequest) {
 		
-		Product po = new Product();
-		po = dao.getById(id);
-		po.setName(productRequest.getName());
-		dao.update(po);
+		Product pd = new Product();
+		ProductOwner po = new ProductOwner();
+		po = podao.getById(productRequest.getProductOwnerId());
+		pd = dao.getById(id);
+		pd.setName(productRequest.getName());
+		pd.setDescription(productRequest.getDescription());
+		pd.setImg(productRequest.getImg());
+		pd.setPrice(productRequest.getPrice());
+		pd.setQuantity(productRequest.getQuantity());
+		pd.setProductOwner(po);
+		dao.update(pd);
 		ProductRepresentation poRep = new ProductRepresentation();
-		poRep.setName(po.getName());
-		poRep.setDescription(po.getDescription());
-		poRep.setImg(po.getImg());
-		poRep.setQuantity(po.getQuantity());
+		poRep.setName(pd.getName());
+		poRep.setDescription(pd.getDescription());
+		poRep.setImg(pd.getImg());
+		poRep.setQuantity(pd.getQuantity());
 		return poRep;
 	}
 	
 	public Response deleteProduct(Integer id) {
-		Product po = dao.getById(id);
-		dao.delete(po);
+		Product pd = dao.getById(id);
+		dao.delete(pd);
 		return Response.status(Status.OK).build();
 	}
 	
