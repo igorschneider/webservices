@@ -7,7 +7,7 @@ import java.util.Set;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import edu.luc.lakezon.business.customer.Customer;
+import edu.luc.lakezon.business.Link;
 import edu.luc.lakezon.business.product.Product;
 import edu.luc.lakezon.business.product.ProductOwner;
 import edu.luc.lakezon.dao.product.ProductDAO;
@@ -17,9 +17,9 @@ import edu.luc.lakezon.service.representation.product.ProductRequest;
 
 public class ProductActivity {
 
-	
 	private ProductDAO dao = new ProductDAO();
 	private ProductOwnerDAO podao = new ProductOwnerDAO();
+
 	public Set<ProductRepresentation> getProducts() {
 		
 		Set<Product> products = null;
@@ -43,7 +43,6 @@ public class ProductActivity {
 		
 	}
 	
-	
 	public ProductRepresentation getProduct(Integer id) {
 		
 		Product pd = dao.getById(id);
@@ -53,7 +52,9 @@ public class ProductActivity {
 		productRepresentation.setImg(pd.getImg());
 		productRepresentation.setQuantity(pd.getQuantity());
 		productRepresentation.setPrice(pd.getPrice());
-		
+
+		setLinks(productRepresentation);
+
 		return productRepresentation;
 	}
 	
@@ -105,6 +106,12 @@ public class ProductActivity {
 		Product pd = dao.getById(id);
 		dao.delete(pd);
 		return Response.status(Status.OK).build();
+	}
+	
+	private void setLinks(ProductRepresentation productRepresentation) {
+		Link buy = new Link("buy",
+				"http://localhost:8090/Lakezon/product/order?productId=" +
+						productRepresentation.getId());
 	}
 	
 }
