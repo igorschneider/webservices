@@ -7,17 +7,23 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import edu.luc.lakezon.service.representation.BaseRepresentation;
+
 @XmlRootElement(name = "Customer")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-public class CustomerRepresentation {
+public class CustomerRepresentation extends BaseRepresentation {
 
 	private Integer customerId;
 	private String name;
 	private String gender;
 	private Calendar birthdate;
 	private String password;
-	
+
+	public CustomerRepresentation() {}
+
+	// Getters and Setters
+
 	public Integer getCustomerId() {
 		return customerId;
 	}

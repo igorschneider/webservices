@@ -8,16 +8,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import edu.luc.lakezon.business.order.Status;
+import edu.luc.lakezon.service.representation.BaseRepresentation;
 
 @XmlRootElement(name = "Order")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-public class OrderRepresentation {
+public class OrderRepresentation extends BaseRepresentation {
 
 	private Integer orderId;
 	private Status status;
 	private Calendar orderDate;
 	private Integer customerId;
+
+	public OrderRepresentation() {}
+
+	// Getters and Setters
 
 	public Integer getOrderId() {
 		return orderId;

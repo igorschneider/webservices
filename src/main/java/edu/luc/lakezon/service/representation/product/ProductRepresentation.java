@@ -7,7 +7,6 @@ import javax.xml.bind.annotation.XmlType;
 
 import edu.luc.lakezon.service.representation.BaseRepresentation;
 
-
 @XmlRootElement(name = "Product")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
@@ -19,11 +18,11 @@ public class ProductRepresentation extends BaseRepresentation  {
 	private Integer quantity;
 	private String img;
 	private Double price;
-	
+
 	public ProductRepresentation() {}
-	
-	// GETTERS AND SETTERS
-	
+
+	// Getters and Setters
+
 	public Double getPrice() {
 		return price;
 	}

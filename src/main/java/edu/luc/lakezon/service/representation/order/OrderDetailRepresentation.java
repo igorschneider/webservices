@@ -5,14 +5,20 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import edu.luc.lakezon.service.representation.BaseRepresentation;
+
 @XmlRootElement(name = "OrderDetail")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-public class OrderDetailRepresentation {
+public class OrderDetailRepresentation extends BaseRepresentation {
 
 	private Integer orderId;
 	private Integer productId;
 	private Integer quantity;
+
+	public OrderDetailRepresentation() {}
+
+	// Getters and Setters
 
 	public Integer getOrderId() {
 		return orderId;
@@ -37,5 +43,5 @@ public class OrderDetailRepresentation {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-	
+
 }
