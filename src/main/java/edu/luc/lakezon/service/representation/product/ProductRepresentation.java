@@ -5,11 +5,14 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
 import edu.luc.lakezon.service.representation.BaseRepresentation;
 
 @XmlRootElement(name = "Product")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class ProductRepresentation extends BaseRepresentation  {
 
 	private Integer id;
