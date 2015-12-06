@@ -13,6 +13,7 @@
   <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
   	
   <bean id="jacksonProvider" class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider" />
+  <bean id="cors-filter" class="org.apache.cxf.rs.security.cors.CrossOriginResourceSharingFilter"/>
       	
   <jaxrs:server name="Lakezon" address="http://localhost:8090/">
 		<jaxrs:serviceBeans>
@@ -27,6 +28,7 @@
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
 			<ref bean="jacksonProvider" />
+			<ref bean="cors-filter" />
 		</jaxrs:providers> 
 
 		<jaxrs:schemaLocations>
