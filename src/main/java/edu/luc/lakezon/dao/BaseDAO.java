@@ -112,6 +112,28 @@ public abstract class BaseDAO<T> {
 		return setT;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public Set<T> getAllByString(String search, String table, String field) {		
+		prepareSession();
+		
+		Set<T> setT = null;
+		
+		session.beginTransaction();
+
+		query = session.createQuery("from " + table + " where " + field + " like :" + field);
+		query.setParameter(field, "%" + search + "%");
+
+		try {
+			setT = new HashSet<T>(query.list());
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		session.getTransaction().commit();
+		
+		return setT;
+	}
+	
 	public T getById(Integer id, String table, String field) {
 		prepareSession();
 		

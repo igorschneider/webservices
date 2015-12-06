@@ -3,32 +3,40 @@ package edu.luc.lakezon.service.product;
 import java.util.Set;
 
 import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
 import edu.luc.lakezon.service.representation.product.ProductRepresentation;
 import edu.luc.lakezon.service.representation.product.ProductRequest;
 import edu.luc.lakezon.service.workflow.product.ProductActivity;
-import edu.luc.lakezon.service.workflow.product.ProductOwnerActivity;
-
-
 
 @Path("/product")
 public class ProductResource implements ProductService {
 
 	@GET
 	@Produces({"application/xml" , "application/json"})
+	@Override
 	public Set<ProductRepresentation> getProducts() {
 		System.out.println("GET METHOD Request for all products .............");
 		ProductActivity prodActivity = new ProductActivity();
 		return prodActivity.getProducts();	
 	}
 
+	@GET
+	@Produces({"application/xml" , "application/json"})
+	@Override
+	public Set<ProductRepresentation> getProducts(@DefaultValue("") @QueryParam("name") String name) {
+		System.out.println("GET METHOD Request to search for products .......");
+		ProductActivity prodActivity = new ProductActivity();
+		return prodActivity.getProducts(name);	
+	}
 
 	@GET
 	@Produces({"application/xml" , "application/json"})

@@ -17,36 +17,66 @@ import edu.luc.lakezon.service.representation.product.ProductRequest;
 
 public class ProductActivity {
 
-	private ProductDAO dao = new ProductDAO();
-	private ProductOwnerDAO podao = new ProductOwnerDAO();
+	private ProductDAO productDAO = new ProductDAO();
+	private ProductOwnerDAO productOwnerDAO = new ProductOwnerDAO();
 
 	public Set<ProductRepresentation> getProducts() {
 		
 		Set<Product> products = null;
-		Set<ProductRepresentation> productRepresentations = new HashSet<ProductRepresentation>();
-		products = dao.getAll();
+		Set<ProductRepresentation> productRepresentations = 
+				new HashSet<ProductRepresentation>();
+		products = productDAO.getAll();
 		
 		Iterator<Product> it = products.iterator();
+
 		while(it.hasNext()) {
 			Product pd = (Product)it.next();
 			ProductRepresentation productRepresentation = new ProductRepresentation();
+
 			productRepresentation.setName(pd.getName());
 			productRepresentation.setDescription(pd.getDescription());
 			productRepresentation.setImg(pd.getImg());
 			productRepresentation.setQuantity(pd.getQuantity());
 			productRepresentation.setPrice(pd.getPrice());
           
-          //now add this representation in the list
 			productRepresentations.add(productRepresentation);
         }
-		return productRepresentations;
 		
+		return productRepresentations;
+	}
+	
+	public Set<ProductRepresentation> getProducts(String name) {
+		
+		Set<Product> products = null;
+		Set<ProductRepresentation> productRepresentations = 
+				new HashSet<ProductRepresentation>();
+		products = productDAO.getAllByString(name);
+		
+		Iterator<Product> it = products.iterator();
+
+		while(it.hasNext()) {
+			Product pd = (Product)it.next();
+			ProductRepresentation productRepresentation = new ProductRepresentation();
+
+			productRepresentation.setName(pd.getName());
+			productRepresentation.setImg(pd.getImg());
+			productRepresentation.setPrice(pd.getPrice());
+			
+			Link self = new Link("self", "http://localhost:8090/product/" + pd.getProductId());
+			
+			productRepresentation.setLinks(self);
+          
+			productRepresentations.add(productRepresentation);
+        }
+		
+		return productRepresentations;
 	}
 	
 	public ProductRepresentation getProduct(Integer id) {
 		
-		Product pd = dao.getById(id);
+		Product pd = productDAO.getById(id);
 		ProductRepresentation productRepresentation = new ProductRepresentation();
+
 		productRepresentation.setName(pd.getName());
 		productRepresentation.setDescription(pd.getDescription());
 		productRepresentation.setImg(pd.getImg());
@@ -62,56 +92,65 @@ public class ProductActivity {
 	public ProductRepresentation createProduct(ProductRequest prodresq) {
 		Product prod = new Product();
 		ProductOwner po = new ProductOwner();
-		po = podao.getById(prodresq.getProductOwnerId());
+	
+		po = productOwnerDAO.getById(prodresq.getProductOwnerId());
+
 		prod.setName(prodresq.getName());
 		prod.setImg(prodresq.getImg());
 		prod.setDescription(prodresq.getDescription());
 		prod.setPrice(prodresq.getPrice());
 		prod.setQuantity(prodresq.getQuantity());
 		prod.setProductOwner(po);
-		dao.save(prod);
+
+		productDAO.save(prod);
+
 		ProductRepresentation pdRep = new ProductRepresentation();
 		pdRep.setName(prod.getName());
 		pdRep.setDescription(prod.getDescription());
 		pdRep.setImg(prod.getImg());
 		pdRep.setQuantity(prod.getQuantity());
 		pdRep.setPrice(prod.getPrice());
+
 		return pdRep;
 	}
 	
 	
 	public ProductRepresentation updateProduct(Integer id , ProductRequest productRequest) {
-		
 		Product pd = new Product();
 		ProductOwner po = new ProductOwner();
-		po = podao.getById(productRequest.getProductOwnerId());
-		pd = dao.getById(id);
+		
+		po = productOwnerDAO.getById(productRequest.getProductOwnerId());
+		pd = productDAO.getById(id);
+
 		pd.setName(productRequest.getName());
 		pd.setDescription(productRequest.getDescription());
 		pd.setImg(productRequest.getImg());
 		pd.setPrice(productRequest.getPrice());
 		pd.setQuantity(productRequest.getQuantity());
 		pd.setProductOwner(po);
-		dao.update(pd);
+
+		productDAO.update(pd);
+
 		ProductRepresentation poRep = new ProductRepresentation();
+
 		poRep.setName(pd.getName());
 		poRep.setDescription(pd.getDescription());
 		poRep.setImg(pd.getImg());
 		poRep.setQuantity(pd.getQuantity());
 		poRep.setPrice(pd.getPrice());
+
 		return poRep;
 	}
 	
 	public Response deleteProduct(Integer id) {
-		Product pd = dao.getById(id);
-		dao.delete(pd);
+		Product pd = productDAO.getById(id);
+
+		productDAO.delete(pd);
+
 		return Response.status(Status.OK).build();
 	}
 	
 	private void setLinks(ProductRepresentation productRepresentation) {
-		Link buy = new Link("buy",
-				"http://localhost:8090/Lakezon/product/order?productId=" +
-						productRepresentation.getId());
 	}
 	
 }
