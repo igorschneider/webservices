@@ -66,7 +66,7 @@ public class OrderActivity {
 		Link self = new Link("self", "customer/" + customerId + 
 				"/order/" + orderId);
 		Link viewOrderDetails = new Link("viewOrderDetails", "customer/" + customerId + 
-				"/order/" + orderId + "/orderdetails");
+				"/order/" + orderId + "/orderdetail");
 		
 		if (order.getStatus() == edu.luc.lakezon.business.order.Status.CART) {
 			Link clearCart = new Link("clearCart", "customer/" + customerId + 
@@ -101,7 +101,7 @@ public class OrderActivity {
 		Link self = new Link("self", "customer/" + customerId + 
 				"/order/" + orderId);
 		Link viewOrderDetails = new Link("viewOrderDetails", "customer/" + customerId + 
-				"/order/" + orderId + "/orderdetails");
+				"/order/" + orderId + "/orderdetail");
 		Link clearCart = new Link("clearCart", "customer/" + customerId + 
 				"/order/" + orderId);
 

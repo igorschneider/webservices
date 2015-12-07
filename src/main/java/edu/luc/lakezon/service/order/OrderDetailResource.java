@@ -24,9 +24,10 @@ public class OrderDetailResource implements OrderDetailService {
 	@GET
 	@Produces({"application/xml" , "application/json"})
 	@Override
-	public Set<OrderDetailRepresentation> getOrderDetails(@PathParam("orderId") String orderId) {
+	public Set<OrderDetailRepresentation> getOrderDetails(
+			@PathParam("customerId") String customerId, @PathParam("orderId") String orderId) {
 		OrderDetailActivity orderDetailActivity = new OrderDetailActivity();
-		return orderDetailActivity.getOrderDetails(orderId);
+		return orderDetailActivity.getOrderDetails(customerId, orderId);
 	}
 
 	@GET

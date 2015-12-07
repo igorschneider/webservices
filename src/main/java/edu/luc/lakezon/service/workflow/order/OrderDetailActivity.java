@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import edu.luc.lakezon.business.Link;
 import edu.luc.lakezon.business.order.Order;
 import edu.luc.lakezon.business.order.OrderDetail;
 import edu.luc.lakezon.business.product.Product;
@@ -22,7 +23,7 @@ public class OrderDetailActivity {
 	private OrderDAO orderDAO = new OrderDAO();
 	private ProductDAO productDAO = new ProductDAO();
 
-	public Set<OrderDetailRepresentation> getOrderDetails(String orderId) {
+	public Set<OrderDetailRepresentation> getOrderDetails(String customerId, String orderId) {
 		
 		Set<OrderDetail> orderDetails = null;
 		Set<OrderDetailRepresentation> orderDetailRepresentations = 
@@ -41,6 +42,16 @@ public class OrderDetailActivity {
 			orderDetailRepresentation.setProductId(orderDetail.getProduct().getProductId());
 			orderDetailRepresentation.setQuantity(orderDetail.getQuantity());
 			
+			Link updateOrderDetail = new Link("updateOrderDetail", "customer/" + customerId + 
+					"/order/" + orderId + "/orderdetail/" + 
+					orderDetail.getProduct().getProductId());
+
+			Link removeOrderDetail = new Link("removeOrderDetail", "customer/" + customerId + 
+					"/order/" + orderId + "/orderdetail/" + 
+					orderDetail.getProduct().getProductId());
+
+			orderDetailRepresentation.setLinks(updateOrderDetail, removeOrderDetail);
+
 			orderDetailRepresentations.add(orderDetailRepresentation);
 		}
 		

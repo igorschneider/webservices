@@ -11,7 +11,7 @@ import edu.luc.lakezon.service.representation.order.OrderDetailRequest;
 @WebService
 public interface OrderDetailService {
 
-	public Set<OrderDetailRepresentation> getOrderDetails(String orderId);
+	public Set<OrderDetailRepresentation> getOrderDetails(String customerId, String orderId);
 	public OrderDetailRepresentation getOrderDetail(String orderId, String productId);
 	public OrderDetailRepresentation createOrderDetail(String orderId, OrderDetailRequest orderDetailRequest);
 	public OrderDetailRepresentation updateOrderDetail(String orderId, String productId, OrderDetailRequest orderDetailRequest);
