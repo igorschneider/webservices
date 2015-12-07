@@ -3,7 +3,6 @@ package edu.luc.lakezon.dao.customer;
 import java.util.Set;
 
 import edu.luc.lakezon.business.customer.Address;
-import edu.luc.lakezon.business.customer.Customer;
 import edu.luc.lakezon.dao.BaseDAO;
 
 public class AddressDAO  extends BaseDAO<Address> {

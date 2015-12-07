@@ -2,9 +2,6 @@ package edu.luc.lakezon.service.product;
 
 import java.util.Set;
 
-import javax.ws.rs.Path;
-import javax.ws.rs.core.Response;
-
 import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 
 import javax.ws.rs.DELETE;

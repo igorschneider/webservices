@@ -7,7 +7,6 @@ import java.util.Set;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-import edu.luc.lakezon.business.customer.Customer;
 import edu.luc.lakezon.business.product.ProductOwner;
 import edu.luc.lakezon.dao.product.ProductOwnerDAO;
 import edu.luc.lakezon.service.representation.product.ProductOwnerRepresentation;
