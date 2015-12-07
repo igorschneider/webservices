@@ -21,18 +21,11 @@ public class ProductRepresentation extends BaseRepresentation  {
 	private Integer quantity;
 	private String img;
 	private Double price;
+	private String productOwnerName;
 
 	public ProductRepresentation() {}
 
 	// Getters and Setters
-
-	public Double getPrice() {
-		return price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
-	}
 
 	public Integer getId() {
 		return id;
@@ -72,6 +65,22 @@ public class ProductRepresentation extends BaseRepresentation  {
 
 	public void setImg(String img) {
 		this.img = img;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public String getProductOwnerName() {
+		return productOwnerName;
+	}
+
+	public void setProductOwnerName(String productOwnerName) {
+		this.productOwnerName = productOwnerName;
 	}
 
 }

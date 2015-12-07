@@ -57,10 +57,12 @@ public class ProductActivity {
 		productRepresentation.setImg(pd.getImg());
 		productRepresentation.setQuantity(pd.getQuantity());
 		productRepresentation.setPrice(pd.getPrice());
+		productRepresentation.setProductOwnerName(pd.getProductOwner().getName());
 
 		Link addToCart = new Link("addToCart", "order/product/" + pd.getProductId());
+		Link viewProductOwner = new Link("viewProductOwner", "productowner/" + pd.getProductOwner().getProductOwnerId());
 
-		productRepresentation.setLinks(addToCart);;
+		productRepresentation.setLinks(addToCart, viewProductOwner);;
 
 		return productRepresentation;
 	}
