@@ -11,7 +11,6 @@ import edu.luc.lakezon.service.representation.product.ProductRequest;
 @WebService
 public interface ProductService {
 
-	public Set<ProductRepresentation> getProducts();
 	public Set<ProductRepresentation> getProducts(String name);
 	public ProductRepresentation getProduct(Integer id);
 	public ProductRepresentation createProduct(ProductRequest prodRequest);

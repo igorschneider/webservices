@@ -5,12 +5,15 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
+import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
+
 import com.braintreegateway.Result;
 import com.braintreegateway.Transaction;
 
 import edu.luc.lakezon.service.representation.order.PaymentRequest;
 import edu.luc.lakezon.service.workflow.order.PaymentActivity;
 
+@CrossOriginResourceSharing(allowAllOrigins = true)
 @Path("/payment")
 public class PaymentResource implements PaymentService {
 

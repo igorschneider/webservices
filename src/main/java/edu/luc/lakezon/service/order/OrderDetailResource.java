@@ -11,10 +11,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
+
 import edu.luc.lakezon.service.representation.order.OrderDetailRepresentation;
 import edu.luc.lakezon.service.representation.order.OrderDetailRequest;
 import edu.luc.lakezon.service.workflow.order.OrderDetailActivity;
 
+@CrossOriginResourceSharing(allowAllOrigins = true)
 @Path("/customer/{customerId}/order/{orderId}/orderdetail")
 public class OrderDetailResource implements OrderDetailService {
 

@@ -12,6 +12,9 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
+
 import javax.ws.rs.core.CacheControl;
 
 
@@ -20,7 +23,7 @@ import edu.luc.lakezon.service.representation.product.ProductOwnerRequest;
 import edu.luc.lakezon.service.workflow.customer.CustomerActivity;
 import edu.luc.lakezon.service.workflow.product.ProductOwnerActivity;
 
-
+@CrossOriginResourceSharing(allowAllOrigins = true)
 @Path("/productowner")
 public class ProductOwnerResource implements ProductOwnerService {
 

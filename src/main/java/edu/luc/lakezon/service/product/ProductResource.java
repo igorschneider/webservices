@@ -26,15 +26,6 @@ public class ProductResource implements ProductService {
 	@GET
 	@Produces({"application/xml" , "application/json"})
 	@Override
-	public Set<ProductRepresentation> getProducts() {
-		System.out.println("GET METHOD Request for all products .............");
-		ProductActivity prodActivity = new ProductActivity();
-		return prodActivity.getProducts();	
-	}
-
-	@GET
-	@Produces({"application/xml" , "application/json"})
-	@Override
 	public Set<ProductRepresentation> getProducts(@DefaultValue("") @QueryParam("name") String name) {
 		System.out.println("GET METHOD Request to search for products .......");
 		ProductActivity prodActivity = new ProductActivity();

@@ -11,10 +11,13 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
+import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
+
 import edu.luc.lakezon.service.representation.customer.CustomerRepresentation;
 import edu.luc.lakezon.service.representation.customer.CustomerRequest;
 import edu.luc.lakezon.service.workflow.customer.CustomerActivity;
 
+@CrossOriginResourceSharing(allowAllOrigins = true)
 @Path("/customer")
 public class CustomerResource implements CustomerService {
 	

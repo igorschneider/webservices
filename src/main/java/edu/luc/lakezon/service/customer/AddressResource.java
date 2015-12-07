@@ -11,10 +11,13 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
 
+import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
+
 import edu.luc.lakezon.service.representation.customer.AddressRepresentation;
 import edu.luc.lakezon.service.representation.customer.AddressRequest;
 import edu.luc.lakezon.service.workflow.customer.AddressActivity;
 
+@CrossOriginResourceSharing(allowAllOrigins = true)
 @Path("/address")
 public class AddressResource implements AddressService {
 

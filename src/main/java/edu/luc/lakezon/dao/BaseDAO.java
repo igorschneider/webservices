@@ -120,8 +120,8 @@ public abstract class BaseDAO<T> {
 		
 		session.beginTransaction();
 
-		query = session.createQuery("from " + table + " where " + field + " like :" + field);
-		query.setParameter(field, "%" + search + "%");
+		query = session.createQuery("from " + table + " where lower(" + field + ") like :" + field);
+		query.setParameter(field, "%" + search.toLowerCase() + "%");
 
 		try {
 			setT = new HashSet<T>(query.list());
