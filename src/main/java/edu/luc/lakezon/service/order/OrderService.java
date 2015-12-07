@@ -13,7 +13,7 @@ public interface OrderService {
 
 	public Set<OrderRepresentation> getOrders(String customerId);
 	public OrderRepresentation getOrder(String customerId, String orderId);
-	public OrderRepresentation addProductToCart(String productId);
+	public OrderRepresentation addProductToCart(String customerId, String orderId, String productId);
 	public OrderRepresentation createOrder(OrderRequest orderRequest);
 	public OrderRepresentation updateOrder(String orderId, OrderRequest orderRequest);
 	public Response deleteOrder(String orderId);

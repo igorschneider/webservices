@@ -34,12 +34,15 @@ public class ProductActivity {
 			ProductRepresentation productRepresentation = new ProductRepresentation();
 
 			productRepresentation.setName(pd.getName());
+			productRepresentation.setDescription(pd.getDescription());
 			productRepresentation.setImg(pd.getImg());
 			productRepresentation.setPrice(pd.getPrice());
+			productRepresentation.setProductOwnerName(pd.getProductOwner().getName());
 			
 			Link self = new Link("self", "product/" + pd.getProductId());
+			Link viewProductOwner = new Link("viewProductOwner", "productowner/" + pd.getProductOwner().getProductOwnerId());
 			
-			productRepresentation.setLinks(self);
+			productRepresentation.setLinks(self, viewProductOwner);
           
 			productRepresentations.add(productRepresentation);
         }
@@ -59,11 +62,11 @@ public class ProductActivity {
 		productRepresentation.setPrice(pd.getPrice());
 		productRepresentation.setProductOwnerName(pd.getProductOwner().getName());
 
-		Link addToCart = new Link("addToCart", "order/product/" + pd.getProductId());
 		Link viewProductOwner = new Link("viewProductOwner", "productowner/" + pd.getProductOwner().getProductOwnerId());
 		Link viewReviews = new Link("viewReviews", "product/" + pd.getProductId() + "/review");
+		Link addToCart = new Link("addToCart", "customer/302/order/131/product/" + pd.getProductId());
 
-		productRepresentation.setLinks(addToCart, viewProductOwner, viewReviews);;
+		productRepresentation.setLinks(viewProductOwner, viewReviews, addToCart);;
 
 		return productRepresentation;
 	}
@@ -128,9 +131,6 @@ public class ProductActivity {
 		productDAO.delete(pd);
 
 		return Response.status(Status.OK).build();
-	}
-	
-	private void setLinks(ProductRepresentation productRepresentation) {
 	}
 	
 }

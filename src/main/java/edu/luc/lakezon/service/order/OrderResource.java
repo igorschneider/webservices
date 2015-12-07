@@ -38,6 +38,16 @@ public class OrderResource implements OrderService {
 		return orderActivity.getOrder(customerId, orderId);
 	}
 
+	@PUT
+	@Produces({"application/xml" , "application/json"})
+	@Path("/{orderId}/product/{productId}")
+	@Override
+	public OrderRepresentation addProductToCart(@PathParam("customerId") String customerId,
+			@PathParam("orderId") String orderId, @PathParam("productId") String productId) {
+		OrderActivity orderActivity = new OrderActivity();
+		return orderActivity.addProductToCart(customerId, orderId, productId);
+	}
+
 	@POST
 	@Produces({"application/xml" , "application/json"})
 	@Override
