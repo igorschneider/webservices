@@ -160,14 +160,20 @@ public class OrderActivity {
 
 		if (order.getStatus() == edu.luc.lakezon.business.order.Status.CART) {
 
+			Iterator<OrderDetail> it = order.getOrderDetailList().iterator();
+			
 			order.setOrderDetailList(new HashSet<OrderDetail>(0));
-			orderDAO.save(order);
+			
+			while (it.hasNext()) {
+				orderDetailDAO.delete((OrderDetail)it.next());
+			}
+
 			return Response.status(Status.OK).build();
 
 		} else if (order.getStatus() == edu.luc.lakezon.business.order.Status.PROCESSING) {
 
 			order.setStatus(edu.luc.lakezon.business.order.Status.CANCELED);
-			orderDAO.save(order);
+			orderDAO.update(order);
 			return Response.status(Status.OK).build();
 
 		} else {
