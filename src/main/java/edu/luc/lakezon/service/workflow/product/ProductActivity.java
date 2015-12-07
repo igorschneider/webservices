@@ -20,31 +20,6 @@ public class ProductActivity {
 	private ProductDAO productDAO = new ProductDAO();
 	private ProductOwnerDAO productOwnerDAO = new ProductOwnerDAO();
 
-	public Set<ProductRepresentation> getProducts() {
-		
-		Set<Product> products = null;
-		Set<ProductRepresentation> productRepresentations = 
-				new HashSet<ProductRepresentation>();
-		products = productDAO.getAll();
-		
-		Iterator<Product> it = products.iterator();
-
-		while(it.hasNext()) {
-			Product pd = (Product)it.next();
-			ProductRepresentation productRepresentation = new ProductRepresentation();
-
-			productRepresentation.setName(pd.getName());
-			productRepresentation.setDescription(pd.getDescription());
-			productRepresentation.setImg(pd.getImg());
-			productRepresentation.setQuantity(pd.getQuantity());
-			productRepresentation.setPrice(pd.getPrice());
-          
-			productRepresentations.add(productRepresentation);
-        }
-		
-		return productRepresentations;
-	}
-	
 	public Set<ProductRepresentation> getProducts(String name) {
 		
 		Set<Product> products = null;
@@ -62,7 +37,7 @@ public class ProductActivity {
 			productRepresentation.setImg(pd.getImg());
 			productRepresentation.setPrice(pd.getPrice());
 			
-			Link self = new Link("self", "http://localhost:8090/product/" + pd.getProductId());
+			Link self = new Link("self", "product/" + pd.getProductId());
 			
 			productRepresentation.setLinks(self);
           
@@ -83,7 +58,9 @@ public class ProductActivity {
 		productRepresentation.setQuantity(pd.getQuantity());
 		productRepresentation.setPrice(pd.getPrice());
 
-		setLinks(productRepresentation);
+		Link addToCart = new Link("addToCart", "order/product/" + pd.getProductId());
+
+		productRepresentation.setLinks(addToCart);;
 
 		return productRepresentation;
 	}

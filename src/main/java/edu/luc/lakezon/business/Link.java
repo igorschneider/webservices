@@ -9,7 +9,7 @@ public class Link {
 	
 	public Link(String action, String url) {
 		this.action = action;
-		this.url = url;
+		this.url = "http://localhost:8090/" + url;
 	}
 
 	public String getAction() {

@@ -37,7 +37,7 @@ public class ProductResource implements ProductService {
 	@Path("{productId}")
 	@Override
 	public ProductRepresentation getProduct(@PathParam("productId") Integer id) {
-		System.out.println("GET METHOD Request from product with productRequest String ............." + id);
+		System.out.println("GET METHOD Request from product with ID ........." + id);
 		ProductActivity prodActivity = new ProductActivity();
 		return prodActivity.getProduct(id);
 	}
