@@ -12,8 +12,8 @@ import edu.luc.lakezon.service.representation.product.ReviewRequest;
 @WebService
 public interface ReviewService {
 
-	public Set<ReviewRepresentation> getReviews();
-	public ReviewRepresentation getReview(String id);
+	public Set<ReviewRepresentation> getReviews(String productId);
+	public ReviewRepresentation getReview(String productId, String reviewId);
 	public ReviewRepresentation createReview(ReviewRequest reviewRequest);
 	public ReviewRepresentation updateReview(String reviewId, ReviewRequest reviewRequest);
 	public Response deleteReview(String reviewId);

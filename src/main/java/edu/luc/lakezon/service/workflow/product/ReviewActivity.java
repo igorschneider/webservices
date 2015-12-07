@@ -23,11 +23,11 @@ public class ReviewActivity {
 	private CustomerDAO customerDAO = new CustomerDAO();
 	private ProductDAO productDAO = new ProductDAO();
 	
-	public Set<ReviewRepresentation> getReviews() {
+	public Set<ReviewRepresentation> getReviews(String productId) {
 		
 		Set<Review> reviews = null;
 		Set<ReviewRepresentation> reviewRepresentations = new HashSet<ReviewRepresentation>();
-		reviews = reviewDAO.getAll();
+		reviews = reviewDAO.getAllById(Integer.parseInt(productId));
 		
 		Iterator<Review> it = reviews.iterator();
 		while(it.hasNext()) {

@@ -21,25 +21,26 @@ import edu.luc.lakezon.service.representation.product.ReviewRequest;
 import edu.luc.lakezon.service.workflow.product.ReviewActivity;
 
 @CrossOriginResourceSharing(allowAllOrigins = true)
-@Path("/review")
+@Path("product/{productId}/review")
 public class ReviewResource implements ReviewService{
 
 	@GET
 	@Produces({"application/xml" , "application/json"})
-	public Set<ReviewRepresentation> getReviews() {
+	public Set<ReviewRepresentation> getReviews(@PathParam("productId") String productId) {
 		System.out.println("GET METHOD Request for all reviews .............");
 		ReviewActivity revActivity = new ReviewActivity();
-		return revActivity.getReviews();	
+		return revActivity.getReviews(productId);	
 	}
 
 	@GET
 	@Produces({"application/xml" , "application/json"})
 	@Path("{reviewId}")
 	@Override
-	public ReviewRepresentation getReview(@PathParam("reviewId") String id) {
-		System.out.println("GET METHOD Request String ............." + id);
+	public ReviewRepresentation getReview(@PathParam("productId") String productId, 
+			@PathParam("reviewId") String reviewId) {
+		System.out.println("GET METHOD Request String ............." + reviewId);
 		ReviewActivity revActivity = new ReviewActivity();
-		return revActivity.getReview(id);
+		return revActivity.getReview(reviewId);
 	}
 
 	@POST

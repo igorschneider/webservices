@@ -61,8 +61,9 @@ public class ProductActivity {
 
 		Link addToCart = new Link("addToCart", "order/product/" + pd.getProductId());
 		Link viewProductOwner = new Link("viewProductOwner", "productowner/" + pd.getProductOwner().getProductOwnerId());
+		Link viewReviews = new Link("viewReviews", "product/" + pd.getProductId() + "/review");
 
-		productRepresentation.setLinks(addToCart, viewProductOwner);;
+		productRepresentation.setLinks(addToCart, viewProductOwner, viewReviews);;
 
 		return productRepresentation;
 	}
