@@ -158,9 +158,25 @@ public class OrderActivity {
 	public Response deleteOrder(String orderId) {
 		Order order = orderDAO.getById(Integer.parseInt(orderId));
 
-		orderDAO.delete(order);
+		if (order.getStatus() == edu.luc.lakezon.business.order.Status.CART) {
+
+			order.setOrderDetailList(new HashSet<OrderDetail>(0));
+			orderDAO.save(order);
+			return Response.status(Status.OK).build();
+
+		} else if (order.getStatus() == edu.luc.lakezon.business.order.Status.PROCESSING) {
+
+			order.setStatus(edu.luc.lakezon.business.order.Status.CANCELED);
+			orderDAO.save(order);
+			return Response.status(Status.OK).build();
+
+		} else {
+
+			return Response.status(Status.METHOD_NOT_ALLOWED).build();
+			
+		}
 		
-		return Response.status(Status.OK).build();
+		
 	}
 	
 }
