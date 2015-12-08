@@ -55,14 +55,27 @@ public class ProductOwnerActivity {
 	
 	
 	public ProductOwnerRepresentation createProductOwner(ProductOwnerRequest productOwnerRequest) {
+
 		ProductOwner po = new ProductOwner();
+
 		po.setName(productOwnerRequest.getName());
 		po.setPassword(productOwnerRequest.getPassword());
+
 		dao.save(po);
+
 		ProductOwnerRepresentation poRep = new ProductOwnerRepresentation();
+
 		poRep.setName(po.getName());
-		poRep.setPassword(po.getPassword());
-		poRep.setProductOwnerId(po.getProductOwnerId());
+
+		Link self = new Link("self", "productowner/" + po.getProductOwnerId());
+		Link viewProducts = new Link("viewProducts", "product?productowner=" + 
+				po.getProductOwnerId());
+		Link addProduct = new Link("addProduct", "product");
+		Link viewOrders = new Link("viewOrders", "order?productowner=" + 
+				po.getProductOwnerId());
+		
+		poRep.setLinks(self, viewProducts, addProduct, viewOrders);
+
 		return poRep;
 	}
 	

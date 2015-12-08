@@ -40,6 +40,7 @@ public class ProductActivity {
 
 			productRepresentation.setName(pd.getName());
 			productRepresentation.setDescription(pd.getDescription());
+			productRepresentation.setQuantity(pd.getQuantity());
 			productRepresentation.setImg(pd.getImg());
 			productRepresentation.setPrice(pd.getPrice());
 			productRepresentation.setProductOwnerName(pd.getProductOwner().getName());
