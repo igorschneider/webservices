@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import edu.luc.lakezon.business.Link;
 import edu.luc.lakezon.business.customer.Customer;
 import edu.luc.lakezon.dao.customer.CustomerDAO;
 import edu.luc.lakezon.service.representation.customer.CustomerRepresentation;
@@ -122,7 +123,18 @@ public class CustomerActivity {
 			Customer customer = (Customer)it.next();
 			
 			if (customer.getPassword().equals(customerRequest.getPassword())) {
-				return Response.status(Status.OK).build();
+				CustomerRepresentation custRep = new CustomerRepresentation();
+				custRep.setName(customer.getName());
+
+				Link self = new Link("self", "customer/" + customer.getCustomerId());
+				Link viewReviews = new Link("viewReviews", "review?customer=" + 
+						customer.getCustomerId());
+				Link viewOrders = new Link("viewOrders", "customer/" + 
+						customer.getCustomerId() + "/order");
+				
+				custRep.setLinks(self, viewReviews, viewOrders);
+
+				return Response.ok(custRep).build();
 			}
 
 		}
