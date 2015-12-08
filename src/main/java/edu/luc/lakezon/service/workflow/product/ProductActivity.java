@@ -26,10 +26,12 @@ public class ProductActivity {
 		Set<ProductRepresentation> productRepresentations = 
 				new HashSet<ProductRepresentation>();
 		
-		if (!(name.equals(""))) {
+		if (!(productOwnerId.equals(""))) {
+			products = productDAO.getAllById(Integer.parseInt(productOwnerId));
+		} else if (!(name.equals(""))) {
 			products = productDAO.getAllByString(name);
 		} else {
-			products = productDAO.getAllById(Integer.parseInt(productOwnerId));
+			products = productDAO.getAll();
 		}
 		
 		Iterator<Product> it = products.iterator();
@@ -71,10 +73,9 @@ public class ProductActivity {
 
 		Link viewProductOwner = new Link("viewProductOwner", "productowner/" + pd.getProductOwner().getProductOwnerId());
 		Link viewReviews = new Link("viewReviews", "review?productId=" + pd.getProductId());
-		Link addToCart = new Link("addToCart", "customer/302/order/131/product/" + pd.getProductId());
 		Link updateProduct = new Link("updateProduct", "product/" + pd.getProductId());
 
-		productRepresentation.setLinks(viewProductOwner, viewReviews, addToCart, updateProduct);;
+		productRepresentation.setLinks(viewProductOwner, viewReviews, updateProduct);;
 
 		return productRepresentation;
 	}

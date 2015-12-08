@@ -115,8 +115,12 @@ public class OrderActivity {
 		if (order.getStatus() == edu.luc.lakezon.business.order.Status.CART) {
 			Link clearCart = new Link("clearCart", "order/customer/" + customerId + 
 					"/order/" + orderId);
+			Link checkout = new Link("checkout", "payment/token");
+			Link pay = new Link("pay", "payment/transaction");
+			Link placeOrder = new Link("placeOrder", "order/customer/" + customerId + 
+					"/order/" + orderId);
 
-			orderRepresentation.setLinks(self, viewOrderDetails, clearCart);
+			orderRepresentation.setLinks(self, viewOrderDetails, clearCart, checkout, pay, placeOrder);
 		} else {
 			orderRepresentation.setLinks(self, viewOrderDetails);
 		}
