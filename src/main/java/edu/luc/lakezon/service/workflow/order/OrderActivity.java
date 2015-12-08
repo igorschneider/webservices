@@ -178,24 +178,26 @@ public class OrderActivity {
 	
 	public OrderRepresentation updateOrder(String orderId, 
 			OrderRequest orderRequest) {
-		Customer customer = customerDAO.getById(orderRequest.getCustomerId());
-
 		Order order = orderDAO.getById(Integer.parseInt(orderId));
 
 		order.setStatus(orderRequest.getStatus());
-		order.setOrderDate(orderRequest.getOrderDate());
-		order.setCustomer(customer);
 
 		orderDAO.save(order);
 
 		OrderRepresentation orderRepresentation = 
 				new OrderRepresentation();
 
-		orderRepresentation.setOrderId(order.getOrderId());
 		orderRepresentation.setStatus(order.getStatus());
 		orderRepresentation.setOrderDate(order.getOrderDate());
-		orderRepresentation.setCustomerId(order.getCustomer().getCustomerId());
 		
+		Link self = new Link("self", "customer/" + order.getCustomer().getCustomerId() + 
+				"/order/" + orderId);
+		Link viewOrderDetails = new Link("viewOrderDetails", "customer/" + 
+				order.getCustomer().getCustomerId() + 
+				"/order/" + orderId + "/orderdetail");
+
+		orderRepresentation.setLinks(self, viewOrderDetails);;
+
 		return orderRepresentation;
 	}
 
