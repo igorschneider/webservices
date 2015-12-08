@@ -15,4 +15,8 @@ public class CustomerDAO extends BaseDAO<Customer> {
 		return super.getAll("Customer");
 	}
 
+	public Set<Customer> getAllByString(String search) {
+		return super.getAllByString(search, "Customer", "name");
+	}
+
 }

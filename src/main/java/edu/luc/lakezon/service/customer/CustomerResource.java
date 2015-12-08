@@ -64,4 +64,13 @@ public class CustomerResource implements CustomerService {
 		return customerActivity.deleteCustomer(customerId);
 	}
 
+	@POST
+	@Produces({"application/xml" , "application/json"})
+	@Path("/authentication")
+	@Override
+	public Response authenticateCustomer(CustomerRequest customerRequest) {
+		CustomerActivity customerActivity = new CustomerActivity();
+		return customerActivity.authenticateCustomer(customerRequest);
+	}
+
 }
