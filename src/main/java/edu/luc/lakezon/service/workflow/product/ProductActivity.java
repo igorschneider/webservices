@@ -112,9 +112,7 @@ public class ProductActivity {
 	
 	public ProductRepresentation updateProduct(Integer id , ProductRequest productRequest) {
 		Product pd = new Product();
-		ProductOwner po = new ProductOwner();
 		
-		po = productOwnerDAO.getById(productRequest.getProductOwnerId());
 		pd = productDAO.getById(id);
 
 		pd.setName(productRequest.getName());
@@ -122,19 +120,24 @@ public class ProductActivity {
 		pd.setImg(productRequest.getImg());
 		pd.setPrice(productRequest.getPrice());
 		pd.setQuantity(productRequest.getQuantity());
-		pd.setProductOwner(po);
 
 		productDAO.update(pd);
 
-		ProductRepresentation poRep = new ProductRepresentation();
+		ProductRepresentation pdRep = new ProductRepresentation();
 
-		poRep.setName(pd.getName());
-		poRep.setDescription(pd.getDescription());
-		poRep.setImg(pd.getImg());
-		poRep.setQuantity(pd.getQuantity());
-		poRep.setPrice(pd.getPrice());
+		pdRep.setName(pd.getName());
+		pdRep.setDescription(pd.getDescription());
+		pdRep.setImg(pd.getImg());
+		pdRep.setQuantity(pd.getQuantity());
+		pdRep.setPrice(pd.getPrice());
 
-		return poRep;
+		Link self = new Link("self", "product/" + pd.getProductId());
+		Link viewProductOwner = new Link("viewProductOwner", "productowner/" + 
+				pd.getProductOwner().getProductOwnerId());
+		
+		pdRep.setLinks(self, viewProductOwner);
+
+		return pdRep;
 	}
 	
 	public Response deleteProduct(Integer id) {
