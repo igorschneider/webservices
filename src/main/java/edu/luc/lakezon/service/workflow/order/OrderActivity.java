@@ -46,6 +46,22 @@ public class OrderActivity {
 			orderRepresentation.setOrderDate(order.getOrderDate());
 			orderRepresentation.setCustomerId(Integer.parseInt(customerId));
 			
+			Link self = new Link("self", "order/customer/" + customerId + 
+					"/order/" + order.getOrderId());
+			Link viewOrderDetails = new Link("viewOrderDetails", "order/customer/" + customerId + 
+					"/order/" + order.getOrderId() + "/orderdetail");
+
+			if (order.getStatus().equals(edu.luc.lakezon.business.order.Status.PROCESSING)) {
+
+				Link cancelOrder = new Link("cancelOrder", "order/customer/" + customerId + 
+						"/order/" + order.getOrderId());
+				
+				orderRepresentation.setLinks(self, viewOrderDetails, cancelOrder);
+			} else {
+				orderRepresentation.setLinks(self, viewOrderDetails);
+			}
+			
+
 			orderRepresentations.add(orderRepresentation);
 		}
 		
@@ -208,7 +224,7 @@ public class OrderActivity {
 	public Response deleteOrder(String orderId) {
 		Order order = orderDAO.getById(Integer.parseInt(orderId));
 
-		if (order.getStatus() == edu.luc.lakezon.business.order.Status.CART) {
+		if (order.getStatus().equals(edu.luc.lakezon.business.order.Status.CART)) {
 
 			Iterator<OrderDetail> it = order.getOrderDetailList().iterator();
 			
@@ -220,7 +236,7 @@ public class OrderActivity {
 
 			return Response.status(Status.OK).build();
 
-		} else if (order.getStatus() == edu.luc.lakezon.business.order.Status.PROCESSING) {
+		} else if (order.getStatus().equals(edu.luc.lakezon.business.order.Status.PROCESSING)) {
 
 			order.setStatus(edu.luc.lakezon.business.order.Status.CANCELED);
 			orderDAO.update(order);
