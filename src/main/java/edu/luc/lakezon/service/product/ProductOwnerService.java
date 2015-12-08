@@ -15,5 +15,6 @@ public interface ProductOwnerService {
 	public ProductOwnerRepresentation createProductOwner(ProductOwnerRequest productOwnerRequest);
 	public ProductOwnerRepresentation updateProductOwner(Integer prodOwnerid, ProductOwnerRequest productOwnerRequest);
 	public Response deleteProductOwner(Integer prodOwnerid);
+	public Response authenticateProductOwner(ProductOwnerRequest productOwnerRequest);
 	
 }

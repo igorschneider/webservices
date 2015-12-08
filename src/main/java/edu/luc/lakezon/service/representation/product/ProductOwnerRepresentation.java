@@ -17,6 +17,7 @@ public class ProductOwnerRepresentation extends BaseRepresentation {
 
 	private int productOwnerId;
 	private String name;
+	private String password;
 
 	public ProductOwnerRepresentation() {}
 
@@ -36,6 +37,14 @@ public class ProductOwnerRepresentation extends BaseRepresentation {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

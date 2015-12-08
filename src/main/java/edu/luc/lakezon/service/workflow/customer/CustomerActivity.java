@@ -117,13 +117,9 @@ public class CustomerActivity {
 
 		Iterator<Customer> it = customers.iterator();
 		
-		System.out.println("Request Password: " + customerRequest.getPassword());
-
 		while (it.hasNext()) {
 
 			Customer customer = (Customer)it.next();
-			
-			System.out.println("DB Password: " + customer.getPassword());
 			
 			if (customer.getPassword().equals(customerRequest.getPassword())) {
 				return Response.status(Status.OK).build();

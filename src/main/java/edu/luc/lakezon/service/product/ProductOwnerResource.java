@@ -44,9 +44,8 @@ public class ProductOwnerResource implements ProductOwnerService {
 	@Override
 	public ProductOwnerRepresentation createProductOwner(ProductOwnerRequest ProductOwnerRequest) {
 		ProductOwnerActivity poActivity = new ProductOwnerActivity();
-		return poActivity.createProductOwner(ProductOwnerRequest.getName());
+		return poActivity.createProductOwner(ProductOwnerRequest);
 	}
-
 
 	@PUT
 	@Produces({"application/xml" , "application/json"})
@@ -57,7 +56,6 @@ public class ProductOwnerResource implements ProductOwnerService {
 		return poActivity.updateProductOwner(id ,productOwnerRequest);
 	}
 
-	
 	@DELETE
 	@Path("{productownerId}")
 	@Override
@@ -67,4 +65,13 @@ public class ProductOwnerResource implements ProductOwnerService {
 		return poActivity.deleteProductOwner(id);
 	}
 	
+	@POST
+	@Produces({"application/xml" , "application/json"})
+	@Path("/authentication")
+	@Override
+	public Response authenticateProductOwner(ProductOwnerRequest ProductOwnerRequest) {
+		ProductOwnerActivity poActivity = new ProductOwnerActivity();
+		return poActivity.authenticateProductOwner(ProductOwnerRequest);
+	}
+
 }

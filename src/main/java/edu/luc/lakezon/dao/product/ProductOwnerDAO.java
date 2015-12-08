@@ -15,4 +15,8 @@ public class ProductOwnerDAO extends BaseDAO<ProductOwner> {
 		return super.getAll("ProductOwner");
 	}
 
+	public Set<ProductOwner> getAllByString(String search) {
+		return super.getAllByString(search, "ProductOwner", "name");
+	}
+
 }

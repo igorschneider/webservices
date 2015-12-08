@@ -34,6 +34,9 @@ public class ProductOwner implements Serializable{
 	@Column(name = "name")
 	private String name;
 
+	@Column(name = "password")
+	private String password;
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "productOwner")
 	private Set<Product> productsList = new HashSet<Product>(0);
 
@@ -53,6 +56,14 @@ public class ProductOwner implements Serializable{
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public Set<Product> getProductsList() {

@@ -18,4 +18,5 @@ public class ProductDAO extends BaseDAO<Product> {
 	public Set<Product> getAllByString(String search) {
 		return super.getAllByString(search, "Product", "name");
 	}
+
 }

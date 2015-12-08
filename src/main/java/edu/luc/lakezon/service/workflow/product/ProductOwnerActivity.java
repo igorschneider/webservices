@@ -28,6 +28,7 @@ public class ProductOwnerActivity {
 			ProductOwner po = (ProductOwner)it.next();
 			ProductOwnerRepresentation productOwnerRepresentation = new ProductOwnerRepresentation();
 			productOwnerRepresentation.setName(po.getName());
+			productOwnerRepresentation.setPassword(po.getPassword());
 			productOwnerRepresentation.setProductOwnerId(po.getProductOwnerId());
           
           //now add this representation in the list
@@ -49,12 +50,14 @@ public class ProductOwnerActivity {
 	}
 	
 	
-	public ProductOwnerRepresentation createProductOwner(String name) {
+	public ProductOwnerRepresentation createProductOwner(ProductOwnerRequest productOwnerRequest) {
 		ProductOwner po = new ProductOwner();
-		po.setName(name);
+		po.setName(productOwnerRequest.getName());
+		po.setPassword(productOwnerRequest.getPassword());
 		dao.save(po);
 		ProductOwnerRepresentation poRep = new ProductOwnerRepresentation();
 		poRep.setName(po.getName());
+		poRep.setPassword(po.getPassword());
 		poRep.setProductOwnerId(po.getProductOwnerId());
 		return poRep;
 	}
@@ -65,9 +68,11 @@ public class ProductOwnerActivity {
 		ProductOwner po = new ProductOwner();
 		po = dao.getById(id);
 		po.setName(productOwnerRequest.getName());
+		po.setPassword(productOwnerRequest.getPassword());
 		dao.update(po);
 		ProductOwnerRepresentation poRep = new ProductOwnerRepresentation();
 		poRep.setName(po.getName());
+		poRep.setPassword(po.getPassword());
 		poRep.setProductOwnerId(po.getProductOwnerId());
 		return poRep;
 	}
@@ -77,6 +82,26 @@ public class ProductOwnerActivity {
 		ProductOwner po = dao.getById(id);
 		dao.delete(po);
 		return Response.status(Status.OK).build();
+	}
+	
+	public Response authenticateProductOwner(ProductOwnerRequest productOwnerRequest) {
+		
+		Set<ProductOwner> productOwners = dao.getAllByString(productOwnerRequest.getName());
+
+		Iterator<ProductOwner> it = productOwners.iterator();
+		
+		while (it.hasNext()) {
+
+			ProductOwner productOwner = (ProductOwner)it.next();
+			
+			if (productOwner.getPassword().equals(productOwnerRequest.getPassword())) {
+				return Response.status(Status.OK).build();
+			}
+
+		}
+		
+		return Response.status(Status.UNAUTHORIZED).build();
+
 	}
 	
 }
