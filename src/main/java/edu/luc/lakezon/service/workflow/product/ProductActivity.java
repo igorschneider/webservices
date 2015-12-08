@@ -79,11 +79,11 @@ public class ProductActivity {
 	}
 	
 	
-	public ProductRepresentation createProduct(ProductRequest prodresq) {
+	public ProductRepresentation createProduct(String productOwnerId, ProductRequest prodresq) {
 		Product prod = new Product();
 		ProductOwner po = new ProductOwner();
 	
-		po = productOwnerDAO.getById(prodresq.getProductOwnerId());
+		po = productOwnerDAO.getById(Integer.parseInt(productOwnerId));
 
 		prod.setName(prodresq.getName());
 		prod.setImg(prodresq.getImg());
@@ -100,6 +100,11 @@ public class ProductActivity {
 		pdRep.setImg(prod.getImg());
 		pdRep.setQuantity(prod.getQuantity());
 		pdRep.setPrice(prod.getPrice());
+
+		Link self = new Link("self", "product/" + prod.getProductId());
+		Link viewProductOwner = new Link("viewProductOwner", "productowner/" + productOwnerId);
+		
+		pdRep.setLinks(self, viewProductOwner);
 
 		return pdRep;
 	}

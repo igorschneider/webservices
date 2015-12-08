@@ -13,7 +13,7 @@ public interface ProductService {
 
 	public Set<ProductRepresentation> getProducts(String name, String productOwnerId);
 	public ProductRepresentation getProduct(Integer id);
-	public ProductRepresentation createProduct(ProductRequest prodRequest);
+	public ProductRepresentation createProduct(String productOwnerId, ProductRequest prodRequest);
 	public ProductRepresentation updateProduct(Integer prodId, ProductRequest prodRequest);
 	public Response deleteProduct(Integer prodId);
 	

@@ -18,11 +18,11 @@ import edu.luc.lakezon.service.representation.order.OrderRepresentation;
 import edu.luc.lakezon.service.representation.order.OrderRequest;
 import edu.luc.lakezon.service.workflow.order.OrderActivity;
 
-@CrossOriginResourceSharing(allowAllOrigins = true)
 public class OrderResource implements OrderService {
 
 	@GET
 	@Produces({"application/xml" , "application/json"})
+	@CrossOriginResourceSharing(allowAllOrigins = true)
 	@Path("/customer/{customerId}/order")
 	@Override
 	public Set<OrderRepresentation> getCustomerOrders(@PathParam("customerId") String customerId) {
@@ -32,6 +32,7 @@ public class OrderResource implements OrderService {
 
 	@GET
 	@Produces({"application/xml" , "application/json"})
+	@CrossOriginResourceSharing(allowAllOrigins = true)
 	@Path("/order")
 	@Override
 	public Set<OrderRepresentation> getProductOwnerOrders(
@@ -42,6 +43,7 @@ public class OrderResource implements OrderService {
 
 	@GET
 	@Produces({"application/xml" , "application/json"})
+	@CrossOriginResourceSharing(allowAllOrigins = true)
 	@Path("/customer/{customerId}/order/{orderId}")
 	@Override
 	public OrderRepresentation getOrder(@PathParam("customerId") String customerId,
@@ -52,6 +54,7 @@ public class OrderResource implements OrderService {
 
 	@PUT
 	@Produces({"application/xml" , "application/json"})
+	@CrossOriginResourceSharing(allowAllOrigins = true)
 	@Path("/customer/{customerId}/order/{orderId}/product/{productId}")
 	@Override
 	public OrderRepresentation addProductToCart(@PathParam("customerId") String customerId,
@@ -62,6 +65,7 @@ public class OrderResource implements OrderService {
 
 	@POST
 	@Produces({"application/xml" , "application/json"})
+	@CrossOriginResourceSharing(allowAllOrigins = true)
 	@Path("/customer/{customerId}/order")
 	@Override
 	public OrderRepresentation createOrder(OrderRequest orderRequest) {
@@ -71,6 +75,7 @@ public class OrderResource implements OrderService {
 
 	@PUT
 	@Produces({"application/xml" , "application/json"})
+	@CrossOriginResourceSharing(allowAllOrigins = true)
 	@Path("/customer/{customerId}/order/{orderId}")
 	@Override
 	public OrderRepresentation updateOrder(@PathParam("orderId") String orderId, 
@@ -81,6 +86,7 @@ public class OrderResource implements OrderService {
 
 	@DELETE
 	@Produces({"application/xml" , "application/json"})
+	@CrossOriginResourceSharing(allowAllOrigins = true)
 	@Path("/customer/{customerId}/order/{orderId}")
 	@Override
 	public Response deleteOrder(@PathParam("orderId") String orderId) {

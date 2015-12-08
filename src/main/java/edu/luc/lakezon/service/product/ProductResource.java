@@ -46,9 +46,11 @@ public class ProductResource implements ProductService {
 	@POST
 	@Produces({"application/xml" , "application/json"})
 	@Override
-	public ProductRepresentation createProduct(ProductRequest pr) {
+	public ProductRepresentation createProduct(
+			@DefaultValue("") @QueryParam("productowner") String productOwnerId, 
+			ProductRequest pr) {
 		ProductActivity prodActivity = new ProductActivity();
-		return prodActivity.createProduct(pr);
+		return prodActivity.createProduct(productOwnerId, pr);
 	}
 
 
