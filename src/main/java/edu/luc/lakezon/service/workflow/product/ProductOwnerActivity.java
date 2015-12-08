@@ -68,11 +68,11 @@ public class ProductOwnerActivity {
 		poRep.setName(po.getName());
 
 		Link self = new Link("self", "productowner/" + po.getProductOwnerId());
-		Link viewProducts = new Link("viewProducts", "product?productowner=" + 
+		Link viewProducts = new Link("viewProducts", "product?productOwnerId=" + 
 				po.getProductOwnerId());
-		Link addProduct = new Link("addProduct", "product?productowner=" + 
+		Link addProduct = new Link("addProduct", "product?productOwnerId=" + 
 				po.getProductOwnerId());
-		Link viewOrders = new Link("viewOrders", "order?productowner=" + 
+		Link viewOrders = new Link("viewOrders", "order?productOwnerId=" + 
 				po.getProductOwnerId());
 		
 		poRep.setLinks(self, viewProducts, addProduct, viewOrders);
@@ -118,11 +118,11 @@ public class ProductOwnerActivity {
 				poRep.setName(productOwner.getName());
 
 				Link self = new Link("self", "productowner/" + productOwner.getProductOwnerId());
-				Link viewProducts = new Link("viewProducts", "product?productowner=" + 
+				Link viewProducts = new Link("viewProducts", "product?productOwnerId=" + 
 						productOwner.getProductOwnerId());
-				Link addProduct = new Link("addProduct", "product?productowner=" + 
+				Link addProduct = new Link("addProduct", "product?productOwnerId=" + 
 						productOwner.getProductOwnerId());
-				Link viewOrders = new Link("viewOrders", "order?productowner=" + 
+				Link viewOrders = new Link("viewOrders", "order?productOwnerId=" + 
 						productOwner.getProductOwnerId());
 				
 				poRep.setLinks(self, viewProducts, addProduct, viewOrders);
