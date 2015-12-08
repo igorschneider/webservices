@@ -76,8 +76,12 @@ public class CustomerResource implements CustomerService {
 	@Path("/customer/authentication")
 	@Override
 	public Response authenticateCustomer(CustomerRequest customerRequest) {
-		CustomerActivity customerActivity = new CustomerActivity();
-		return customerActivity.authenticateCustomer(customerRequest);
+		try {
+			CustomerActivity customerActivity = new CustomerActivity();
+			return customerActivity.authenticateCustomer(customerRequest);
+		} catch (Exception e) {
+			return Response.serverError().build();
+		}
 	}
 
 }

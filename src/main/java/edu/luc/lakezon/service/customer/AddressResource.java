@@ -61,8 +61,12 @@ public class AddressResource implements AddressService {
 	@Path("/{addressId}")
 	@Override
 	public Response deleteAddress(@PathParam("addressId") String addressId) {
-		AddressActivity addressActivity = new AddressActivity();
-		return addressActivity.deleteAddress(addressId);
+		try {
+			AddressActivity addressActivity = new AddressActivity();
+			return addressActivity.deleteAddress(addressId);
+		} catch (Exception e) {
+			return Response.serverError().build();
+		}
 	}
 
 }

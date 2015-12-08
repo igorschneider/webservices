@@ -65,8 +65,12 @@ public class ReviewResource implements ReviewService{
 	@Path("/{reviewId}")
 	@Override
 	public Response deleteReview(@PathParam("orderId") String reviewId) {
-		ReviewActivity revActivity = new ReviewActivity();
-		return revActivity.deleteReview(reviewId);
+		try {
+			ReviewActivity revActivity = new ReviewActivity();
+			return revActivity.deleteReview(reviewId);
+		} catch (Exception e) {
+			return Response.serverError().build();
+		}
 	}
 
 }

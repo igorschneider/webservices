@@ -67,8 +67,12 @@ public class OrderDetailResource implements OrderDetailService {
 	@Override
 	public Response deleteOrderDetail(@PathParam("orderId") String orderId, 
 			@PathParam("productId") String productId) {
-		OrderDetailActivity orderDetailActivity = new OrderDetailActivity();
-		return orderDetailActivity.deleteOrderDetail(orderId, productId);
+		try {
+			OrderDetailActivity orderDetailActivity = new OrderDetailActivity();
+			return orderDetailActivity.deleteOrderDetail(orderId, productId);
+		} catch (Exception e) {
+			return Response.serverError().build();
+		}
 	}
 
 }

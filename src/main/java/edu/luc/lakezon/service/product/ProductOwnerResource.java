@@ -70,8 +70,12 @@ public class ProductOwnerResource implements ProductOwnerService {
 	@Path("/authentication")
 	@Override
 	public Response authenticateProductOwner(ProductOwnerRequest ProductOwnerRequest) {
-		ProductOwnerActivity poActivity = new ProductOwnerActivity();
-		return poActivity.authenticateProductOwner(ProductOwnerRequest);
+		try {
+			ProductOwnerActivity poActivity = new ProductOwnerActivity();
+			return poActivity.authenticateProductOwner(ProductOwnerRequest);
+		} catch (Exception e) {
+			return Response.serverError().build();
+		}
 	}
 
 }

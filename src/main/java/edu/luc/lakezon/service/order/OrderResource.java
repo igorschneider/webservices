@@ -91,8 +91,12 @@ public class OrderResource implements OrderService {
 	@Path("/customer/{customerId}/order/{orderId}")
 	@Override
 	public Response deleteOrder(@PathParam("orderId") String orderId) {
-		OrderActivity orderActivity = new OrderActivity();
-		return orderActivity.deleteOrder(orderId);
+		try {
+			OrderActivity orderActivity = new OrderActivity();
+			return orderActivity.deleteOrder(orderId);
+		} catch (Exception e) {
+			return Response.serverError().build();
+		}
 	}
 
 }

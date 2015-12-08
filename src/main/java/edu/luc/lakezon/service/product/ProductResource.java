@@ -68,8 +68,12 @@ public class ProductResource implements ProductService {
 	@Path("{productId}")
 	@Override
 	public Response deleteProduct(@PathParam("productId") Integer id) {
-		System.out.println("DELETE METHOD Request from Product  ............." );
-		ProductActivity poActivity = new ProductActivity();
-		return poActivity.deleteProduct(id);
+		try {
+			System.out.println("DELETE METHOD Request from Product  ............." );
+			ProductActivity poActivity = new ProductActivity();
+			return poActivity.deleteProduct(id);
+		} catch (Exception e) {
+			return Response.serverError().build();
+		}
 	}
 }
