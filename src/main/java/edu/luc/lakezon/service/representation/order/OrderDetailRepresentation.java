@@ -18,6 +18,10 @@ public class OrderDetailRepresentation extends BaseRepresentation {
 	private Integer orderId;
 	private Integer productId;
 	private Integer quantity;
+	private String name;
+	private String description;
+	private String img;
+	private Double price;
 
 	public OrderDetailRepresentation() {}
 
@@ -45,6 +49,38 @@ public class OrderDetailRepresentation extends BaseRepresentation {
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
 }

@@ -41,6 +41,10 @@ public class OrderDetailActivity {
 			orderDetailRepresentation.setOrderId(orderDetail.getOrder().getOrderId());
 			orderDetailRepresentation.setProductId(orderDetail.getProduct().getProductId());
 			orderDetailRepresentation.setQuantity(orderDetail.getQuantity());
+			orderDetailRepresentation.setName(orderDetail.getProduct().getName());
+			orderDetailRepresentation.setDescription(orderDetail.getProduct().getDescription());
+			orderDetailRepresentation.setImg(orderDetail.getProduct().getImg());
+			orderDetailRepresentation.setPrice(orderDetail.getProduct().getPrice());
 			
 			Link updateOrderDetail = new Link("updateOrderDetail", "order/customer/" + customerId + 
 					"/order/" + orderId + "/orderdetail/" + 
