@@ -80,9 +80,9 @@ public class OrderActivity {
 					orderRepresentation.setStatus(order.getStatus());
 					orderRepresentation.setOrderDate(order.getOrderDate());
 
-					Link self = new Link("self", "customer/" + order.getCustomer().getCustomerId() + 
+					Link self = new Link("self", "order/customer/" + order.getCustomer().getCustomerId() + 
 							"/order/" + order.getOrderId());
-					Link shipOrder = new Link("shipOrder", "customer/" + order.getCustomer().getCustomerId() + 
+					Link shipOrder = new Link("shipOrder", "order/customer/" + order.getCustomer().getCustomerId() + 
 							"/order/" + order.getOrderId());
 					
 					orderRepresentation.setLinks(self, shipOrder);
@@ -107,13 +107,13 @@ public class OrderActivity {
 		orderRepresentation.setOrderDate(order.getOrderDate());
 		orderRepresentation.setCustomerId(Integer.parseInt(customerId));
 		
-		Link self = new Link("self", "customer/" + customerId + 
+		Link self = new Link("self", "order/customer/" + customerId + 
 				"/order/" + orderId);
-		Link viewOrderDetails = new Link("viewOrderDetails", "customer/" + customerId + 
+		Link viewOrderDetails = new Link("viewOrderDetails", "order/customer/" + customerId + 
 				"/order/" + orderId + "/orderdetail");
 		
 		if (order.getStatus() == edu.luc.lakezon.business.order.Status.CART) {
-			Link clearCart = new Link("clearCart", "customer/" + customerId + 
+			Link clearCart = new Link("clearCart", "order/customer/" + customerId + 
 					"/order/" + orderId);
 
 			orderRepresentation.setLinks(self, viewOrderDetails, clearCart);
@@ -142,11 +142,11 @@ public class OrderActivity {
 
 		orderRepresentation.setStatus(order.getStatus());
 		
-		Link self = new Link("self", "customer/" + customerId + 
+		Link self = new Link("self", "order/customer/" + customerId + 
 				"/order/" + orderId);
-		Link viewOrderDetails = new Link("viewOrderDetails", "customer/" + customerId + 
+		Link viewOrderDetails = new Link("viewOrderDetails", "order/customer/" + customerId + 
 				"/order/" + orderId + "/orderdetail");
-		Link clearCart = new Link("clearCart", "customer/" + customerId + 
+		Link clearCart = new Link("clearCart", "order/customer/" + customerId + 
 				"/order/" + orderId);
 
 		orderRepresentation.setLinks(self, viewOrderDetails, clearCart);;
@@ -190,9 +190,9 @@ public class OrderActivity {
 		orderRepresentation.setStatus(order.getStatus());
 		orderRepresentation.setOrderDate(order.getOrderDate());
 		
-		Link self = new Link("self", "customer/" + order.getCustomer().getCustomerId() + 
+		Link self = new Link("self", "order/customer/" + order.getCustomer().getCustomerId() + 
 				"/order/" + orderId);
-		Link viewOrderDetails = new Link("viewOrderDetails", "customer/" + 
+		Link viewOrderDetails = new Link("viewOrderDetails", "order/customer/" + 
 				order.getCustomer().getCustomerId() + 
 				"/order/" + orderId + "/orderdetail");
 

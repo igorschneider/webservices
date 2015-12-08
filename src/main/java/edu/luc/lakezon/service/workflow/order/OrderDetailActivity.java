@@ -42,11 +42,11 @@ public class OrderDetailActivity {
 			orderDetailRepresentation.setProductId(orderDetail.getProduct().getProductId());
 			orderDetailRepresentation.setQuantity(orderDetail.getQuantity());
 			
-			Link updateOrderDetail = new Link("updateOrderDetail", "customer/" + customerId + 
+			Link updateOrderDetail = new Link("updateOrderDetail", "order/customer/" + customerId + 
 					"/order/" + orderId + "/orderdetail/" + 
 					orderDetail.getProduct().getProductId());
 
-			Link removeOrderDetail = new Link("removeOrderDetail", "customer/" + customerId + 
+			Link removeOrderDetail = new Link("removeOrderDetail", "order/customer/" + customerId + 
 					"/order/" + orderId + "/orderdetail/" + 
 					orderDetail.getProduct().getProductId());
 

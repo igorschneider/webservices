@@ -18,7 +18,7 @@ import edu.luc.lakezon.service.representation.order.OrderDetailRequest;
 import edu.luc.lakezon.service.workflow.order.OrderDetailActivity;
 
 @CrossOriginResourceSharing(allowAllOrigins = true)
-@Path("/customer/{customerId}/order/{orderId}/orderdetail")
+@Path("/order/customer/{customerId}/order/{orderId}/orderdetail")
 public class OrderDetailResource implements OrderDetailService {
 
 	@GET

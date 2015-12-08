@@ -72,7 +72,7 @@ public class ProductOwnerActivity {
 				po.getProductOwnerId());
 		Link addProduct = new Link("addProduct", "product?productOwnerId=" + 
 				po.getProductOwnerId());
-		Link viewOrders = new Link("viewOrders", "order?productOwnerId=" + 
+		Link viewOrders = new Link("viewOrders", "order/order?productOwnerId=" + 
 				po.getProductOwnerId());
 		
 		poRep.setLinks(self, viewProducts, addProduct, viewOrders);
@@ -122,7 +122,7 @@ public class ProductOwnerActivity {
 						productOwner.getProductOwnerId());
 				Link addProduct = new Link("addProduct", "product?productOwnerId=" + 
 						productOwner.getProductOwnerId());
-				Link viewOrders = new Link("viewOrders", "order?productOwnerId=" + 
+				Link viewOrders = new Link("viewOrders", "order/order?productOwnerId=" + 
 						productOwner.getProductOwnerId());
 				
 				poRep.setLinks(self, viewProducts, addProduct, viewOrders);

@@ -24,6 +24,8 @@ public class CustomerResource implements CustomerService {
 	
 	@GET
 	@Produces({"application/xml" , "application/json"})
+	@Path("/customer")
+	@Override
 	public Set<CustomerRepresentation> getCustomers() {
 		CustomerActivity customerActivity = new CustomerActivity();
 		return customerActivity.getCustomers();
@@ -31,7 +33,7 @@ public class CustomerResource implements CustomerService {
 
 	@GET
 	@Produces({"application/xml" , "application/json"})
-	@Path("/{customerId}")
+	@Path("/customer/{customerId}")
 	@Override
 	public CustomerRepresentation getCustomer(@PathParam("customerId") String customerId) {
 		CustomerActivity customerActivity = new CustomerActivity();
@@ -41,6 +43,7 @@ public class CustomerResource implements CustomerService {
 	@POST
 	@Consumes({"application/xml" , "application/json"})
 	@Produces({"application/xml" , "application/json"})
+	@Path("/customer")
 	@Override
 	public CustomerRepresentation createCustomer(CustomerRequest customerRequest) {
 		CustomerActivity customerActivity = new CustomerActivity();
@@ -50,7 +53,7 @@ public class CustomerResource implements CustomerService {
 	@PUT
 	@Consumes({"application/xml" , "application/json"})
 	@Produces({"application/xml" , "application/json"})
-	@Path("/{customerId}")
+	@Path("/customer/{customerId}")
 	@Override
 	public CustomerRepresentation updateCustomer(@PathParam("customerId") String customerId,
 			CustomerRequest customerRequest) {
@@ -60,7 +63,7 @@ public class CustomerResource implements CustomerService {
 
 	@DELETE
 	@Produces({"application/xml" , "application/json"})
-	@Path("/{customerId}")
+	@Path("/customer/{customerId}")
 	@Override
 	public Response deleteCustomer(@PathParam("customerId") String customerId) {
 		CustomerActivity customerActivity = new CustomerActivity();
@@ -70,7 +73,7 @@ public class CustomerResource implements CustomerService {
 	@POST
 	@Consumes({"application/xml" , "application/json"})
 	@Produces({"application/xml" , "application/json"})
-	@Path("/authentication")
+	@Path("/customer/authentication")
 	@Override
 	public Response authenticateCustomer(CustomerRequest customerRequest) {
 		CustomerActivity customerActivity = new CustomerActivity();

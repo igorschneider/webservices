@@ -18,6 +18,7 @@ import edu.luc.lakezon.service.representation.order.OrderRepresentation;
 import edu.luc.lakezon.service.representation.order.OrderRequest;
 import edu.luc.lakezon.service.workflow.order.OrderActivity;
 
+@Path("/order")
 public class OrderResource implements OrderService {
 
 	@GET

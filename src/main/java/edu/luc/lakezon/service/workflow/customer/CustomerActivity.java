@@ -139,14 +139,14 @@ public class CustomerActivity {
 				CustomerRepresentation custRep = new CustomerRepresentation();
 				custRep.setName(customer.getName());
 
-				Link self = new Link("self", "customer/" + customer.getCustomerId());
+				Link self = new Link("self", "customer/customer/" + customer.getCustomerId());
 				Link viewReviews = new Link("viewReviews", "review?customer=" + 
 						customer.getCustomerId());
-				Link viewOrders = new Link("viewOrders", "customer/" + 
+				Link viewOrders = new Link("viewOrders", "order/customer/" + 
 						customer.getCustomerId() + "/order");
-				Link viewCart = new Link("viewCart", "customer/" + 
+				Link viewCart = new Link("viewCart", "order/customer/" + 
 						customer.getCustomerId() + "/order/" + order.getOrderId());
-				Link addProductToCart = new Link("addProductToCart", "customer/" + 
+				Link addProductToCart = new Link("addProductToCart", "order/customer/" + 
 						customer.getCustomerId() + "/order/" + order.getOrderId() + 
 						"/product/{productId}");
 				
