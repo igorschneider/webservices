@@ -120,7 +120,8 @@ public class ProductOwnerActivity {
 				Link self = new Link("self", "productowner/" + productOwner.getProductOwnerId());
 				Link viewProducts = new Link("viewProducts", "product?productowner=" + 
 						productOwner.getProductOwnerId());
-				Link addProduct = new Link("addProduct", "product");
+				Link addProduct = new Link("addProduct", "product?productowner=" + 
+						productOwner.getProductOwnerId());
 				Link viewOrders = new Link("viewOrders", "order?productowner=" + 
 						productOwner.getProductOwnerId());
 				
