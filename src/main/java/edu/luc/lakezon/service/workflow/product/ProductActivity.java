@@ -20,12 +20,17 @@ public class ProductActivity {
 	private ProductDAO productDAO = new ProductDAO();
 	private ProductOwnerDAO productOwnerDAO = new ProductOwnerDAO();
 
-	public Set<ProductRepresentation> getProducts(String name) {
+	public Set<ProductRepresentation> getProducts(String name, String productOwnerId) {
 		
 		Set<Product> products = null;
 		Set<ProductRepresentation> productRepresentations = 
 				new HashSet<ProductRepresentation>();
-		products = productDAO.getAllByString(name);
+		
+		if (!(name.equals(""))) {
+			products = productDAO.getAllByString(name);
+		} else {
+			products = productDAO.getAllById(Integer.parseInt(productOwnerId));
+		}
 		
 		Iterator<Product> it = products.iterator();
 

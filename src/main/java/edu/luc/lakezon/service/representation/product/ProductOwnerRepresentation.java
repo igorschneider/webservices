@@ -15,7 +15,7 @@ import edu.luc.lakezon.service.representation.BaseRepresentation;
 @JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class ProductOwnerRepresentation extends BaseRepresentation {
 
-	private int productOwnerId;
+	private Integer productOwnerId;
 	private String name;
 	private String password;
 
@@ -23,11 +23,11 @@ public class ProductOwnerRepresentation extends BaseRepresentation {
 
 	// Getters and Setters
 
-	public int getProductOwnerId() {
+	public Integer getProductOwnerId() {
 		return productOwnerId;
 	}
 
-	public void setProductOwnerId(int productOwnerId) {
+	public void setProductOwnerId(Integer productOwnerId) {
 		this.productOwnerId = productOwnerId;
 	}
 

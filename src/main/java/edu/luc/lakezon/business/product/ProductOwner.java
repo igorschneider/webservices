@@ -29,7 +29,7 @@ public class ProductOwner implements Serializable{
 	@SequenceGenerator(name = "seq-gen", sequenceName = "productownerid_seq", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq-gen")
 	@Column(name = "productownerid")
-	private int productOwnerId;
+	private Integer productOwnerId;
 
 	@Column(name = "name")
 	private String name;
@@ -42,11 +42,11 @@ public class ProductOwner implements Serializable{
 
 	
 	// GETTERS AND SETTERS 
-	public int getProductOwnerId() {
+	public Integer getProductOwnerId() {
 		return productOwnerId;
 	}
 
-	public void setProductOwnerId(int productOwnerId) {
+	public void setProductOwnerId(Integer productOwnerId) {
 		this.productOwnerId = productOwnerId;
 	}
 

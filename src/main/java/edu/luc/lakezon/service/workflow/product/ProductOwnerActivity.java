@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import edu.luc.lakezon.business.Link;
 import edu.luc.lakezon.business.product.ProductOwner;
 import edu.luc.lakezon.dao.product.ProductOwnerDAO;
 import edu.luc.lakezon.service.representation.product.ProductOwnerRepresentation;
@@ -95,7 +96,17 @@ public class ProductOwnerActivity {
 			ProductOwner productOwner = (ProductOwner)it.next();
 			
 			if (productOwner.getPassword().equals(productOwnerRequest.getPassword())) {
-				return Response.status(Status.OK).build();
+
+				ProductOwnerRepresentation poRep = new ProductOwnerRepresentation();
+				poRep.setName(productOwner.getName());
+
+				Link self = new Link("self", "productowner/" + productOwner.getProductOwnerId());
+				Link viewProducts = new Link("viewProducts", "product?productowner=" + 
+						productOwner.getProductOwnerId());
+				
+				poRep.setLinks(self, viewProducts);
+				
+				return Response.ok(poRep).build();
 			}
 
 		}
