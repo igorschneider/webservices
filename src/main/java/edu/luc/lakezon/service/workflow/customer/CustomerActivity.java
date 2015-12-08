@@ -1,5 +1,6 @@
 package edu.luc.lakezon.service.workflow.customer;
 
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -9,13 +10,16 @@ import javax.ws.rs.core.Response.Status;
 
 import edu.luc.lakezon.business.Link;
 import edu.luc.lakezon.business.customer.Customer;
+import edu.luc.lakezon.business.order.Order;
 import edu.luc.lakezon.dao.customer.CustomerDAO;
+import edu.luc.lakezon.dao.order.OrderDAO;
 import edu.luc.lakezon.service.representation.customer.CustomerRepresentation;
 import edu.luc.lakezon.service.representation.customer.CustomerRequest;
 
 public class CustomerActivity {
 
 	private CustomerDAO customerDAO = new CustomerDAO();
+	private OrderDAO orderDAO = new OrderDAO();
 	
 	public Set<CustomerRepresentation> getCustomers() {
 		
@@ -123,6 +127,15 @@ public class CustomerActivity {
 			Customer customer = (Customer)it.next();
 			
 			if (customer.getPassword().equals(customerRequest.getPassword())) {
+				
+				Order order = new Order();
+				
+				order.setCustomer(customer);
+				order.setStatus(edu.luc.lakezon.business.order.Status.CART);
+				order.setOrderDate(Calendar.getInstance());
+				
+				orderDAO.save(order);
+				
 				CustomerRepresentation custRep = new CustomerRepresentation();
 				custRep.setName(customer.getName());
 
@@ -131,8 +144,13 @@ public class CustomerActivity {
 						customer.getCustomerId());
 				Link viewOrders = new Link("viewOrders", "customer/" + 
 						customer.getCustomerId() + "/order");
+				Link viewCart = new Link("viewCart", "customer/" + 
+						customer.getCustomerId() + "/order/" + order.getOrderId());
+				Link addProductToCart = new Link("addProductToCart", "customer/" + 
+						customer.getCustomerId() + "/order/" + order.getOrderId() + 
+						"/product/{productId}");
 				
-				custRep.setLinks(self, viewReviews, viewOrders);
+				custRep.setLinks(self, viewReviews, viewOrders, viewCart, addProductToCart);
 
 				return Response.ok(custRep).build();
 			}

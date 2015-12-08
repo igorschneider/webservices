@@ -27,7 +27,7 @@ public class ProductResource implements ProductService {
 	@Produces({"application/xml" , "application/json"})
 	@Override
 	public Set<ProductRepresentation> getProducts(@DefaultValue("") @QueryParam("name") String name,
-			@DefaultValue("") @QueryParam("productowner") String productOwnerId) {
+			@DefaultValue("") @QueryParam("productOwnerId") String productOwnerId) {
 		System.out.println("GET METHOD Request to search for products .......");
 		ProductActivity prodActivity = new ProductActivity();
 		return prodActivity.getProducts(name, productOwnerId);	
@@ -47,7 +47,7 @@ public class ProductResource implements ProductService {
 	@Produces({"application/xml" , "application/json"})
 	@Override
 	public ProductRepresentation createProduct(
-			@DefaultValue("") @QueryParam("productowner") String productOwnerId, 
+			@DefaultValue("") @QueryParam("productOwnerId") String productOwnerId, 
 			ProductRequest pr) {
 		ProductActivity prodActivity = new ProductActivity();
 		return prodActivity.createProduct(productOwnerId, pr);
