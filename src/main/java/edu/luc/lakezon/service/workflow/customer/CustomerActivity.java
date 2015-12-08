@@ -148,7 +148,7 @@ public class CustomerActivity {
 						customer.getCustomerId() + "/order/" + order.getOrderId());
 				Link addProductToCart = new Link("addProductToCart", "order/customer/" + 
 						customer.getCustomerId() + "/order/" + order.getOrderId() + 
-						"/product/{productId}");
+						"/orderdetail");
 				
 				custRep.setLinks(self, viewReviews, viewOrders, viewCart, addProductToCart);
 

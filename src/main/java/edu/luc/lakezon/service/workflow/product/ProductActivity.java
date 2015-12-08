@@ -38,6 +38,7 @@ public class ProductActivity {
 			Product pd = (Product)it.next();
 			ProductRepresentation productRepresentation = new ProductRepresentation();
 
+			productRepresentation.setId(pd.getProductId());
 			productRepresentation.setName(pd.getName());
 			productRepresentation.setDescription(pd.getDescription());
 			productRepresentation.setQuantity(pd.getQuantity());
