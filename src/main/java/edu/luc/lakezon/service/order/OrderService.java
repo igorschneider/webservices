@@ -11,7 +11,8 @@ import edu.luc.lakezon.service.representation.order.OrderRequest;
 @WebService
 public interface OrderService {
 
-	public Set<OrderRepresentation> getOrders(String customerId);
+	public Set<OrderRepresentation> getCustomerOrders(String customerId);
+	public Set<OrderRepresentation> getProductOwnerOrders(String productOwnerId);
 	public OrderRepresentation getOrder(String customerId, String orderId);
 	public OrderRepresentation addProductToCart(String customerId, String orderId, String productId);
 	public OrderRepresentation createOrder(OrderRequest orderRequest);

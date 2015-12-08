@@ -9,6 +9,7 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
@@ -18,19 +19,30 @@ import edu.luc.lakezon.service.representation.order.OrderRequest;
 import edu.luc.lakezon.service.workflow.order.OrderActivity;
 
 @CrossOriginResourceSharing(allowAllOrigins = true)
-@Path("/customer/{customerId}/order")
 public class OrderResource implements OrderService {
 
 	@GET
 	@Produces({"application/xml" , "application/json"})
-	public Set<OrderRepresentation> getOrders(@PathParam("customerId") String customerId) {
+	@Path("/customer/{customerId}/order")
+	@Override
+	public Set<OrderRepresentation> getCustomerOrders(@PathParam("customerId") String customerId) {
 		OrderActivity orderActivity = new OrderActivity();
-		return orderActivity.getOrders(customerId);
+		return orderActivity.getCustomerOrders(customerId);
 	}
 
 	@GET
 	@Produces({"application/xml" , "application/json"})
-	@Path("/{orderId}")
+	@Path("/order")
+	@Override
+	public Set<OrderRepresentation> getProductOwnerOrders(
+			@QueryParam("productOwnerId") String productOwnerId) {
+		OrderActivity orderActivity = new OrderActivity();
+		return orderActivity.getProductOwnerOrders(productOwnerId);
+	}
+
+	@GET
+	@Produces({"application/xml" , "application/json"})
+	@Path("/customer/{customerId}/order/{orderId}")
 	@Override
 	public OrderRepresentation getOrder(@PathParam("customerId") String customerId,
 			@PathParam("orderId") String orderId) {
@@ -40,7 +52,7 @@ public class OrderResource implements OrderService {
 
 	@PUT
 	@Produces({"application/xml" , "application/json"})
-	@Path("/{orderId}/product/{productId}")
+	@Path("/customer/{customerId}/order/{orderId}/product/{productId}")
 	@Override
 	public OrderRepresentation addProductToCart(@PathParam("customerId") String customerId,
 			@PathParam("orderId") String orderId, @PathParam("productId") String productId) {
@@ -50,6 +62,7 @@ public class OrderResource implements OrderService {
 
 	@POST
 	@Produces({"application/xml" , "application/json"})
+	@Path("/customer/{customerId}/order")
 	@Override
 	public OrderRepresentation createOrder(OrderRequest orderRequest) {
 		OrderActivity orderActivity = new OrderActivity();
@@ -58,7 +71,7 @@ public class OrderResource implements OrderService {
 
 	@PUT
 	@Produces({"application/xml" , "application/json"})
-	@Path("/{orderId}")
+	@Path("/customer/{customerId}/order/{orderId}")
 	@Override
 	public OrderRepresentation updateOrder(@PathParam("orderId") String orderId, 
 			OrderRequest orderRequest) {
@@ -68,7 +81,7 @@ public class OrderResource implements OrderService {
 
 	@DELETE
 	@Produces({"application/xml" , "application/json"})
-	@Path("/{orderId}")
+	@Path("/customer/{customerId}/order/{orderId}")
 	@Override
 	public Response deleteOrder(@PathParam("orderId") String orderId) {
 		OrderActivity orderActivity = new OrderActivity();

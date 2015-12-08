@@ -26,7 +26,7 @@ public class OrderActivity {
 	private ProductDAO productDAO = new ProductDAO();
 	private OrderDetailDAO orderDetailDAO = new OrderDetailDAO();
 	
-	public Set<OrderRepresentation> getOrders(String customerId) {
+	public Set<OrderRepresentation> getCustomerOrders(String customerId) {
 		
 		Set<Order> orders = null;
 		Set<OrderRepresentation> orderRepresentations = 
@@ -47,6 +47,50 @@ public class OrderActivity {
 			orderRepresentation.setCustomerId(Integer.parseInt(customerId));
 			
 			orderRepresentations.add(orderRepresentation);
+		}
+		
+		return orderRepresentations;
+	}
+	
+	public Set<OrderRepresentation> getProductOwnerOrders(String productOwnerId) {
+		
+		Set<Order> orders = null;
+		Set<OrderRepresentation> orderRepresentations = 
+				new HashSet<OrderRepresentation>();
+		
+		orders = orderDAO.getAll();
+		
+		Iterator<Order> it = orders.iterator(); 
+		
+		while (it.hasNext()) {
+			Order order = (Order)it.next();
+			
+			Iterator<OrderDetail> it2 = order.getOrderDetailList().iterator();
+			
+			while (it2.hasNext()) {
+				
+				OrderDetail orderDetail = (OrderDetail)it2.next();
+				
+				if (orderDetail.getProduct().getProductOwner().getProductOwnerId() == 
+						Integer.parseInt(productOwnerId)) {
+					
+					OrderRepresentation orderRepresentation = 
+							new OrderRepresentation();
+					
+					orderRepresentation.setStatus(order.getStatus());
+					orderRepresentation.setOrderDate(order.getOrderDate());
+
+					Link self = new Link("self", "customer/" + order.getCustomer().getCustomerId() + 
+							"/order/" + order.getOrderId());
+					Link shipOrder = new Link("shipOrder", "customer/" + order.getCustomer().getCustomerId() + 
+							"/order/" + order.getOrderId());
+					
+					orderRepresentation.setLinks(self, shipOrder);
+
+					orderRepresentations.add(orderRepresentation);
+				}
+				
+			}
 		}
 		
 		return orderRepresentations;

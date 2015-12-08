@@ -107,8 +107,10 @@ public class ProductOwnerActivity {
 				Link viewProducts = new Link("viewProducts", "product?productowner=" + 
 						productOwner.getProductOwnerId());
 				Link addProduct = new Link("addProduct", "product");
+				Link viewOrders = new Link("viewOrders", "order?productowner=" + 
+						productOwner.getProductOwnerId());
 				
-				poRep.setLinks(self, viewProducts, addProduct);
+				poRep.setLinks(self, viewProducts, addProduct, viewOrders);
 				
 				return Response.ok(poRep).build();
 			}

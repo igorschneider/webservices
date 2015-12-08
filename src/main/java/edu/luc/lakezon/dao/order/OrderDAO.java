@@ -10,6 +10,10 @@ public class OrderDAO extends BaseDAO<Order>{
 		return super.getById(id, "Order", "orderId");
 	}
 	
+	public Set<Order> getAll() {
+		return super.getAll("Order");
+	}
+
 	public Set<Order> getAllById(Integer customerId) {
 		return super.getAllById(customerId, "Order", "customerId");
 	}

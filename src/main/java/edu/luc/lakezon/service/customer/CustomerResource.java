@@ -2,6 +2,7 @@ package edu.luc.lakezon.service.customer;
 
 import java.util.Set;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -38,6 +39,7 @@ public class CustomerResource implements CustomerService {
 	}
 
 	@POST
+	@Consumes({"application/xml" , "application/json"})
 	@Produces({"application/xml" , "application/json"})
 	@Override
 	public CustomerRepresentation createCustomer(CustomerRequest customerRequest) {
@@ -46,6 +48,7 @@ public class CustomerResource implements CustomerService {
 	}
 
 	@PUT
+	@Consumes({"application/xml" , "application/json"})
 	@Produces({"application/xml" , "application/json"})
 	@Path("/{customerId}")
 	@Override
@@ -65,6 +68,7 @@ public class CustomerResource implements CustomerService {
 	}
 
 	@POST
+	@Consumes({"application/xml" , "application/json"})
 	@Produces({"application/xml" , "application/json"})
 	@Path("/authentication")
 	@Override
