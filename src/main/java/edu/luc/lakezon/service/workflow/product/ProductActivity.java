@@ -68,10 +68,11 @@ public class ProductActivity {
 		productRepresentation.setProductOwnerName(pd.getProductOwner().getName());
 
 		Link viewProductOwner = new Link("viewProductOwner", "productowner/" + pd.getProductOwner().getProductOwnerId());
-		Link viewReviews = new Link("viewReviews", "product/" + pd.getProductId() + "/review");
+		Link viewReviews = new Link("viewReviews", "review?productId=" + pd.getProductId());
 		Link addToCart = new Link("addToCart", "customer/302/order/131/product/" + pd.getProductId());
+		Link updateProduct = new Link("updateProduct", "product/" + pd.getProductId());
 
-		productRepresentation.setLinks(viewProductOwner, viewReviews, addToCart);;
+		productRepresentation.setLinks(viewProductOwner, viewReviews, addToCart, updateProduct);;
 
 		return productRepresentation;
 	}

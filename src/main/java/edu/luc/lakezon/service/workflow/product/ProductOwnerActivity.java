@@ -15,7 +15,6 @@ import edu.luc.lakezon.service.representation.product.ProductOwnerRequest;
 
 public class ProductOwnerActivity {
 
-	
 	private ProductOwnerDAO dao = new ProductOwnerDAO();
 	
 	public Set<ProductOwnerRepresentation> getProductOwners() {
@@ -46,6 +45,10 @@ public class ProductOwnerActivity {
 		
 		ProductOwnerRepresentation poRep = new ProductOwnerRepresentation();
 		poRep.setName(po.getName());
+		
+		Link updateProductOwner = new Link("updateProductOwner", "productowner/" + id);
+
+		poRep.setLinks(updateProductOwner);
 		
 		return poRep;
 	}
@@ -103,8 +106,9 @@ public class ProductOwnerActivity {
 				Link self = new Link("self", "productowner/" + productOwner.getProductOwnerId());
 				Link viewProducts = new Link("viewProducts", "product?productowner=" + 
 						productOwner.getProductOwnerId());
+				Link addProduct = new Link("addProduct", "product");
 				
-				poRep.setLinks(self, viewProducts);
+				poRep.setLinks(self, viewProducts, addProduct);
 				
 				return Response.ok(poRep).build();
 			}

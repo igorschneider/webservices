@@ -11,8 +11,12 @@ public class ReviewDAO extends BaseDAO<Review> {
 		return super.getById(id, "Review", "reviewId");
 	}
 	
-	public Set<Review> getAllById(Integer productId) {
+	public Set<Review> getAllByProductId(Integer productId) {
 		return super.getAllById(productId, "Review", "productId");
+	}
+
+	public Set<Review> getAllByCustomerId(Integer customerId) {
+		return super.getAllById(customerId, "Review", "customerId");
 	}
 
 }
